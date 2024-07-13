@@ -7,7 +7,7 @@
 \usepackage[mathscr]{euscript}
 \usepackage[nointegrals]{wasysym}
 \usepackage{tikz}
-\usepackage{tikz-cd}  % commutative diagrams
+\usepackage{tikz-cd}  
 \usepackage{microtype}  % Minature font tweaks
 \usepackage{braket} % Make sets
 \usepackage{esdiff} % Write derivatives
@@ -208,8 +208,8 @@
 \newcommand{\tcyan}[1]{\textcolor{cyan}{#1}}
 
 % Overbrace, Underbrace
-\newcommand{\ob}[2]{{\overbrace{#1}^{\text{#2}}}}
-\newcommand{\ub}[2]{{\underbrace{#1}_{\text{#2}}}}
+\newcommand{\ob}[2]{ {\overbrace{#1}^{\text{#2}}} }
+\newcommand{\ub}[2]{ {\underbrace{#1}_{\text{#2}}} }
 
 % Piecewise
 \newcommand{\pw}[2]{{#1 = \begin{cases}#2\end{cases}}}
@@ -220,7 +220,7 @@
 \newcommand*{\medcap}{\mathbin{\scalebox{1.5}{{\cap}}}}
 \newcommand*{\medcup}{\mathbin{\scalebox{1.5}{{\cup}}}}
 
-% Proof symbols 
+% Proof symbols
 \newcommand{\forwarddir}{{\paren{\Rightarrow} \quad}}
 \newcommand{\conversedir}{{\paren{\Leftarrow} \quad}}
 

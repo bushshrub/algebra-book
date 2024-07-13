@@ -5,3 +5,7 @@ Galois Theory and basic commutative algebra.
 
 ## License
 All rights reserved (at the moment) although contributions are fine
+
+
+## Build
+The main file is `algebra-notes.tex`. Run `latexmk` 

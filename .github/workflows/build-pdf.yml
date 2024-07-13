@@ -1,0 +1,32 @@
+name: Build PDF
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up LaTeX environment
+        uses: xu-cheng/latex-action@v2
+        with:
+          latex-version: 'texlive-full'
+
+      - name: Build PDF
+        run: |
+          make build
+          mv *.pdf output/
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF Artifacts
+          path: output/

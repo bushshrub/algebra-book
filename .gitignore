@@ -508,4 +508,4 @@ Temporary Items
 *.icloud
 
 
-split-output/
+*.pdf

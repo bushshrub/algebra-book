@@ -20,7 +20,7 @@ jobs:
         run: mkdir -p ~/image-cache
     
       - id: image-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/image-cache
           key: image-cache-${{ runner.os }}

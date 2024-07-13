@@ -16,6 +16,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - id: image-cache
+        uses: actions/cache@v2
+        with:
+          path: ~/image-cache
+          key: image-cache-${{ runner.os }}
+
+      - if: steps.image-cache.outputs.cache-hit == 'true'
+        run: docker load -i ~/image-cache/image.tar
+
       - name: Build PDF document
         uses: xu-cheng/texlive-action@v2
         with:
@@ -24,6 +33,8 @@ jobs:
             apk add make
             tlmgr install latexmk
             make build
+      - if: steps.image-cache.outputs.cache-hit != 'true'
+        run: docker save -o ~/image-cache/image.tar ghcr.io/xu-cheng/texlive-full:latest
       - name: Move PDFs to output
         run: |
           mkdir output
@@ -38,10 +49,3 @@ jobs:
         with:
           name: Book
           path: output/main.pdf
-      
-      - name: Publish to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
-          publish_branch: gh-pages

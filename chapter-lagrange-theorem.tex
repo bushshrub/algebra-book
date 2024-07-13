@@ -1,0 +1,135 @@
+\documentclass[./algebra-notes.tex]{subfiles}
+
+
+\begin{document}
+One of the central problems in group theory is to understand the structure of a
+group by understanding the structure of its subgroups. 
+
+One cannot talk about finite group theory without mention of Lagrange's Theorem.
+This is arguably the most important theorem in finite group theory. In a sense,
+it restricts the sizes of the subgroups of a group. Lagrange's Theorem tells us
+that the order of a subgroup must divide the order of a group. Of course, this
+only holds for finite groups. 
+
+How should we prove something like this? Let $G$ be a finite group and let $H$
+be a subgroup of $G$. If we can somehow bundle together the elements of a group
+into piles of $\abs{H}$, the result should follow. But what is the correct way
+to bundle them? Here is one way.
+
+\begin{definition}[Coset]
+\label{def:coset}
+Let $G$ be a group and let $H$ be a subgroup of $G$. A (left) coset of $H$,
+denoted $gH$ is the set 
+\[
+    gH = \set{gh: h \in H}.
+\]
+\end{definition}
+
+Why are cosets important? It turns out that cosets form a partition of $G$, and
+that the size of a coset is precisely the size of the subgroup $H$. 
+
+Recall that an equivalence relation $\sim$ on $G$ is a relation that is
+reflexive, symmetric and transitive. Equivalence relations give rise to
+partitions. If $\sim$ is an equivalence relation on $G$ and $g \in G$, then the
+set 
+\[
+    [g]_\sim = \set{a \in G: a \sim g}
+\]
+denotes the equivalence class of $g$ under $\sim$. If the equivalence
+relation is clear, we shall simply write $[g]$.
+\begin{proposition}[Coset is an equivalence relation]
+\label{prop:coset-equiv-relation}
+    Let $G$ be a finite group and $H$ a subgroup of $G$. Define the equivalence
+    relation $\sim$ on $G$ by $a \sim b$ if and only if $a\inv b \in H$. Then,
+    $\sim$ is an equivalence relation and $aH = [a]$, where $[a]$ is the
+    equivalence class of $a$ under $\sim$.
+\end{proposition}
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{exercise}
+    Prove \cref{prop:coset-equiv-relation}.
+\end{exercise}
+
+\begin{theorem}[Properties of cosets]
+\label{thm:properties-of-cosets}
+    Let $G$ be a finite group and let $H$ be a subgroup of $G$. Then, the following are true.
+
+    \begin{enumerate}
+        \item $a \in aH$.
+        \item $aH = H$ if and only if $a \in H$.
+        \item $aH = bH$ if and only if $a\inv b \in H$.
+        \item $aH = Ha$ if and only if $aHa\inv = H$.
+        \item $\abs{aH} = \abs{bH}$. In other words, different cosets have the same size.
+        \item $aH$ is a subgroup if and only if $a \in H$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item Obvious.
+        \item Clearly. 
+        \item Follows from 2.
+        \item Easy to see.
+        \item Define a bijection from $aH$ to $bH$ by sending $x \in aH$ to $ba\inv x$.
+        \item Clearly.
+    \end{enumerate}
+\end{proof}
+Since writing "obvious" and "clearly" for a proof doesn't really constitute a proof,
+we have the following exercise.
+\begin{exercise}
+    Prove \cref{thm:properties-of-cosets}.
+\end{exercise}
+
+Now, take a good look at property number 5 of \cref{thm:properties-of-cosets}.
+This is the key idea here. It tells us that the equivalence classes of the coset
+relation all have the same size. We are now ready to prove Lagrange's Theorem. With
+the coset equivalence relation, we cut up $G$ into pieces of size $\abs{H}$. 
+\begin{theorem}[Lagrange's Theorem]
+\label{thm:lagrange-theorem}
+    Let $G$ be a finite group of order $n$. Let $H$ be a subgroup of $G$. Then,
+    $\abs{H}$ divides $n$.
+\end{theorem}
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{exercise}
+    Prove \cref{thm:lagrange-theorem}
+\end{exercise}
+
+One thing you may have noticed is that the proof of Lagrange's Theorem was
+rather trivial. How does such a powerful theorem have such a trivial proof? 
+The key answer lies in how the definitions were formulated.
+
+We now state some corollaries of Lagrange's Theorem. These are obvious.
+
+\begin{corollary}[Consequences of Lagrange's Theorem]
+\label{cor:consequences-of-lagrange}
+    Let $G$ be a finite group. Then, the following are true.
+    \begin{enumerate}
+        \item If $g \in G$, $\abs{g}$ divides $\abs{G}$.
+        \item If $G$ has prime order then it is cyclic.
+        \item If $g \in G$, then $g^{\abs G} = e$.
+    \end{enumerate}
+\end{corollary}
+\begin{exercise}
+    Prove \cref{cor:consequences-of-lagrange}.
+\end{exercise}
+
+Let us now see an application of Lagrange's Theorem.
+
+\begin{corollary}[Fermat's Little Theorem]
+\label{cor:fermat-little-theorem}
+    Let $p$ be a prime, and let $a$ be an integer. Then, $a^p \operatorname{mod}
+    p = a \operatorname{mod} p$.  
+\end{corollary}
+\begin{proof}
+    To do this, we study the behavior of an element of $U(p)$. Recall that $U(p)
+    = \set{1, \dots, p-1}$, which has order $p-1$. If $a \in U(p)$, we would
+    have $a^{\abs{U(p)}} = 1$, so $a^p = a$. If $a$ is not in $U(p)$, then use
+    the division algorithm on $a$.
+\end{proof}
+\begin{exercise}
+    Fill in the details of \cref{cor:fermat-little-theorem}.
+\end{exercise}
+
+\end{document}

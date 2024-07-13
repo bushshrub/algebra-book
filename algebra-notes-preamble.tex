@@ -1,0 +1,272 @@
+\usepackage[dvipsnames, table, xcdraw]{xcolor}
+\usepackage{bm}
+\usepackage{amsfonts, amsthm, amsmath, amssymb}
+\usepackage{thmtools}
+\usepackage{mathtools}
+\usepackage{cancel, textcomp}
+\usepackage[mathscr]{euscript}
+\usepackage[nointegrals]{wasysym}
+\usepackage{tikz}
+\usepackage{tikz-cd}  % commutative diagrams
+\usepackage{microtype}  % Minature font tweaks
+\usepackage{braket} % Make sets
+\usepackage{esdiff} % Write derivatives
+\usepackage{xparse} % for multiple default args
+\usepackage{xargs}
+\usepackage{enumitem}
+\usepackage{bookmark, parskip}
+
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize,nameinlink]{cleveref}
+\hypersetup{colorlinks={true},linkcolor={blue},citecolor=BrickRed}
+
+\usepackage[skins]{tcolorbox}
+\usepackage[framemethod = TikZ]{mdframed}
+\mdfsetup{skipabove = 1em, skipbelow = 0em}
+
+% Theorem environment configuration
+% colors stolen from math discord
+
+\newcommand{\sslash}{\mathbin{/\mkern-6mu/}}
+
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{ForestGreen!70!black},
+		bodyfont = \normalfont,
+		mdframed = {
+		linewidth = 2pt,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = ForestGreen,
+		backgroundcolor = ForestGreen!5,
+		innertopmargin=+10pt,
+		innerbottommargin=+10pt
+		}
+]{greenbox}
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{NavyBlue!70!black},
+		bodyfont = \normalfont,
+		mdframed = {
+		linewidth = 2pt,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = NavyBlue,
+		backgroundcolor = NavyBlue!5,
+		innertopmargin=+10pt,
+		innerbottommargin=+10pt
+		}
+]{bluebox}
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{Mulberry!70!black},
+		bodyfont = \normalfont,
+		mdframed = {
+		linewidth = 2pt,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = Mulberry,
+		backgroundcolor = Mulberry!5,
+		innertopmargin=+10pt,
+		innerbottommargin=+10pt
+		}
+]{purplebox}
+
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{RawSienna!70!black},
+		bodyfont = \normalfont,
+		mdframed = {
+		linewidth = 2pt,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = RawSienna,
+		backgroundcolor = RawSienna!5,
+		innertopmargin=+10pt,
+		innerbottommargin=+10pt
+		}
+]{redbox}
+
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{YellowOrange!70!black},
+		bodyfont = \normalfont,
+		mdframed = {
+		linewidth = 2pt,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = YellowOrange,
+		backgroundcolor = YellowOrange!5,
+		innertopmargin=+10pt,
+		innerbottommargin=+10pt
+		}
+]{orangebox}
+
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{RubineRed!70!black},
+		bodyfont = \normalfont,
+		mdframed = {
+		linewidth = 2pt,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = RubineRed,
+		backgroundcolor = RubineRed!5,
+		innertopmargin=+10pt,
+		innerbottommargin=+10pt
+		}
+]{rubineredbox}
+
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{RawSienna!70!black},
+		bodyfont = \normalfont,
+		numbered = no,
+		mdframed = {
+		linewidth = 2pt,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = RawSienna,
+		backgroundcolor = RawSienna!1,
+		innertopmargin=+10pt,
+		innerbottommargin=+10pt
+		},
+		qed = \qedsymbol
+]{proofbox}
+
+\declaretheorem[name = Theorem, numberwithin=chapter, style=rubineredbox]{theorem}
+\declaretheorem[name = Proposition, numberlike=theorem]{proposition}
+\declaretheorem[name = Lemma, numberlike=theorem]{lemma}
+\declaretheorem[name = Corollary, numberlike=theorem, style=orangebox]{corollary}
+\declaretheorem[name = Conjecture, numberlike=theorem]{conjecture}
+\declaretheorem[name = Claim, numberlike=theorem]{claim}
+\declaretheorem[name = Remark, numberlike=theorem, style=definition]{remark}
+\declaretheorem[name = Warning, numbered=no]{warning}
+
+\declaretheorem[name = Definition, numberlike=theorem, style=greenbox]{definition}
+\declaretheorem[name = Notation, numberlike=theorem, style=greenbox]{notation}
+\declaretheorem[name = Axiom, numberlike=theorem, style=greenbox]{axiom}
+
+\declaretheorem[name = Example, numberlike=theorem, style=definition, qed=$\sslash$]{example}
+\declaretheorem[name = Recall, numbered=no, style=bluebox]{recall}
+
+\declaretheorem[name = Exercise, numberlike=theorem, style=definition]{exercise}
+
+
+
+% Common shortcuts
+\def\mbb#1{\mathbb{#1}}
+\def\mfk#1{\mathfrak{#1}}
+\def\mc#1{\mathcal{#1}}
+\def\msc#1{\mathscr{#1}}
+\def\mbf#1{\mathbf{#1}}
+
+\def\bN{\mbb{N}}
+\def\bC{\mbb{C}}
+\def\bR{\mbb{R}}
+\def\bQ{\mbb{Q}}
+\def\bZ{\mbb{Z}}
+
+
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+\newcommandx{\func}[3][1=f]{{#1: #2 \to #3}}
+
+
+\def\f#1/#2.{\frac{#1}{#2}}
+
+
+\newcommand{\inv}{^{-1}}
+\NewDocumentCommand\abs{s m}{
+    \IfBooleanTF#1
+        {{\lvert#2\rvert}}
+		{{\left\lvert#2\right\rvert}}
+}
+\NewDocumentCommand\norm{s m}{
+    \IfBooleanTF#1
+        {{\lVert#2\rVert}}
+		{{\left\lVert#2\right\rVert}}
+}
+% \paren* does square brackets, \paren does regular brackets
+\NewDocumentCommand\paren{s m}{
+    \IfBooleanTF#1
+        {{\left[#2\right]}}
+        {{\left(#2\right)}}
+}
+% \bigl parentheses
+\NewDocumentCommand\Paren{s m}{
+    \IfBooleanTF#1
+        {{\bigl[#2\bigr]}}
+        {{\bigl(#2\bigr)}}
+}
+
+% Text colours
+\newcommand{\tblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\tred}[1]{\textcolor{red}{#1}}
+\newcommand{\tgreen}[1]{\textcolor{green}{#1}}
+\newcommand{\tcyan}[1]{\textcolor{cyan}{#1}}
+
+% Overbrace, Underbrace
+\newcommand{\ob}[2]{{\overbrace{#1}^{\text{#2}}}}
+\newcommand{\ub}[2]{{\underbrace{#1}_{\text{#2}}}}
+
+% Piecewise
+\newcommand{\pw}[2]{{#1 = \begin{cases}#2\end{cases}}}
+\newcommand{\piece}[2]{{#1 & \text{if} \, #2 \\}}
+
+% Set theory things
+\renewcommand{\emptyset}{\varnothing}
+\newcommand*{\medcap}{\mathbin{\scalebox{1.5}{{\cap}}}}
+\newcommand*{\medcup}{\mathbin{\scalebox{1.5}{{\cup}}}}
+
+% Proof symbols 
+\newcommand{\forwarddir}{{\paren{\Rightarrow} \quad}}
+\newcommand{\conversedir}{{\paren{\Leftarrow} \quad}}
+
+% Analysis stuff
+\newcommand{\eps}{\varepsilon}
+\newcommand{\halfeps}{\frac{\eps}{2}}
+
+\newcommand{\limtoinf}{\lim_{n \to \infty}}
+% Usage: \seq{x}{n} -> (x_n)
+\newcommand*{\seq}[2]{{\paren{#1_{#2}}}}
+\newcommand*{\seqlim}[2]{{\limtoinf{#2}{\seq{#1}{#2}}}}
+\NewDocumentCommand{\app}{O{x} O{\infty}}{\xrightarrow{#1\to#2}}
+
+\newcommand*{\dd}[1]{\operatorname{d}\mkern-3mu#1}
+% End analysis stuff
+
+% Algebra macros
+\def\zgroup#1.{
+    {
+        \bZ_{#1} = \set{0, 1, \dotsc, \the\numexpr#1-1}
+    }
+}
+
+\newcommand{\gen}[1]{
+    {
+        \langle #1 \rangle
+    }
+}
+% End Algebra macros
+
+% Linear Algebra macros
+\newcommand*{\vspan}{\operatorname{span}}
+
+
+% Topology macros
+% Usage: \ball{radius}{metric}{point}
+% \newcommand{\ball}[3]{{
+% B_{#1}^{(#2)} \paren{#3}
+% }}
+\NewDocumentCommand{\ball}{O{r} o m}{
+    \IfNoValueTF{#2}{B_{#1} \paren{#3}}{B_{#1}^{(#2)} \paren{#3}}
+}
+
+\newcommand*{\Interior}[1]{{\textnormal{Int} \, #1}}
+\newcommand*{\Exterior}[1]{{\textnormal{Ext} \, #1}}
+\newcommand*{\Boundary}[1]{{\partial \, #1}}
+\newcommand*{\nbhd}[1]{{U_{#1}}}
+
+% End topology macros

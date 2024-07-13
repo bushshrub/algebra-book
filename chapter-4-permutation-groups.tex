@@ -1,0 +1,315 @@
+\documentclass[./algebra-notes.tex]{subfiles}
+
+\begin{document}
+Now that we have looked at a bunch of abelian groups, let us look at some non
+abelian groups. In particular, we will be looking at an infinite familiy of non
+abelian groups, called permutation groups. The importance of permutation groups
+cannot be overstated. In a sense, every group is contained within a permutation
+group. This will be the content of Cayley's Theorem. 
+
+\begin{definition}[Permutation]
+\label{def:permutation}
+    Let $S$ be a set. Then a \textbf{permutation} (of $S$) is a bijection
+    $\sigma: S \to S$.
+\end{definition}
+We leave the reader to come with some examples of permutations. 
+\begin{exercise}
+    Let $S = \set{1,2,3}$. Find every permutation of $S$.
+\end{exercise}
+
+We have previously seen in \cref{example:symmetric-groups} that if $S =
+\set{1,\dots,n}$, then the set of permutations of $S$ forms a group under
+function composition. In fact, given any set $A$, the set of permutations on $S$
+forms a group under function composition. We denote this set with
+$S_A$.
+\begin{exercise}
+    Let $S$ be \emph{any} set. Prove that the set of permutations on $S$ forms a
+    group under function composition.
+\end{exercise}
+We remark that the structure of the group $S_A$ only depends on the cardinality
+of $A$, and not on what is in $A$. That is, if $\abs{A} = \abs{B}$ then $S_A$ is
+isomorphic to $S_B$. We defer a proof of this to
+\cref{exercise:permutation-group-only-depends-on-cardinality}. As such when
+considering permutations on finite sets of size $n$, we only need to consider
+permutations on the set $\set{1, \dots, n}$.
+
+We will focus our efforts on permutations of finite sets for now. Recall that
+$S_n$ denotes the set of permutations on $n$ things. Since the main property of
+an $n$-element set is that it contains $n$ elements, we shall let $S_n$ refer to
+the group of permutations on the set $\set{1, \cdots, n}$. To aid in our study
+of permutation groups, we shall introduce some notation to describe the elements
+of permutation groups, called \emph{cycle notation}. To understand this
+notation, let us begin with an example.
+
+Let $\sigma \in S_6$ be defined by $\sigma(1) = 3$, $\sigma(2) = 4$, $\sigma(3)
+= 5$, $\sigma(4) = 6$, $\sigma(5) = 1$, $\sigma(6) = 2$. So, 1 goes to 3, 3 goes
+to 5 and 5 goes to 1. We can write this down as $(1,3,5)$. Additionally, 2 goes
+to 4 and 4 goes to 6, and 6 goes to 2. We similarly write this down as
+$(2,4,6)$. Thus, expressing $\sigma$ in cycle notation, we get $\sigma =
+(1,3,5)(2,4,6)$. 
+
+We remark that given $\sigma \in S_n$, if $n < 10$, it is common to omit the
+commas in the cycle notation as there is no ambiguity about what is going on. So
+for instance, our $\sigma$ above could be written as $(135)(246)$.
+
+Let us see how to evaluate $\sigma$ at a particular value. Suppoe that we didn't
+know what $\sigma(5)$ was but we do know that $\sigma = (135)(246)$. We first
+apply the cycle $(246)$ to $5$. Since 5 appears nowhere in this cycle, it comes
+out as a 5. Now we apply the cycle $(135)$ to 5. Since $5$ is at the end of the
+cycle, it goes to 1, so application of $(135)$ to 5 yields 1.
+
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCI1Il0sWzEsMCwiNSJdLFsyLDAsIjEiXSxbMCwxLCIoMjQ2KSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwyLCIoMTM1KSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+\[\begin{tikzcd}[cramped]
+	5 & 5 & 1
+	\arrow["{(246)}", maps to, from=1-1, to=1-2]
+	\arrow["{(135)}", maps to, from=1-2, to=1-3]
+\end{tikzcd}\]
+
+
+
+Now, let $\tau = (123)$. We shall now describe how to compose the permutations
+$\sigma$ and $\tau$. In this case, the obvious answer is the correct one,
+so we have
+\[
+    \sigma \tau = \ub{(135)(246)}{\sigma}\ub{(123)}{\tau}.
+\]
+As such, we compose cycles \emph{right to left}. This agrees with how we do
+function composition. (The reader should be warned that some authors compose
+cycles left to right instead. Note that this is stupid.)
+
+However, this form is not very helpful for determining the properties of
+$\sigma\tau$. It is much better if we can express $\sigma \tau$ in terms of
+disjoint cycles.
+
+\begin{definition}[Disjoint cycles]
+    Let $\alpha = (a_1, \dots, a_n)$ and $\beta = (b_1, \dots, b_m)$. Then
+    $\alpha$ and $\beta$ are said to be \textbf{disjoint} if $a_i \neq b_j$ for
+    all $i, j$.
+\end{definition}
+In other words, two cycles are disjoint if they share no elements in common. For
+example, the cycles $(123)$ and $(456)$ are disjoint, but the cycles $(134)$ and
+$(235)$ are not.
+
+So to express $\sigma \tau$ in terms of disjoint cycles, we simply need to find
+out where all the elements go. Unfortunately, the best way to do so is to simply
+evaluate $\sigma \tau$ at every element. We shall do one evaluation and leave
+the rest for the reader to practice. Let us follow where the element 3 goes. 
+
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCIxIl0sWzIsMCwiMSJdLFszLDAsIjMiXSxbMCwwLCIzIl0sWzAsMSwiKDI0NikiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsMiwiKDEzNSkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzMsMCwiKDEyMykiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+\[\begin{tikzcd}[cramped]
+	3 & 1 & 1 & 3
+	\arrow["{(123)}", maps to, from=1-1, to=1-2]
+	\arrow["{(246)}", maps to, from=1-2, to=1-3]
+	\arrow["{(135)}", maps to, from=1-3, to=1-4]
+\end{tikzcd}\]
+
+So $\sigma(3) = 3$.
+
+\begin{exercise}
+    Figure out where the rest of the elements go. Write down $\sigma \tau$ in
+    cycle notation.
+\end{exercise}
+
+We now finish our discussion of cycle notation by remarking that cycles with
+only one entry are often omitted. For example, instead of writing
+$(1)(23)(4)(56)$, one would write $(23)(56)$ instead. Any missing element is
+fixed by the permutation. Of course, we have to write something down for the
+identity permutation, so we could say that the identity permutation is $(1)$ or
+$(3)$ or whatever.
+
+We now begin our investigation into permutations. The following theorem
+justifies the preceding discussion on writing permutations as cycles. While
+reading the proof, the reader should keep in mind the cycle decomposition
+algorithm.
+\begin{theorem}[Existence of cycle decomposition]
+\label{thm:existence-of-cycle-decomp}
+    Every permutation of a finite set admits a cycle decomposition. In other
+    words, if $\sigma \in S_n$ then $\sigma$ is either a cycle, or a product of
+    disjoint cycles.
+\end{theorem}
+\begin{proof}
+    Let $S = \set{1, \dots, n}$ let $\sigma$ be a permutation on $S$. Pick $a_1
+    \in S$. Set $a_n = \sigma (a_{n-1})$, so $a_n = \sigma^{n-1} (a_1)$. This
+    sequence is finite since all the elements are in $S$. Thus, there are
+    indices $i, j$, where $i < j$ and $a_i = a_j$. So $a_1 = \sigma^{j-i}
+    (a_1)$. Now set $\alpha = (a_1, \dots, a_{j-i})$. If $S \setminus
+    \set{a_k}_1^{j-i}$ is empty we are done. If not, pick $b_1 \in S \setminus
+    \set{a_k}_1^{j-i}$ and repeat the same procedure. Let $\beta$ be the cycle
+    formed from doing this. We now prove that $\beta$ and $\alpha$ are disjoint
+    cycles (the general case follows easily). Suppose not. Say $x$ shows up in
+    both $\alpha$ and $\beta$. If $x = \beta^k(b_1) = \alpha^m(a_1)$, then this
+    means that $x = \sigma^k(b_1) = \sigma^m (a_1)$, but then we would have
+    $\sigma^{m-k}(a_1) = b_1$, so $b_1$ shows up in the sequence $(a_n)$. But
+    this contradicts $b_1 \in S \setminus (a_n)$.
+\end{proof}
+
+The astute reader may have already noticed the following fact: If $\alpha,
+\beta$ are disjoint cycles then the order in which they are evaluated does not
+matter.
+\begin{theorem}[Disjoint cycles commute]
+\label{thm:disjoint-cycles-commute}
+    If $\alpha$ and $\beta$ are disjoint cycles, then $\alpha\beta =
+    \beta\alpha$.
+\end{theorem}
+\begin{proof}
+    We shall not rob the reader of the joy of discovering the proof of this
+    theorem on their own.
+\end{proof}
+\begin{exercise}
+    Prove \cref{thm:disjoint-cycles-commute}.
+\end{exercise}
+
+Disjoint cycles have yet another advantage up their sleeve: we are able to
+quickly determine their order.
+
+\begin{theorem}[Order of 2 disjoint cycles is lcm of their length]
+\label{thm:order-of-disjoint-cycles-is-lcm}
+    Suppose $\alpha$ and $\beta$ are disjoint cycles of length $m$ and $n$
+    respectively. Then, 
+    \[
+    \abs{\alpha \beta} = \operatorname{lcm}(\abs \alpha, \abs \beta).
+    \]
+\end{theorem}
+\begin{proof}
+    Since $n, m$ are the orders of $\alpha, \beta$ respectively, we let $l =
+    \operatorname{lcm}(n, m)$. Then, $\paren{\alpha \beta}^{l} = \alpha^l
+    \beta^l = e$ by \cref{thm:disjoint-cycles-commute}, so $\abs{\alpha \beta}
+    \leq l$. If $k \leq l$ and $k$ is the order of $\alpha\beta$ then we have
+    $n$ and $m$ both dividing $k$, so $k$ is a common multiple of $n$ and $m$.
+    Thus $k = l$.
+\end{proof}
+
+\begin{exercise}
+    Prove that if $\alpha$ is a cycle of length $n$, then $\abs{\alpha} = n$.
+\end{exercise}
+\begin{exercise}
+    Generalize \cref{thm:order-of-disjoint-cycles-is-lcm}.
+\end{exercise}
+
+Given a permutation, we would like to write it as a product of 2-cycles.
+It is always possible to do so.
+
+\begin{proposition}[Existence of 2-cycle decomposition]
+    If $\sigma$ is a permutation on the set $\set{1, \dots, n}$ then $\sigma$
+    can be decomposed as the product of 2-cycles. 
+\end{proposition}
+\begin{proof}
+    Suppose $\sigma$ is a cycle. Let $\sigma = (a_1, \dots, a_k)$. Then direct
+    computation shows that
+    \[
+        \sigma = (a_1, a_k) (a_1, a_{k-1}) \cdots (a_1 a_2).
+    \]
+    The proof of the general case can be easily obtained by using
+    \cref{thm:existence-of-cycle-decomp}.
+\end{proof}
+
+\begin{definition}[Even/Odd Permutation]
+    \label{def:even-odd-permutation}
+    Let $\sigma$ be a permutation on a finite set. Then, $\sigma$ is
+    \textbf{even} if it admits a 2-cycle decomposition into an even number of
+    2-cycles. 
+\end{definition}
+An odd permutation is defined similarly. We call the oddness or evenness of a
+permutation its \emph{parity}.
+
+One may be wondering whether a 2-cycle decomposition is unique. Unfortunately,
+this is not true.  
+
+\begin{example}[Non-uniqueness of 2-cycle decomposition]
+    \begin{align*}
+        (12345) &= (54)(53)(52)(51) \\
+        (12345) &= (54)(52)(21)(25)(23)(13).
+    \end{align*}
+\end{example}
+
+Can a permutation be both even or odd? No. In fact, if a permutation can be
+decomposed as an even number of 2 cycles, then any 2-cycle decomposition of this
+permutation must also result in an even number of 2 cycles. 
+
+Let us first find out the parity of the identity permutation. Since $e =
+(12)(12)$ it makes sense that it should be even. 
+\begin{proposition}[Identity permutation is even]
+\label{prop:identity-permutation-is-even}
+    Let $e$ be the identity permutation. If $e = \alpha_1 \cdots \alpha_n$ where
+    $\alpha_i$ is a 2-cycle, then $n$ is even.
+\end{proposition}
+\begin{proof}
+    Painful. \textbf{TODO: Insert proof}
+\end{proof}
+
+\begin{theorem}[Parity of a permutation is well-defined]
+    If $\sigma$ is a permutation (on a finite set), then it is either even or odd.
+\end{theorem}
+\begin{proof}
+    Let $\sigma = \alpha_1 \cdots \alpha_k$ $\sigma = \gamma_1 \cdots \gamma_m$
+    be 2-cycle decompositions of $\sigma$. Then, keeping in mind a 2-cycle is
+    its own inverse,
+    \[
+        e = \sigma \sigma\inv = \paren{\alpha_1 \cdots \alpha_k} \paren{\gamma_m \cdots \gamma_1}.
+    \]
+    So \cref{prop:identity-permutation-is-even} this implies $k+m$ is even. So
+    $k,m$ are both odd or both even.
+\end{proof}
+
+The set of even permutations of a permutation group is extremely important, and
+so it deserves its own name. Although we will not see its importance at the
+moment\footnote{The alternating group has no nontrivial proper normal subgroups.
+You might have seen this called a \emph{simple group}. There is a rather famous
+theorem that classifies all the finite simple groups. The alternating groups
+form an infinite family of finite simple groups.}, it is worth introducing it at
+this point.
+\begin{definition}[Alternating group]
+\label{def:alternating-group}
+    Let $A_n$ denote the set of even permutations of $S_n$.
+\end{definition}
+You probably already suspect that $A_n$ is a group now.
+\begin{exercise}
+    Prove that $A_n$ is a subgroup of $S_n$.
+\end{exercise}
+
+You might be thinking to yourself that there should be as many even permutations
+as odd permutations. This is indeed true. If $n > 1$, then $A_n$ has order
+$n!/2$. 
+\begin{exercise}
+    Prove that $\abs{A_n} = n!/2$ when $n > 1$. 
+
+    \textit{Hint: If $\alpha$ is even, then $(12)\alpha$ is odd. Additionally, if $\alpha \neq \beta$ then $(12)\alpha \neq (12)\beta$.}
+\end{exercise}
+
+\section{Group actions}
+To be done
+
+\section{Problems}
+
+\begin{exercise}[Structure of permutation group]
+\label{exercise:permutation-group-only-depends-on-cardinality}
+    Recall that the cardinality of a set $A$ is equal to the cardinality of a
+    set $B$ if there exists a bijection from $A$ to $B$. Let $A, B$ be sets and
+    suppose that the cardinality of $A$ equals to the cardinality of $B$. Thus
+    we may let $\gamma: A \to B$ be a bijection. Show that $S_A$ is isomorphic
+    to $S_B$.
+
+    \textit{Hint: Think about how a permutation of $A$ can be changed into a permutation of $B$, and conversely.}
+\end{exercise}
+
+\begin{exercise}
+    Suppose $H$ is a subgroup of $S_n$ and $H$ has odd order. Prove that $H$ is
+    a subgroup of $A_n$.
+\end{exercise}
+
+\begin{exercise}
+    Prove that if $\sigma$ is a permutation with odd order, then $\sigma$ is
+    even.
+\end{exercise}
+
+\begin{exercise}
+    Show that if $n \geq 3$, then $Z_(S_n)$ is trivial. 
+\end{exercise}
+
+\begin{exercise}
+    Let $\alpha \in S_n$. Without using Lagrange's theorem, prove that the order
+    of $\alpha$ divides $S_n$. 
+\end{exercise}
+
+
+\end{document}

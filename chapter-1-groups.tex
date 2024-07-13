@@ -1,0 +1,617 @@
+\documentclass[./algebra-notes.tex]{subfiles}
+
+\begin{document}
+\section{Groups}
+Before we give the definition of a group, the reader might appreciate some
+motivation behind what a group is trying to capture. The axioms of a group are
+in the sense, all that you need for the equation $ax = b$ to have a unique
+solution. Of course, the reader may also be motivated by other examples, such as
+the rotations and reflections of a square, or other sorts of symmetries.
+\begin{definition}[Group]
+\label{def:group}
+    A group is a set $G$ with a binary operation $\cdot: G \times G \to G$ such that
+    \begin{enumerate}
+        \item \textbf{(Associativity)} For all $x,y,z \in G$, $(x \cdot y) \cdot z = x \cdot (y \cdot z)$.
+        \item \textbf{(Identity)} There exists $e \in G$ such that for all $g \in G$, $e \cdot g = g \cdot e = g$.
+        \item \textbf{(Inverses)} For all $g \in G$, there exists $h \in G$ such that $g \cdot h = h \cdot g = e$.
+    \end{enumerate}
+\end{definition}
+Note that the order of properties 2 and 3 do matter. We cannot write property 3
+before property 2. A remark about how the identity and inverse is written is
+order. We do need the fact that $e \cdot g = g \cdot e = g$, since if only $e
+\cdot g = g$ and $h \cdot g = e$ are given, this may not determine a group.
+\cite{Jacobson_2009}
+
+To make notation clearer, we shall write $gh$ for $g \cdot h$. We may sometimes
+use addition to denote the group operation as well, writing $g + h$.
+Additionally, because of associativity, we can drop any brackets. This means
+that there is no ambiguity about what $xyz$ is. Recall that when adding numbers,
+$(2+3+4)+5 = (2+3)+(4+5)$. Of course, it follows that you can drop the brackets
+for finitely many elements. 
+
+\begin{exercise}
+\label{ex:generalized-associativity-law}
+    Let $G$ be a group. Prove that associativity holds for finitely many elements
+    $x_1, \dots, x_n \in G$. For example, $(xy)(zw) = x((yz)w)$. (c.f. \autocite[Prop~1, \pno~19]{Dummit_Foote_2004})
+\end{exercise}
+
+
+Additionally, if we can commute elements under the group operation, the group is
+called Abelian. This is named in honor of the Norwegian mathematician Niels
+Abel, who contributed greatly to the development of group theory.
+\begin{definition}[Abelian group]
+    Let $G$ be a group. Then $G$ is Abelian if for every $g,h \in G$, we have
+    $gh=hg$.
+\end{definition}
+
+\begin{exercise}
+    Show that the condition that $eg=ge=g$ (and similarly for inverses) can be
+    replaced with simply $eg=g$ if we say that $G$ is abelian.
+\end{exercise}
+
+At this point, the reader might be wondering whether the existence of identities
+and inverses necessarily guarantees that they are unique. This is indeed true.
+\begin{theorem}[Uniqueness of identity and inverses]
+\label{thm:group-identity-inverses-unique}
+    Let $G$ be a group. Then, the following are true. 
+    \begin{enumerate}
+        \item The identity of $G$ is unique. 
+        \item If $g \in G$ has an inverse $h$, then it is unique.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    (1) Let $e, e' \in G$ and suppose both $e, e'$ are identities. Keeping in
+    mind that they satisfy the property of being an identity, we have, 
+    \begin{align*}
+        e = ee' = e'e = e'.
+    \end{align*}
+
+    (2) Suppose $h, h'$ are both inverses of $g$. Again keeping in mind that $h,
+    h'$ both satisfy the properties of being an inverse for $g$.
+    \begin{align*}
+        h = h(h'g) = h(gh') = (hg)h' = h'.
+    \end{align*}
+\end{proof}
+Henceforth we shall talk about "the" identity of a group, and "the" inverse of
+an element. If not explicitly mentioned, the identity of a group $G$ will be
+denoted $e$. Additionally, if $g \in G$, then we shall denote the inverse of $g$
+by $g\inv$. 
+
+Let us now see some examples of groups.
+\begin{example}[Integers]
+    The integers form a group under usual addition. Clearly the identity under
+    addition is $0$. Inverses are obvious.
+\end{example}
+We trust that the reader is mathematically mature enough to not be confused by
+the usage of $+$ for the group operation.
+
+\begin{example}
+    The set of integers under usual multiplication is \emph{not} a group. There is no
+    multiplicative inverse for 2.
+\end{example}
+
+\begin{example}[Vector spaces]
+    Let $V$ be a vector space over $\bR$. Then $V$ is a group under vector
+    addition.
+\end{example}
+
+\begin{example}[General linear group]
+    Let $\mbb{GL}_n(\bR)$ denote the set of $n \times n$ invertible matrices
+    with real entries. Then this set is a group under the operation of matrix
+    multiplication.
+\end{example}
+
+\begin{example}[Special linear group]
+    Let $\mbb{SL}_n(\bR)$ denote the set of $n \times n$ matrices with real
+    entries and determinant 1. This set forms a group under the operation of
+    matrix multiplication.
+\end{example}
+
+\begin{example}
+    Let $n$ be an integer. Let $D_n$ be the set of symmetries of a regular
+    $n$-sided polygon. \textbf{TODO: This example needs to be improved}
+\end{example}
+
+\begin{example}
+    The real numbers form a group under usual addition. The real numbers without
+    $0$ form another group under usual multiplication.
+\end{example}
+
+Note that the previous example illustrates an important point. \emph{The same
+(similar) set can be a different group when the operation is replaced.} This
+tells us that to specify a group, we need both the set, as well as the group
+operation. However, if the operation does not matter, or it is clear from
+context, we shall simply say that $G$ is a group.
+
+\begin{exercise}
+    Verify that all of the above examples which are claimed to be groups are
+    indeed groups. 
+\end{exercise}
+
+\begin{exercise}
+    Groups can be finite or infinite in size. Identify which of the above groups
+    are finite and which are not.
+\end{exercise}
+
+\begin{exercise}
+    Not every group is Abelian. Identify which of the groups above are abelian
+    and which are not.
+\end{exercise}
+
+We state a few more properties of groups. Many of the proofs below invoke the
+uniqueness of inverses, and the reader should keep this in mind as they read the
+proof.
+\begin{theorem}
+\label{thm:more-group-properties}
+    Let $G$ be a group. Then, the following are true.
+    \begin{enumerate}
+        \item \textbf{(Generalized associativity)} For any $x_1, \dots, x_n \in
+        G$, the value of $x_1 \cdots x_n$ is independent of how it is bracketed. 
+        \item If $g \in G$, then $\paren{g\inv}\inv = g$.
+        \item \textbf{(Socks-shoes property)} If $g, h \in G$, then
+        $\paren{gh}\inv = h \inv g \inv$.
+        \item \textbf{(Cancellation)} Let $g, h, h' \in G$. If $gh = gh'$ then
+        $h = h'$. This is called left cancellation. Additionally, if $hg = h'g$,
+        then $h = h'$. This is called right cancellation.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    (1) is \cref{ex:generalized-associativity-law}. 
+
+    (2)
+    Write
+    \[
+        \paren{g\inv} \paren{g\inv}\inv = e = g\inv g. 
+    \]
+    Then the result follows by uniqueness of inverses.
+
+    (3)
+    \[
+        (gh)\inv (gh) = e = h\inv h = h \inv (g\inv g) h = (h\inv g\inv) (gh).
+    \]
+
+    (4) Exercise for reader.
+\end{proof}
+
+To ensure that the reader is adequately familiar with the techniques of the proof above,
+we include the following simple exercises. 
+\begin{exercise}
+\label{exercise:group-cancellation-law}
+Prove part (4) of \cref{thm:more-group-properties}.
+\end{exercise}
+
+\begin{exercise}
+    Prove part 1-2 \cref{thm:more-group-properties} again using \cref{thm:more-group-properties} part (4).
+\end{exercise}
+
+\begin{exercise}
+    We called part 3 of \cref{thm:more-group-properties} the socks-shoes
+    property. Explain why we gave it that name. 
+\end{exercise}
+
+At this point, it seems fitting to introduce an infinite family of examples of
+groups. We will be studying them closely in \cref{chapter:cyclic-groups}. 
+\begin{example}[Integers mod $n$]
+    Let $\bZ_n = \set{0, \dots, n-1}$ be equipped with the operation of addition
+    modulo $n$. That is, we define $+$ on $\bZ_n$ to be given by $a + b = (a +
+    b) \mod n$. This is called the \emph{group of integers modulo $n$}, or
+    alternatively \emph{the cyclic group of order $n$}. We will soon see what
+    this means.
+\end{example}
+Throughout the section on group theory, whenever we write $\bZ_n$, we are
+referring to the group of integers under addition modulo $n$. 
+
+\begin{exercise}
+    Verify that $\bZ_n$ with the operation as defined above is indeed a group.
+\end{exercise}
+
+\begin{example}[Group of units]
+    Let $U(n)$ denote the set of all nonnegative integers $k \leq n$ such that
+    $\gcd(k, n) = 1$. Then $U(n)$ is a group under the operation of
+    multiplication modulo $n$. That is, if $a, b \in U(n)$, $ab = a \cdot b \mod
+    n$.
+\end{example}
+
+We now give as an example, an infinite family of non abelian groups. This family
+of groups is important because in a sense, they contain every other finite
+group. 
+\begin{example}[Symmetric groups]
+\label{example:symmetric-groups}
+    Let $S = \set{1, \dots, n}$. Then consider the set of all permutations of
+    $S$ (bijective functions from $S$ to $S$). We shall call this set $S_n$,
+    which stands for \emph{symmetric group on $n$ things}. This set is a group
+    under function composition.
+\end{example}
+\begin{exercise}
+    Prove that $S_n$ is a group under function composition.
+\end{exercise}
+We will not have the reader prove that this is non abelian yet, until we develop
+more tools in \cref{chapter:permutation-groups}.
+
+It is common to perform repeated multiplication in groups with a single element.
+Nobody wants to write $gggggggg$. How shall we clean this up? Notation. Recall
+from elementary school that $a^n$ is the act of multiplying $a$ by itself $n$
+times. To better leverage our intuitions from these times, we can define similar
+notation for repeated multiplication in groups. Let $G$ be a group and $g \in
+G$. We shall write 
+\[
+    g^n = \ub{gg \cdots g}{$n$ times}
+\]
+to mean $g$ multiplied by itself $n$ times. If the group operation is denoted by
+addition, we write 
+\[
+    n \cdot g = \ub{g + g + \cdots + g}{$n$ times}
+\]
+to mean $g$ added to itself $n$ times. In either way, these are the same
+concept. This does leave the small problem of leaving multiplying $g$ by
+itself 0 times undefined. What should $g$ multiplied by itself no times be?
+Drawing back from the intuition of exponentiation from elementary school, we may
+recall that raising a real number to the 0th power yields 1. But what is 1?
+Well, it is the multiplicative identity of the real numbers. This suggests a
+similar definition for groups. Thus, $g^0$ (or $0 \cdot g$) is \emph{defined} to
+be $e$, the group identity. 
+
+Good notation should leverage existing intuitions and feel natural, and easy to
+work with. At this point, the reader is probably wondering whether this notation
+really does satisfy the usual properties of exponentiation. It turns out that
+these usual properties of exponentiation really only depend on associativity.
+Thus, we have the fact that $a^{n+m} = a^n \cdot a^m$. In
+\cref{ex:power-notation}, we shall see that $a^i a^j = a^{i+j}$ as well, thus
+the familiar intutition of repeated multiplication or addition of numbers
+carries over.
+
+\begin{example}
+    Let $G$ be the set of real numbers under multiplication, and consider the
+    real number $\pi$. Notice that $\pi^0 = 1$, under usual exponentiation and
+    our definition, and $\pi^n = \pi \cdots \pi$ $n$ times, which again, agrees
+    with the usual definition.
+\end{example}
+
+\begin{definition}[Order of an element]
+    If $g \in G$, then we denote $\abs g$ to be the \emph{least positive
+    integer} $n$ such that $g^n = e$. 
+\end{definition}
+
+\begin{example}
+    In the group $\set{1, -1, i, -i}$ under the operation of complex
+    multiplication, the element $i$ has order 4 as $i^4 = -1$ and 4 is the least
+    positive integer for which this holds true for.
+\end{example}
+
+\begin{example}
+    Let $G = \bZ_6$. We leave the reader to calculate the order of every
+    element. Note that the only possible orders of elements in this group are
+    1,2,3 and 6. We will see why this is true in \cref{chapter:cyclic-groups}.
+\end{example}
+
+We shall also define the order of a group.
+\begin{definition}[Order of a group]
+\label{def:order-of-a-group}
+    Let $G$ be a group. Then $\abs{G}$ is the number of elements in $G$ if $G$
+    is finite, or if $G$ is infinite, it is $\infty$.    
+\end{definition}
+At this point, the reader may be wondering why the abuse of notation. Is this
+abuse of notation even justified? Or will it lead to confusion down the road?
+Unfortunately, at this stage, we aren't able to provide a good answer to why
+this notational abuse is justified. However, we promise the reader that in later
+chapters, such as \cref{chapter:cyclic-groups}, we will justify this.
+
+We close off this section with some exercises and problems.
+\subsection{Problems}
+
+\begin{exercise}[Power notation]
+\label{ex:power-notation}
+    \begin{enumerate}
+        \item Prove that $a^{i+j} = a^i a^j$ for all nonnegative integers $i, j$.
+        \item Prove that $a^{ij} = (a^i)^j$ for all nonnegative integers $i, j$.
+        \item Prove that $a^{-i} = (a^i)\inv$.
+        \item Prove that $a^{i+j} = a^i a^j$ and $a^{ij} = (a^i)^j$ for all
+        integers $i, j$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Order of an element is the same as the order of its inverse]
+    Show that $\abs{a} = \abs{a^{-1}}$
+\end{exercise}
+
+\begin{exercise}[Divisors and orders]
+\label{ex:powering-element-orders}
+    Let $G$ be a group, $a \in G$ and let $\abs{a} = n$. Let $d$ be a divisor of
+    $n$. Prove that $\abs{a^d} = n/d$.
+\end{exercise}
+
+\begin{prob}
+    Let $G$ be a group and $a, b \in G$. Prove that $\abs{aba\inv} = \abs{b}$.
+    Now show that $\abs{ab} = \abs{ba}$. 
+\end{prob}
+
+\begin{prob}
+    Let $G$ be a group. Prove that if for every $g \in G$, we have $g^2 = e$,
+    then $G$ is Abelian.
+\end{prob}
+
+
+\pagebreak
+\section{Subgroups}
+In the previous section, the reader may have observed that some groups are
+seemingly contained in other groups. For example, the special linear group is a
+subset of the general linear group. The notion of a substructure is a very
+common theme throughout the study of abstract algebra. Before we give the
+definition of a subgroup, the reader should keep the idea of a subgroup being a
+smaller group contained in a bigger group in mind.
+
+\begin{definition}[Subgroup]
+\label{def:subgroup}
+    Let $G$ be a group. A subset $H \subseteq G$ is a \textbf{subgroup} of $G$
+    if the following properties hold under the operation of $G$.
+    \begin{enumerate}
+        \item The identity of $G$ is in $H$.
+        \item For all $x, y \in H$, $xy \in H$.
+        \item For all $x \in H$, $x \inv \in H$.
+    \end{enumerate}
+\end{definition}
+This tells us that if we restrict the operation of $G$ to $H$, then $H$ is still
+a group. We shall notate the situation of $H$ being a subgroup of $G$ by $H \leq
+G$. If $H$ is a \emph{proper} subgroup of $G$, it means that $H$ is a proper
+subset of $G$, and we denote this by $H < G$.
+
+Before we continue, we shall give some examples of subgroups.
+
+\begin{example}
+    Any group is a subgroup of itself.
+\end{example}
+
+\begin{example}[Trivial example]
+    Let $G = \bZ$ under usual addition and $H = \set{0}$. Then $H$ is a subgroup of
+    $G$. In general, if $G$ is any group and $H = \set{e}$ then $H$ is a
+    subgroup of $G$, and it is called the \emph{trivial subgroup of $G$}. 
+\end{example}
+A quick remark is that if $G$ is a group with a single element, then $G$ is
+called the \emph{trivial group}.
+
+\begin{example}[Roots of unity]
+    Let $G = \bC \setminus \set{0}$ with the operation of multiplication and let
+    $H = \set{1, -1, i, -i}$. Then $H$ is a proper subgroup of $G$.
+\end{example}
+
+\begin{example}
+    Let $G = \bZ_5$. Then the \emph{only} subgroups of $G$ are $\set{0}$ and $G$ itself.
+\end{example}
+We emphasize that $\bZ_5$ really does only have 2 subgroups. The reason for this
+will be seen in the next section.
+
+
+Note that some authors will define a subgroup of $G$ to be a subset $H \subseteq
+G$ such that $H$ is a group under the operation of $G$. This definition is
+equivalent to the one above. Note that restricting an associative binary
+operator on $G$ to a subset of it still leaves it associative. The reader should
+verify this for themselves.
+
+We now give some equivalent formulation of the definition of a subgroup in the
+form of a theorem. These are often called the subgroup tests (c.f. \cite{Gallian_2020}).
+\begin{theorem}[Subgroup tests]
+\label{thm:subgroup-tests}
+    Let $G$ be a group and $H \subseteq G$. Then, the following are equivalent.
+    \begin{enumerate}
+        \item $H$ is a subgroup of $G$.
+        \item $H$ is nonempty, for all $x ,y \in H$ we have $xy \in H$. For all
+        $x \in H$ we have $x \inv \in H$.
+        \item $H$ is nonempty, and for all $x,y \in H$, we have $xy\inv \in H$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    We will not insult the reader's intelligence by providing a proof.
+\end{proof}
+\begin{exercise}
+    Prove \cref{thm:subgroup-tests}.
+\end{exercise}
+
+Readers who have had linear algebra will recall that to test whether $U$ is a
+subspace of a vector space $V$, we would check that $U$ is nonempty, if $x + y
+\in U$ and $\lambda x \in U$ for some scalar $\lambda$. This will actually
+suffice to show that $U$ is a subgroup of $V$ has well. 
+
+In general, to test whether something is a subgroup, we can apply the following
+framework. Suppose $G$ is a group and $H \subseteq G$ with some property $P$. We
+first check that $H$ is nonempty. This usually involves verifying that $e \in G$
+satisifies the property $P$. Next, we show that if $x, y$ satisfy the property
+$P$, then $xy\inv$ also satisfies the property $P$. We can then apply the
+subgroup test to conclude that $H$ is a subgroup of $G$. 
+
+The reader is probably wondering why checking for existence of inverses is
+needed. After all, in linear algebra, when checking that $U$ is a subspace, we
+didn't need to check that the additive inverse of $u \in U$, $-u$ is in $U$.
+This is because this step was completed when we checked that $U$ is closed under
+scalar multiplication. However, with groups, this is not sufficient.
+
+\begin{example}[Why are inverses needed]
+Consider the set of natural numbers $\bN \subseteq \bZ$ where $\bZ$ is
+the group of integers under addition. Then $\bN$ is nonempty, contains the
+identity of $\bZ$ and is closed under the operation of $\bZ$, but does not
+contain inverses for any $n > 0$.
+\end{example}
+
+However, if $H$ is a \emph{finite} subset of $G$, it is sufficient to check that
+$H$ is closed under the operation of $G$. 
+\begin{theorem}
+\label{thm:finite-subgroup-test}
+    Let $G$ be a group and $H \subseteq G$ be a \emph{finite subset} of $G$.
+    Then, $H$ is a subgroup if and only if for all $x,y \in H$, $xy \in H$.
+\end{theorem}
+\begin{proof}
+    A good exercise.
+\end{proof}
+\begin{exercise}
+    Prove \cref{thm:finite-subgroup-test}
+\end{exercise}
+
+We now introduce 2 more definitions, the centralizer of an element and the
+center of a group. These are both subgroups (exercise) and will be used in the
+future to prove the Sylow Theorems, and some other counting theorems.
+
+\begin{definition}[Centralizer]
+    Let $G$ be a group and $a \in G$. Then define 
+    \[
+        C(a) = \set{g \in G: ga=ag}.
+    \]
+    We call this the \textbf{centralizer of $a$} in $G$. This is the subgroup of
+    all the elements that commute with $a$. 
+\end{definition}
+\begin{exercise}
+    Prove that $C(a)$ is a subgroup of $G$. 
+\end{exercise}
+
+\begin{definition}[Center of a group]
+    Let $G$ be a group. Then define 
+    \[
+        Z(G) = \set{g \in G: \forall x \in G, gx = xg}.
+    \]
+    We call this the \textbf{center of $G$}. This is the subgroup of the
+    elements in $G$ that commute with all other elements.
+\end{definition}
+\begin{exercise}
+    Prove that $Z(G)$ is a subgroup of $G$.
+\end{exercise}
+
+
+
+
+\subsection{Problems}
+
+\begin{exercise}
+    Let $G$ be a group and $H, K$ be subgroups. Prove that $H \cap K$ is a
+    subgroup of $G$. Now suppose $H_{\alpha}$, $\alpha \in \Lambda$ is an
+    arbitrary family of subgroups. Show that $\bigcap_{\alpha \in \Lambda}
+    H_\alpha$ is a subgroup.
+\end{exercise}
+
+\begin{exercise}
+    Let $G$ be a group and $H, K$ be subgroups of $G$. Is $H \cup K$ always a
+    subgroup of $G$? If so, prove it. If not, find a counterexample.
+\end{exercise}
+
+\begin{exercise}
+    Let $G$ be an Abelian group and let $g \in G$. Let $n \in \bZ$ be a fixed
+    integer. Show that the set $H = \set{x \in G: x^n = e}$ is a subgroup of
+    $G$. Is this true if $G$ is not Abelian?
+\end{exercise}
+
+\begin{exercise}
+    Let $G$ be a group and suppose that for all $x,y,z \in G$, if $xy=yz$ then
+    $x=z$. Prove that $G$ is Abelian.
+\end{exercise}
+
+\begin{exercise}
+    Let $G$ be a group. Prove that $(ab)^2 = a^2 b^2$ if and only if $ab=ba$.
+    Prove that $(ab)^{-2} = b^{-2} a^{-2}$ if and only if $ab=ba$.
+    \autocite[Ex.~36, Ch~1, \pno~56]{Gallian_2020}
+\end{exercise}
+
+\begin{exercise}[Conjugates]
+    Let $G$ be a group and let $x \in G$. Let $H$ be a subgroup of $G$. 
+    Define $xHx\inv = \set{xhx\inv: h \in H}$, which is called the \emph{conjugate of $H$ by $x$}.
+    Show that 
+    \begin{enumerate}
+        \item $xHx\inv$ is a subgroup of $G$,
+        \item if $H$ is cyclic then so is $xHx\inv$,
+        \item if $H$ is Abelian then so is $xHx\inv$.
+    \end{enumerate}
+    
+    We remark that conjugacy is an equivalence relation on $G$. Specifically,
+    define $x \sim y$ if and only $y \in xHx\inv$. This exercise is important
+    because we will use this concept to prove the Sylow Theorems.
+\end{exercise}
+
+
+\begin{prob}
+    Prove that no group is the union of 2 proper subgroups. (No cheating and
+    looking this up)
+\end{prob}
+
+\begin{prob}
+    Does there exist an infinite group where every element has finite order?
+\end{prob}
+
+\section{Direct Products}
+
+In the previous section, we have seen groups contained within other groups, in
+the form of subgroups. Now we turn to the other aspect: building bigger groups
+from smaller groups. 
+
+\begin{definition}[Direct Product]
+\label{def:direct-product}
+    Let $G, H$ be groups. The \textbf{direct product of $G$ and $H$} is defined to be 
+    the set 
+    \[
+        G \times H = \set{(g,h) : g \in G, h \in H},
+    \]
+    endowed with the group operation $(g,h)(g',h') = (gg', hh')$.
+\end{definition}
+Recall from linear algebra that given vector spaces $V, W$, one can form the
+product of these vector spaces $V \times W$. This is the same notion. Some
+authors may call this the \emph{external direct product} of groups
+\autocite[Ch~8]{Gallian_2020}, and denote it with $G \oplus H$. The reader show
+now attempt the following exercises to gain some familiarity with this
+definition.
+
+\begin{exercise}
+    Prove that the direct product of $G \times H$ is a group.
+\end{exercise}
+\begin{exercise}
+    Prove that if $G, H$ are abelian then so is $G \times H$.
+\end{exercise}
+\begin{exercise}
+    Let $g \in G$ and $h \in H$. We shall note that $(g,h) \in G \times H$. Show
+    that $(e, h)$ and $(g, e)$ commute with each other. 
+\end{exercise}
+
+\begin{exercise}[Order of elements in direct products]
+    Let $g \in G$ and $h \in H$, and consider $G \times H$. Prove that
+    $\abs{(g,h)} = \operatorname{lcm}(\abs g, \abs h)$. 
+\end{exercise}
+
+Let us now see some examples of direct products.
+
+\begin{example}
+    We take $\bZ_2 \times \bZ_2$. What does this group look like? We can 
+    write out the set explicitly, as it is small: 
+    \[
+        \bZ_2 \times \bZ_2 = \set{(0,0), (0,1), (1,0), (1,1)}.
+    \]
+    Although this group is abelian, notice that it is not cyclic. If it were
+    cyclic then it would have an element of order 4, but no such element exists
+    in this group.
+\end{example}
+
+\begin{example}
+    Take $\bZ_2 \times \bZ_3$. Again, let us look at what this group looks like.
+    \[
+        \bZ_2 \times \bZ_3 = \set{(0,0), (0,1), (0,2), (1,0), (1,1), (1,2)}.
+    \]
+    There are 6 elements in this group. In fact, this group is cyclic! We leave
+    the reader to find which element has order 6.
+\end{example}
+
+A natural question is how do we deal with the product of more than 2 groups.
+Let's say we have groups $G, H, K$. There are two ways to think about this
+direct product: $(G \times H) \times K$ and $G \times (H \times K)$. Are these
+the same group? It turns out that the answer to this question is yes, but the
+reader will have to await for the definition of a group isomorphism to be able
+to prove this fact.
+
+What about the infinite case? Suppose we have for each $n \in \bN$, a group
+$G_n$. We can define the direct product in the same way as in
+\cref{def:direct-product}. The group operation also follows similarly.
+
+\begin{exercise}
+    Formulate the definition of a direct product of infinitely many groups.
+    Prove that this definition does indeed define a group.
+\end{exercise}
+
+\begin{exercise}
+    Is there an infinite group where every element has finite order?
+\end{exercise}
+
+\section{Homomorphisms and Isomorphisms}
+\subfile{chapter-2-homomorphisms-isomorphisms.tex}
+\end{document}

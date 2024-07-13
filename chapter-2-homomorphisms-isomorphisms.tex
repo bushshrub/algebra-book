@@ -1,0 +1,99 @@
+\documentclass[./algebra-notes.tex]{subfiles}
+
+\begin{document}
+One may say that algebra is the study of relations. At a higher level, we can
+even ask how are 2 groups related to each other. 
+
+In mathematics, the theme of a structure preserving transformation is common.
+You may have seen continuous and differentiable functions in middle school.
+These functions preserve certain properties of the real numbers. If you've had
+linear algebra, you might have seen linear transformations. Linear
+transformations preserve certain properties of vector spaces. We shall now
+introduce the notion of a group homomorphism, which preserves certain properties
+of groups.
+\begin{definition}[Group Homomorphism]
+\label{def:group-homomorphism}
+Let $G, H$ be groups. Then a \textbf{(group) homomorphism} is a function $\phi:
+G \to H$ such that for all $x, y \in G$,
+\[
+    \phi(xy) = \phi(x)\phi(y).
+\]  
+
+A \textbf{(group) isomorphism} is a group homomorphism that is bijective. 
+\end{definition}
+So a homomorphism is a function that preserves group operations. You can call
+this an operation-preserving map. Additionally, we shall say that $G$ and $H$
+are isomorphic, or $G$ is isomorphic to $H$ if there is an isomorphism $\phi: G
+\to H$.
+
+Before we continue, the reader should really appreciate how simple this
+definition is. With just the simple equation $\phi(xy) = \phi(x)\phi(y)$, we can
+capture all the algebraic properties we care about. As algebraists, we often
+talk about two groups being the "same". While they may not be equal as sets, if
+they are isomorphic, then every algebraic property you could care about is
+preserved.
+
+\begin{example}[Linear maps]
+    Let $V, W$ be vector spaces and $T: V \to W$ be linear. Then $T$ is a group
+    homomorphism, when considering $V, W$ as groups (under vector addition). If
+    $T$ is an isomorphism of vector spaces, then it is also necessarily a
+    isomorphism of groups.
+\end{example}
+
+\begin{example}[Exponential]
+    Let $G = \bR$ under addition, and $H = \bR^+$, the positive reals, under
+    multiplication. Define $\phi: G \to H$ by $\phi(x) = e^x$, the exponential
+    function. Then, $\phi(x+y) = \phi(x) \phi(y)$ by properties of exponentials.
+    In fact, this is an isomorphism.
+\end{example}
+\begin{exercise}
+    Prove that $\phi$ as defined above is an isomorphism.
+\end{exercise}
+
+We shall immediately prove some useful properties of homomorphisms.
+\begin{theorem}[Properties of homomorphisms]
+\label{thm:properties-of-homomorphisms}
+    Let $G, H$ be groups and $\phi: G \to H$ be a group homomorphism.
+    Then, the following are true.
+    \begin{enumerate}
+        \item $\phi(e) = \overline e$. That is, homomorphisms take the group
+        identity to the identity.
+        \item $\phi(x^n) = \phi(x)^n$, for all $n \in \bZ$.
+        \item If $K$ is a subgroup of $G$, then $\phi[K]$ is a subgroup of $H$. Thus, the image of a subgroup is a subgroup.
+        \item If $J$ is a subgroup of $H$, then $\phi\inv\paren*{J}$ is a
+        subgroup of $G$. Thus, the preimage of a subgroup is a subgroup.
+        \item If $K$ is a subgroup of $G$ and $K$ is Abelian, $\phi[K]$ is Abelian.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    For property 1, 
+    \[
+        \overline e \phi(e) = \phi(e) = \phi(ee) = \phi(e)\phi(e). 
+    \]
+    The result follows by right-cancellation.
+
+    Properties 2-5 are exercises.
+\end{proof}
+
+\begin{exercise}
+    Prove property (2) of \cref{thm:properties-of-homomorphisms}. \textit{Hint:
+    First show it for nonnegative $n$, then show that $\phi(g\inv) =
+    \phi(g)\inv$.}
+\end{exercise}
+
+\begin{exercise}
+    Prove the rest of \cref{thm:properties-of-homomorphisms}
+\end{exercise}
+
+\subsection{Problems}
+
+\begin{exercise}[Product of groups is commutative]
+    Let $G, H$ be groups. Prove that $G \times H$ is isomorphic to $H \times G$.
+\end{exercise}
+
+\begin{exercise}[Product of groups is associative]
+    Let $G, H, K$ be groups. Prove that $(G \times H) \times K$ is isomorphic to
+    $G \times (H \times K)$.
+\end{exercise}
+
+\end{document}

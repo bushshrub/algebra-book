@@ -16,25 +16,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Make image cache directory
+        run: mkdir -p ~/image-cache
+    
       - id: image-cache
         uses: actions/cache@v2
         with:
           path: ~/image-cache
           key: image-cache-${{ runner.os }}
 
-      - if: steps.image-cache.outputs.cache-hit == 'true'
+      - name: Load cache if available
+        if: steps.image-cache.outputs.cache-hit == 'true'
         run: docker load -i ~/image-cache/image.tar
 
-      - name: Build PDF document
+      - name: Setup LaTeX environment
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
           run: |
             apk add make
-            tlmgr install latexmk
-            make build
-      - if: steps.image-cache.outputs.cache-hit != 'true'
+      - name: Save docker image to cache if not available
+        if: steps.image-cache.outputs.cache-hit != 'true'
         run: docker save -o ~/image-cache/image.tar ghcr.io/xu-cheng/texlive-full:latest
+      
+      - name: Build PDF documents
+        uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          run: |
+            make build
       - name: Move PDFs to output
         run: |
           mkdir output

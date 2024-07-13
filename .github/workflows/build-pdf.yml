@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up LaTeX environment
         uses: xu-cheng/texlive-action@v2
@@ -26,12 +26,12 @@ jobs:
       - name: Build PDF
         run: |
           make build
-      - name: Move PDfs to output
+      - name: Move PDFs to output
         run: |
           mkdir output
           mv *.pdf output/
       - name: Upload PDF artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: PDF Artifacts
           path: output/

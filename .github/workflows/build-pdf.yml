@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up LaTeX environment
+      - name: Build PDF document
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
@@ -31,5 +31,10 @@ jobs:
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: PDF Artifacts
+          name: PDFs
           path: output/
+      - name: Upload main book
+        uses: actions/upload-artifact@v4
+        with:
+          name: Book
+          path: output/book.pdf

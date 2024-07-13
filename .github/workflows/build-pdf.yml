@@ -23,10 +23,7 @@ jobs:
           run: |
             apk add make
             tlmgr install latexmk
-
-      - name: Build PDF
-        run: |
-          make build
+            make build
       - name: Move PDFs to output
         run: |
           mkdir output

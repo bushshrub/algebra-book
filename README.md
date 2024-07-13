@@ -8,4 +8,5 @@ All rights reserved (at the moment) although contributions are fine
 
 
 ## Build
-The main file is `algebra-notes.tex`. Run `latexmk` 
+The main file is `main.tex`. Run `latexmk` or `make` to build everything. Note
+that the subfiles package is in use.

@@ -17,13 +17,18 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up LaTeX environment
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/texlive-action@v2
         with:
-          latex-version: 'texlive-full'
+          scheme: full
+          run: |
+            apk add make
 
       - name: Build PDF
         run: |
           make build
+      - name: Move PDfs to output
+        run: |
+          mkdir output
           mv *.pdf output/
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v2

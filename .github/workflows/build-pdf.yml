@@ -37,4 +37,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Book
-          path: output/book.pdf
+          path: output/main.pdf
+      
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages

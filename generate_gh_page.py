@@ -1,13 +1,22 @@
 import os
+import pathlib
 
 if __name__ == "__main__":
-    # List all pdf files in "gh-pages/files"
-    pdf_files = list(filter(os.listdir("gh-pages/files"), lambda x: x.endswith(".pdf")))
-    # Generate the index.html file
+    pdf_files = list(filter(lambda x: x.endswith(".pdf"), os.listdir("gh-pages/files")))
+    pathlib.Path("gh-pages/index.html").touch()
+
+    
     with open("gh-pages/index.html", "w") as f:
-        f.write("<html><body>")
-        f.write("<h1>PDF files</h1>")
+        f.write("<!DOCTYPE html>\n")
+        f.write("<html>\n<body>\n")
+        f.write("<h1>Algebra Book Build Files</h1>\n")
+        current_git_commit_hash = os.popen("git rev-parse --short HEAD").read().strip()
+        f.write(f"<p>Current git commit hash: {current_git_commit_hash}</p>\n")
+
+        f.write('<a href="files/main.pdf">Main Document</a>\n')
+        f.write('<ul>')
         for pdf_file in pdf_files:
-            f.write(f'<a href="files/{pdf_file}">{pdf_file}</a><br>')
-        f.write("</body></html>")
+            f.write(f'<li><a href="files/{pdf_file}">{pdf_file}</a></li>\n')
+        f.write('</ul>')
+        f.write("</body>\n</html>")
 

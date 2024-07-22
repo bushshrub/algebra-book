@@ -32,7 +32,7 @@ jobs:
       - name: Move PDFs to output
         run: |
           mkdir output
-          mv *.pdf output/
+          cp *.pdf output/
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
         with:

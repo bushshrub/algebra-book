@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: gh-pages.tar.gz
+          path: gh-pages
   deploy:
     runs-on: ubuntu-latest
     needs: build

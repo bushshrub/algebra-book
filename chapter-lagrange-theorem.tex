@@ -3,18 +3,52 @@
 
 \begin{document}
 One of the central problems in group theory is to understand the structure of a
-group by understanding the structure of its subgroups. 
+group by understanding the structure of its subgroups. Of course, this is a very
+difficult question to answer. Given a group $G$, how can we possibly hope to
+find all of its subgroups? Admittedly, we only have to check a finite number of
+sets, namely elements of $\mc P(G)$. We can even dispose of a bunch of sets
+quite fast (any sets not containing the identity). But that's still a lot! Can
+we narrow our search more? 
 
-One cannot talk about finite group theory without mention of Lagrange's Theorem.
-This is arguably the most important theorem in finite group theory. In a sense,
-it restricts the sizes of the subgroups of a group. Lagrange's Theorem tells us
-that the order of a subgroup must divide the order of a group. Of course, this
-only holds for finite groups. 
+We do have a sufficient condition for something to be a subgroup, namely, the
+definition. But that doesn't help us much, since we would still need to manually
+check whether something is a subgroup. What about a necessary condition? Do
+subgroups have any properties that they must satisfy? Turning our attention
+temporarily to cyclic groups, we notice that the subgroups of all cyclic groups
+have orders the divisor of the order of the whole group. So the orders of
+subgroups of cyclic groups divides the order of the group. Is this true in
+general? 
+
+The answer to this question is yes. Lagrange's Theorem tells us that the order
+of a subgroup must divide the order of a group. Of course, this only holds for
+finite groups. 
 
 How should we prove something like this? Let $G$ be a finite group and let $H$
 be a subgroup of $G$. If we can somehow bundle together the elements of a group
 into piles of $\abs{H}$, the result should follow. But what is the correct way
-to bundle them? Here is one way.
+to bundle them? To find out how to do so, let us look at some examples.
+
+Let $G = \bZ_{10}$. We know all the subgroups of $G$, since $G$ is cyclic. Let
+us consider the subgroup of $G$ that consists of all the even numbers. Now, we
+know that there are just as many odd numbers. Indeed, if $H = \set{0,2,4,6,8}$,
+then the odd numbers would be $\set{1,3,5,7,9}$. Now, notice that if we take
+each element of $H$ and add 1 to it, i.e. $1 + H$, we would arrive at the set of
+odd numbers. It also appears that $1 + H$ is disjoint from $H$. Motivated by
+this example, we turn our attention to the subgroup $H = \set{0,5}$. In a
+similar fashion, we can consider $1 + H = \set{1, 6}$, $2+H = \set{2,7}$ as well
+as $3+H, 4+H$. What is $5+H$? It appears that $5+H$ is just $H$, and $6+H$ is
+just $1+H$. So it appears that if $h \in H$, then $h+H = H$. Another interesting
+observation we can make is that $g + H$ and $g'+H$ appear to be either equal to
+each other, or disjoint. 
+
+We summarize our observations: 
+
+\begin{enumerate}
+    \item The sets of the form $g + H$ seem to all have the same size 
+    \item We either have $g+H = g'+H$ or they are disjoint
+\end{enumerate}
+
+At this point, these are all conjectural. So let us now make this precise.
 
 \begin{definition}[Coset]
 \label{def:coset}

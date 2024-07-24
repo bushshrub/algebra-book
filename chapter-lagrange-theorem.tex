@@ -60,7 +60,8 @@ denoted $gH$ is the set
 \end{definition}
 
 Why are cosets important? It turns out that cosets form a partition of $G$, and
-that the size of a coset is precisely the size of the subgroup $H$. 
+that the size of a coset is precisely the size of the subgroup $H$. The language
+of partitions is equivalence relations, and we shall now talk about them.
 
 Recall that an equivalence relation $\sim$ on $G$ is a relation that is
 reflexive, symmetric and transitive. Equivalence relations give rise to
@@ -84,6 +85,9 @@ relation is clear, we shall simply write $[g]$.
 \begin{exercise}
     Prove \cref{prop:coset-equiv-relation}.
 \end{exercise}
+
+Note that we can declare a similar equivalence relation by saying that $a \sim
+b$ if and only if there is some $h \in H$ such that $a = hb$.
 
 \begin{theorem}[Properties of cosets]
 \label{thm:properties-of-cosets}
@@ -122,18 +126,22 @@ the coset equivalence relation, we cut up $G$ into pieces of size $\abs{H}$.
     $\abs{H}$ divides $n$.
 \end{theorem}
 \begin{proof}
-    Exercise.
+    See \cref{ex:lagrange-thm}. 
 \end{proof}
 \begin{exercise}
-    Prove \cref{thm:lagrange-theorem}
+\label{ex:lagrange-thm}
+    Prove \cref{thm:lagrange-theorem}. You will need
+    \cref{prop:coset-equiv-relation} and property 5 in
+    \cref{thm:properties-of-cosets}.
 \end{exercise}
 
-One thing you may have noticed is that the proof of Lagrange's Theorem was
-rather trivial. How does such a powerful theorem have such a trivial proof? 
-The key answer lies in how the definitions were formulated.
+We again direct our attention to the power of definitions. Having the correct
+choice of equivalence relation made the proof of Lagrange's Theorem very easy.
+As such, it would do a lot of good to understand how such an equivalence
+relation was chosen.
 
-We now state some corollaries of Lagrange's Theorem. While obvious, they are
-still good to mention.
+We now state some corollaries of Lagrange's Theorem. While
+obvious, they are still good to mention.
 \begin{corollary}[Consequences of Lagrange's Theorem]
 \label{cor:consequences-of-lagrange}
     Let $G$ be a finite group. Then, the following are true.
@@ -158,7 +166,7 @@ Let us now see an application of Lagrange's Theorem.
     To do this, we study the behavior of an element of $U(p)$. Recall that $U(p)
     = \set{1, \dots, p-1}$, which has order $p-1$. If $a \in U(p)$, we would
     have $a^{\abs{U(p)}} = 1$, so $a^p = a$. If $a$ is not in $U(p)$, then use
-    the division algorithm on $a$.
+    the division algorithm on $a$ (divide it by $p$).
 \end{proof}
 \begin{exercise}
     Fill in the details of \cref{cor:fermat-little-theorem}.

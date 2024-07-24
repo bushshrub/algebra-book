@@ -277,7 +277,118 @@ $n!/2$.
 \end{exercise}
 
 \section{Group actions}
-To be done
+We open the discussion about group actions with a motivating example. Let $G =
+\set{r^0, r^1, r^2, r^3}$ where $r$ is rotation clockwise by 90 degrees.
+Consider the diagram of the square, and follow where the dot goes.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,0) -- (0, 2) -- (2,2) -- (2,0) -- cycle;
+        \filldraw (0.2, 0.2) circle[radius=0.05];
+    \end{tikzpicture}
+    \caption{Helpful square to visualize rotation group acting on square.}
+\end{figure}
+
+In some sense, the group of rotations is acting on the square, changing its
+position. We can perhaps envision a rotation as some kind of function on the
+square. Let $S$ represent the square. Imagine labelling each of the edges of the
+square by 1,2,3,4. So we can think of rotating the square by 90 degrees as
+$r(S)$, whatever that means. Now, if we do $r(r(S))$, that is rotating by 180
+degrees. But if we do $r^2 (S)$, it is also rotating by 180 degrees. In the
+former, we apply the rotation action and then the rotation action, but in the
+latter, we multiply $r$ with itself in the group $G$ and then apply the action
+of the result on $S$. Naturally, it should make sense that these notions agree.
+Now, let's take a look at how the identity rotation acts on the square. Notice
+that the rotation by 0 degrees fixes every edge of the square.
+
+As another example, let us consider a tuple (1,2,3). We can rearrange the
+components in the tuple, to be something like (2,1,3) or like (3,2,1). Now, we
+know that the act of rearranging something is simply a permutation. In this
+example, if $\sigma$ is the permutation that sends 1 to 2, 2 to 1 and 3 to
+itself, then $(\sigma(1), \sigma(2), \sigma(3)) = (2,1,3)$. It's not too hard to
+figure out how to extend this idea to any other $\sigma \in S_3$.
+
+\begin{definition}[Group action]
+\label{def:group-action}
+
+Let $G$ be a group and $S$ a set. Then a \textbf{action of $G$ on $S$} is a
+function $f: G \times S \to S$ such that:
+\begin{enumerate}
+    \item \textbf{(Associativity)} For all $g, h \in G$ and $s \in S$, $f(gh, s)
+    = f(g, f(h,s))$.
+    \item \textbf{(Identity)} For all $s \in S$, $f(e,s) = s$.
+\end{enumerate}
+\end{definition}
+
+As you can see above, writing $f(g,s)$ gets annoying very fast. Thus, whenever
+the group action is clear, we shall use $g \cdot s$, to mean $f(g,s)$. When
+there is no danger of confusing the group action with group multiplication, we
+shall write $gs$ instead.
+
+We shall now see some examples of group actions. 
+\begin{example}[Symmetric group]
+    Let $S = \set{1, \dots, n}$ and let $G = S_n$. Then we can define an action
+    of $G$ on $S$ by declaring $\sigma \cdot s := \sigma(s)$.
+\end{example}
+
+\begin{example}
+    Let $S = \bR$ be the real numbers, and let $G = \bZ$. We can define an
+    action of $G$ on $S$ by declaring $n \cdot r = n + r$. 
+\end{example}
+
+\begin{example}[Group acting on itself]
+    Let $G$ be a group. Now, if we momentarily forget that $G$ is a group, $G$
+    is also a set. Thus, we can define a very natural group action on $G$ by $g
+    \cdot h := gh$. So $G$ acts on $G$ by left multiplication. 
+\end{example}
+
+\begin{definition}[Orbit]
+\label{def:group-action-orbit}
+    Let $G$ act on $S$. For $s \in S$, we define the \textbf{orbit of $s$} to be 
+    \[
+        \operatorname{Orb}_G (s) = \set{g \cdot s: g \in G}.
+    \]
+\end{definition}
+So the orbit is the image of $G$ under the function $g \mapsto f(g, s)$.
+
+\begin{definition}[Stabilizer]
+\label{def:group-action-stabilizer}
+    Let $G$ act on $S$. For $s \in S$, we define the \textbf{stabilizer of $s$}
+    to be 
+    \[
+        \operatorname{Stab}_G (s) = \set{g \in G: g \cdot s = s}.
+    \]
+\end{definition}
+So the stabilizer of $s$ is the set of all $g \in G$ that fixes $s$ under the
+group action. Of course, a natural question is whether the stabilizer is a
+subgroup. The following exercise answers that question.
+
+\begin{exercise}
+    Prove that the stabilizer of $s$ is a subgroup.
+\end{exercise}
+
+A burning question at this point might be the following: Aren't group actions
+kind of just like permutations? Indeed, this is an excellent question, as we
+have put in the chapter on permutation groups. Suppose $G$ acts on $X$. Let us
+fix a $g \in G$. Consider the function $f: X \to X$ given by $x \mapsto g \cdot
+x$. It turns out that $f$ is a bijection, and thus $f$ is a permutation of $X$.
+Now, let us call $\sigma_g$ the function that applies the action of $g$ on $X$,
+i.e. $\sigma_g(x) = g \cdot x$. It seems that we can construct a map from $G$
+into $S_X$. Of course, this map would be $g \mapsto \sigma_g$. Since we are
+studying group theory, it is natural to wonder whether this is a homomorphism.
+Indeed, it is. See \cref{ex:group-actions-symmetric-group}.
+
+Our study of permutation groups takes a temporary hiatus with the following
+theorem. If it seems trivial to you, it's due to the power of excellent
+definitions. This shows us the power of group actions and once again reminds us
+the importance of constructing good definitions.
+\begin{theorem}[Cayley's Theorem]
+    Every group is isomorphic to group of permutations. 
+\end{theorem}
+\begin{proof}
+    See \cref{ex:cayley-thm}.
+\end{proof}
+
 
 \section{Problems}
 
@@ -309,6 +420,20 @@ To be done
 \begin{exercise}
     Let $\alpha \in S_n$. Without using Lagrange's theorem, prove that the order
     of $\alpha$ divides $S_n$. 
+\end{exercise}
+
+\begin{exercise}[Group actions and the symmetric group]
+\label{ex:group-actions-symmetric-group}
+    Let $G$ act on $X$. For a fixed $g \in G$, define $\sigma_g(x) = g \cdot x$. 
+    \begin{enumerate}
+        \item For every $g \in G$, show that $\sigma_g$ is a bijection.
+        \item Show that the map $g \mapsto \sigma_g$ is a homomorphism. (i.e. $\sigma_g \sigma_h = \sigma_{gh}$)
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Cayley's Theorem]
+\label{ex:cayley-thm}
+    Prove Cayley's Theorem. 
 \end{exercise}
 
 

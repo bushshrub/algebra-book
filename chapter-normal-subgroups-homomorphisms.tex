@@ -1,0 +1,324 @@
+\documentclass[./main.tex]{subfiles}
+
+\begin{document}
+At the end of \cref{chapter:groups}, we briefly discussed homomorphisms. We
+shall now study a closely related concept: normal subgroups. The study of normal
+subgroups is closely connected with the study of group homomorphisms.
+
+
+\begin{definition}[Normal subgroup]
+\label{def:normal-subgroup}
+    A subgroup $N$ of a group $G$ is \textbf{normal} if for all $g \in G$,
+    \[
+        gN = Ng.
+    \]
+
+    Notationally, we will write $N \unlhd G$. When we wish to additionally say
+    that $N \neq G$, we shall write $N \vartriangleleft G$.
+\end{definition}
+That is to say, the left coset of $N$ is equal to the right coset of $N$. An
+equivalent criterion is given below, which may be taken to be the definition of
+normality. The definition above was chosen due to ease of application.
+\begin{lemma}
+\label{lem:normality-criterion}
+    Let $G$ be a group and $N$ a subgroup of $G$. Then $N$ is normal in $G$ if
+    and only if for all $g \in G$, 
+    \[
+        gNg\inv \subseteq N.
+    \]
+\end{lemma}
+\begin{proof}
+    See \cref{ex:prove-normality0-criterion}.
+\end{proof}
+
+\begin{exercise}
+\label{ex:prove-normality0-criterion}
+    Prove \cref{lem:normality-criterion}
+\end{exercise}
+
+\begin{warning}
+    This does not imply that $gn = ng$ for every $n \in N$.
+\end{warning}
+
+Let us now see examples of normal subgroups.
+
+\begin{example}
+    Any subgroup of an Abelian group is normal. Moreover, any nontrivial group
+    always has at least 2 normal subgroups. Which ones?\footnote{The whole group
+    and the trivial subgroup.}
+\end{example}
+
+\begin{example}
+    Let $D_4 = \gen{s, r : r^4=s^2=1, sr^j = r^{-j}s}$ be the dihedral group of
+    order 8. Then $D_4$ has a normal subgroup, namely $N = \gen{r}$, the
+    subgroup of rotations. This will actually follow from
+    \cref{example:index-2-subgroups-normal}, but we can directly verify this
+    fact here. Let us pick $g \in D_4$, and notice that if $g$ is a pure
+    rotation, $gN \in N$ and so $gN = Ng$. Let us assume that $g = s$ (the
+    general case follows easily from this - why?), then using the group relation
+    $sr^j = r^{-j}s$, we quickly observe that $sN = Ns$.
+\end{example}
+
+
+At this point, the reader may be wondering whether "is a normal subgroup of" is
+a transitive relation. This may feel intuitively true; after all, the relation
+of being a subgroup of is in fact transitive. Unfortunately, this is untrue.
+
+\begin{example}[Normality is not transitive]
+    Let $G = D_4$. Let $H = \gen{r^2, s}$ and let $K = \gen{s}$. Then $K \unlhd
+    H \unlhd G$, but $K$ is not normal in $G$, since $rsr\inv = sr^2 \notin K$.
+\end{example}
+
+\begin{example}[Index 2 subgroups are normal]
+\label{example:index-2-subgroups-normal}
+    Any subgroup of index 2 is normal. In other words, if $H$ is a subgroup of
+    $G$, and $\abs{G/H} = 2$, then $H$ is normal in $G$. See
+    \cref{ex:index-2-subgroups-normal} for more details.
+\end{example}
+
+\begin{example}[Alternating group]
+    Recall that $A_n$ is the alternating group, the subgroup of all the even
+    permutations in $S_n$. Leveraging \cref{example:index-2-subgroups-normal},
+    we can swiftly say that $A_n$ is normal in $S_n$. 
+\end{example}
+
+Recall that given subgroups $H, K$ of a group $G$, it may not be true that $HK$
+is a subgroup of $G$. However, if $H$ is instead a normal subgroup of $G$, then
+this will be true.
+
+\begin{example}["Product" of subgroup with a normal subgroup is a subgroup]
+\label{example:product-of-subgroup-with-normal-subgroup}
+    Let $H$ be normal in $G$ and $K$ a subgroup of $G$. Of course $HK$ is
+    nonempty. Given elements $a = h_1k_1, b = h_2k_2 \in HK$, we notice that
+    $ab\inv = h_1 (k_1 k_2 \inv h_2 \inv)$. Consider the expression in
+    parentheses. Since $H$ is normal in $G$ there is some $h'$ such that $k_1
+    k_2\inv h_2\inv = h' k_1 k_2\inv$. So this means $ab\inv = h_1 h' k_1
+    k_2\inv$ which is in $HK$.
+\end{example}
+
+\section{Quotient groups}
+We have previously discussed a product of groups. This concept was rather
+simple. But what about the quotient of groups. Can we "divide" a group by
+another group? 
+
+To explain the concept of quotient groups, we shall turn first to modular
+arithmetic. Let us consider the set $\bZ$, and we declare the equivalence
+relation $x \sim y$ if and only if $x \mod 3 = y \mod 3$. This partitions $\bZ$ into the following sets:
+\begin{align*}
+    0 + 3\bZ &= \set{0, \pm3, \pm6, \cdots} \\
+    1 + 3\bZ &= \set{1, \pm4, \pm7, \cdots} \\
+    2 + 3\bZ &= \set{2, \pm5, \pm8, \cdots}.
+\end{align*}
+
+When we add 1 and 1 modulo 3, we get 2 modulo 3. Notice that if we add up the
+stuff in the set $1 + 3\bZ$ to themselves, we also obtain $2 + 3\bZ$.
+
+
+\begin{theorem}[Existence of quotient groups]
+\label{thm:existence-of-quotient-groups}
+    Let $G$ be a group and $N$ be a normal subgroup of $G$. Then the set $G/N$
+    with the operation $(xN)(yN) := xyN$ is a group.
+\end{theorem}
+\begin{proof}
+    We first show that this operation is well defined. Suppose $xN = x'N$ and
+    $yN = y'N$. Then there is some $n_1, n_2 \in N$ such that $x' = x n_1, y' =
+    yn_2$. So $x'y'N = x n_1 y n_2 N = x n_1 y N = x n_1 N y = xyN$. (Recall
+    that in \cref{chapter:lagrange-theorem} we proved some properties about
+    cosets). We leave it to the reader to verify that this operation is
+    associative, has identity and inverses.
+\end{proof}
+
+Interestingly enough, the converse is true: If the operation $xN yN := xyN$
+defines a group (on the set of left cosets $G/N$), then $N$ is normal in $G$. We
+leave this as a good exercise in \cref{thm:existence-of-quotient-groups}.
+Additionally, note that if $N$ is not normal, then the product operation as
+defined there may not yield a left coset. 
+
+\begin{example}
+    In $S_3$, let $H = \set{(1), (12)}$. Then $(13) H (23) H$ is not equal to
+    $(13)(23)H$.
+\end{example}
+
+We now make some remarks about notation. It may seem confusing that $gN hN =
+ghN$, but since $G/N$ is a group, we should view $gN$ and $hN$ as elements of
+the group $G/N$. If you find this confusing, you may instead treat $gN$ as
+$\tilde g$ and $\tilde h$, although be aware that this technique may lead to you
+forgetting about the properties of cosets.
+
+The next theorem gives us a criterion for determining if $G$ is not Abelian. 
+\begin{theorem}
+\label{thm:g-z-theorem}
+    If $G/Z(G)$ is cyclic, then $G$ is Abelian.
+\end{theorem}
+\begin{proof}
+    Firstly, $Z(G)$ is normal (\cref{ex:center-is-always-normal}). If $G$ is
+    Abelian then $Z(G) = G$, it thus suffices to show that $G/Z(G)$ is the
+    trivial group. Suppose $gZ(G)$ generates $G/Z(G)$. If $a \in G$, then $aZ(G)
+    = g^i Z(G)$ for some $i$, so that $a = g^i z$ for some $z \in Z(G)$. We
+    observe that this implies $a$ commutes with $g$, since $g^i$ and $z$ both
+    commute with $g$. But this shows that every element of $G$ commutes with
+    $g$, so that $g \in Z(G)$. 
+\end{proof}
+
+% \begin{proposition}
+%     Let $G$ be a group. Then $G/Z(G)$ is isomorphic to $\operatorname{Inn}(G)$.    
+% \end{proposition}
+
+\section{Homomorphisms and the first isomorphism theorem}
+Recall that we defined group homomorphisms in \cref{def:group-homomorphism}. We
+now undertake a deeper study of them. 
+
+First, let us start with a definition that is likely familiar to you, if you've
+had linear algebra.
+\begin{definition}[Kernel of a homomorphism]
+    Let $\phi: G \to H$ be a group homomorphism. The \textbf{kernel of $\phi$}
+    is the set of all $g$ which are mapped to the identity by $\phi$;
+    \[
+        \ker \phi := \set{g \in G: \phi(g) = e}.
+    \]
+\end{definition}
+The image of a homomorphism will be simply denoted $\phi[G]$, since it is not
+sufficiently important in group theory to get a special designation. Let us now
+see a few more properties of homomorphisms. Recall that we have proven more
+properties previously on \cref{thm:properties-of-homomorphisms} and
+\cref{prop:cyclic-group-properties-homomorphisms}.
+\begin{proposition}
+\label{prop:more-properties-of-homomorphisms}
+    Let $\phi: G \to H$ be a homomorphism. 
+    Then, the following properties are true:
+    \begin{enumerate}
+        \item $\ker \phi$ is a subgroup of $G$; 
+        \item $\phi(g) = \phi(h)$ if and only if $g \ker \phi = h \ker \phi$.
+        \item If $h \in \phi[G]$ and $\phi(g) = h$, then $\phi\inv\paren*{\set{h}} = g\ker\phi$. 
+        \item If $N$ is normal in $G$, then $\phi[N]$ is normal in $\phi[G]$.
+        \item $\phi[Z(G)]$ is a subgroup of $Z(\phi[G])$.
+        \item If $K$ is normal in $H$, then $\phi\inv\paren*{K}$ is normal in $G$.
+        \item If $\ker \phi$ is finite and has $n$ things in it, then $\phi$ is an $n$ to 1 mapping.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We leave the proof of (1) to the reader. For (2), notice that $\phi(g) =
+    \phi(h)$ if and only if $\phi(gh\inv) = e$. This is true if and only if
+    $gh\inv \in \ker \phi$, if and only if $g\ker \phi = h \ker \phi$.
+    Everything else shall be left to the reader.
+\end{proof}
+The reader may have also observed that property (2) seems very indicative of a
+equivalence relation. See \cref{ex:homomorphism-induces-equiv-relation} for more details.
+
+Property (6) of \cref{prop:more-properties-of-homomorphisms} can be used to
+deduce the following very important property of kernels.
+\begin{corollary}[Kernels are normal]
+    If $\phi$ is a homomorphism then $\ker \phi$ is normal.
+\end{corollary}
+\begin{proof}
+    Consider $\phi\inv\paren*{\set{e}}$.
+\end{proof}
+
+\section{Isomorphism Theorems}
+
+\begin{theorem}[First Isomorphism Theorem]
+\label{thm:first-iso}
+    Suppose $G$ is a group and $\phi: G \to H$ is a homomorphism. Then the group
+    $G/\ker \phi$ is isomorphic to $\phi[G]$ by the isomorphism $\varphi(g \ker
+    \phi) = \phi(g)$.
+\end{theorem}
+\begin{proof}
+    See \cref{ex:prove-first-iso}.
+\end{proof}
+
+Although we have labelled the following as theorems, they really are corollaries
+to \cref{thm:first-iso}.
+
+\begin{theorem}[Second Isomorphism Theorem]
+\label{thm:second-iso}
+    Suppose $K$ is a subgroup of $G$, and $N$ is normal in $G$. Then $K/(K \cap
+    N)$ is isomorphic to $KN/N$.
+\end{theorem}
+\begin{proof}
+    See \cref{ex:prove-second-iso}. Note that by
+    \cref{example:product-of-subgroup-with-normal-subgroup}, we have the fact that $KN$ is a
+    subgroup of $G$.
+\end{proof}
+
+\begin{theorem}[Third Isomorphism Theorem]
+\label{thm:third-iso}
+    Suppose $M, N$ are normal in $G$ and that $N$ is a subgroup of $M$. Then
+    $(G/N) / (M/N)$ is isomorphic to $G/M$. 
+\end{theorem}
+\begin{proof}
+    See \cref{ex:prove-third-iso}.
+\end{proof}
+
+
+The reader may be wondering whether all normal subgroups are kernels of some
+sort of homomorphism. The answer is yes. If $N$ is a normal subgroup of $G$, let
+us define\footnote{The reason for the use of the symbol $\pi$ is because we are
+essentially projecting the elements down to $G/N$. Sometimes this is called the
+natural homomorphism from $G$ to $G/N$. I'm not sure if this is categorically
+natural, so let me know.} $\pi: G \to G/N$ by $\pi(g) = gN$. We leave it to the
+reader (\cref{ex:kernel-of-projection}) to verify this is indeed a homomorphism,
+and it has kernel $N$.
+
+
+\section{Problems}
+
+\begin{exercise}[Center is always normal]
+\label{ex:center-is-always-normal}
+    Let $G$ be a group. Show that $Z(G)$ is normal subgroup of $G$. In addition,
+    prove that if $H$ is a subgroup of $Z(G)$, then $H$ is normal in $G$.
+\end{exercise}
+
+\begin{exercise}[Stronger version of \cref{thm:g-z-theorem}]
+    Let $G$ be a group. Let $H$ be a subgroup of $Z(G)$. Show that if $G/H$ is
+    cyclic, then $G$ is Abelian. 
+\end{exercise}
+
+\begin{exercise}[Converse of \cref{thm:existence-of-quotient-groups}]
+\label{ex:converse-of-quotient-groups-existence}
+    Suppose $G$ is a group and $N$ is a subgroup of $G$ such that for all $x, y
+    \in G$, we have $xN yN = xyN$. Show that $N$ is normal.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:homomorphism-induces-equiv-relation}
+    Let $\phi: G \to H$ be a homomorphism. Define the equivalence relation
+    $\sim$ on $G$ by $x \sim y$ if and only if $\phi(x) = \phi(y)$. Prove that $\sim$
+    is an equivalence relation, and the equivalence class $[g]_\sim$ is
+    precisely $g\ker\phi$.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:prove-first-iso}
+    Prove the First Isomorphism Theorem (\cref{thm:first-iso}).
+\end{exercise}
+
+\begin{exercise}
+\label{ex:prove-second-iso}
+    Prove the Second Isomorphism Theorem (\cref{thm:second-iso}).
+\end{exercise}
+
+\begin{exercise}
+\label{ex:prove-third-iso}
+    Prove the Third Isomorphism Theorem (\cref{thm:third-iso}).
+\end{exercise}
+
+\begin{exercise}[Every normal subgroup is a kernel]
+\label{ex:kernel-of-projection}
+    If $N$ is a normal subgroup of $G$, let us define $\pi: G \to G/N$ by
+    $\pi(g) = gN$. Prove that $\pi$ is a homomorphism and it has kernel $N$.
+\end{exercise}
+
+\begin{exercise}
+    Prove that $\bQ$ under addition has no proper subgroup with finite index.
+\end{exercise}
+
+\begin{exercise}[Index 2 subgroups are normal]
+\label{ex:index-2-subgroups-normal}
+    Let $G$ be a group and $H$ be a subgroup such that $[G:H] = 2$. Prove that
+    $H$ is normal in $G$. \textit{Hint: Think about the pigeonhole principle}
+\end{exercise}
+
+
+
+
+\end{document}

@@ -42,7 +42,9 @@ if __name__ == "__main__":
         f.write(f"<p>Current git commit hash: {current_git_commit_hash}</p>\n")
         f.write(f"<p>Last commit time: {last_commit_dt}</p>\n")
 
+        f.write('<h2>Download</h2>\n')
         f.write('<a href="files/main.pdf">Main Document</a>\n')
+        f.write('<h2>Other files</h2>\n')
         f.write('<ul>')
         for pdf_file in pdf_files:
             f.write(f'<li><a href="files/{pdf_file}">{pdf_file}</a></li>\n')

@@ -94,7 +94,14 @@ this will be true.
     parentheses. Since $H$ is normal in $G$ there is some $h'$ such that $k_1
     k_2\inv h_2\inv = h' k_1 k_2\inv$. So this means $ab\inv = h_1 h' k_1
     k_2\inv$ which is in $HK$.
+
+    We have thus proven the following proposition. We state it here; but it is
+    not used much and thus does not go into a proposition box.
+    \begin{center}
+        Let $H$ be normal in $G$ and $K$ be a subgroup of $G$. Then, $HK$ is a subgroup of $G$.
+    \end{center}
 \end{example}
+
 
 \section{Quotient groups}
 We have previously discussed a product of groups. This concept was rather
@@ -103,7 +110,8 @@ another group?
 
 To explain the concept of quotient groups, we shall turn first to modular
 arithmetic. Let us consider the set $\bZ$, and we declare the equivalence
-relation $x \sim y$ if and only if $x \mod 3 = y \mod 3$. This partitions $\bZ$ into the following sets:
+relation $x \sim y$ if and only if $x \mod 3 = y \mod 3$. This partitions $\bZ$
+into the following sets:
 \begin{align*}
     0 + 3\bZ &= \set{0, \pm3, \pm6, \cdots} \\
     1 + 3\bZ &= \set{1, \pm4, \pm7, \cdots} \\
@@ -111,9 +119,16 @@ relation $x \sim y$ if and only if $x \mod 3 = y \mod 3$. This partitions $\bZ$ 
 \end{align*}
 
 When we add 1 and 1 modulo 3, we get 2 modulo 3. Notice that if we add up the
-stuff in the set $1 + 3\bZ$ to themselves, we also obtain $2 + 3\bZ$.
+stuff in the set $1 + 3\bZ$ to themselves, we also obtain $2 + 3\bZ$. This
+suggests that we should perhaps define the group operation in $\bZ / \sim$ by
+setting $(x + N) + (y + N) = x + y + N$, where $N = 3 \bZ$. 
 
-
+Can we replicate this construction for any subgroup of $\bZ$ whatsoever? It
+turns out that the answer is yes. What about for a general group? Can we
+replicate this idea? Yes, but we would require that the subgroup be normal.  Of
+course, in abelian groups, every subgroup is normal. But it turns out that in
+order for the operation to be well defined it was sufficient to assume that the
+subgroup is normal. 
 \begin{theorem}[Existence of quotient groups]
 \label{thm:existence-of-quotient-groups}
     Let $G$ be a group and $N$ be a normal subgroup of $G$. Then the set $G/N$
@@ -130,7 +145,7 @@ stuff in the set $1 + 3\bZ$ to themselves, we also obtain $2 + 3\bZ$.
 
 Interestingly enough, the converse is true: If the operation $xN yN := xyN$
 defines a group (on the set of left cosets $G/N$), then $N$ is normal in $G$. We
-leave this as a good exercise in \cref{thm:existence-of-quotient-groups}.
+leave this as a good exercise in \cref{ex:converse-of-quotient-groups-existence}.
 Additionally, note that if $N$ is not normal, then the product operation as
 defined there may not yield a left coset. 
 
@@ -216,6 +231,10 @@ deduce the following very important property of kernels.
 
 \section{Isomorphism Theorems}
 
+We have previously mentioned that the study of normal subgroups is the same as
+the study of homomorphisms. Let us now make this notion precise with the First
+Isomorphism Theorem. This is sometimes called the Fundamental Theorem of Group
+Homomorphisms, which really goes to show just how important this theorem is.
 \begin{theorem}[First Isomorphism Theorem]
 \label{thm:first-iso}
     Suppose $G$ is a group and $\phi: G \to H$ is a homomorphism. Then the group
@@ -225,6 +244,46 @@ deduce the following very important property of kernels.
 \begin{proof}
     See \cref{ex:prove-first-iso}.
 \end{proof}
+We may depict the relationship of this theorem with the following commutative diagram:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzEsMCwiXFxwaGlbR10iXSxbMCwxLCJHIC8gXFxrZXIgXFxwaGkiXSxbMCwxLCJcXHBoaSJdLFswLDIsIlxccGkiLDJdLFsyLDEsIlxcY29uZyIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	G & {\phi[G]} \\
+	{G / \ker \phi}
+	\arrow["\phi", from=1-1, to=1-2]
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow["\varphi"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\] Here, $\pi$ denotes the natural projection which sends the
+element $g$ to the left coset $g \ker \phi$, i.e. $\pi(g) = g \ker \phi$. The
+commutative diagram can be read as saying that $\phi = \varphi \circ \pi$. We
+won't go into too much detail into how to read commutative diagrams here for
+now. 
+
+Using the first isomorphism theorem, we can turn back to our motivating example
+for the study of normal subgroups, and see what we mean by $\bZ / 3 \bZ$ is
+really just $\bZ_3$.
+
+\begin{example}
+    Let $n$ be a positive integer. Define $\phi(m) = m \mod n$. Then $\phi$ is
+    easily seen to be a (surjective) group homomorphism from $\bZ$ to $\bZ_n$
+    and the kernel of $\phi$ is $n \bZ$. So the first isomorphism theorem tells
+    us that $\bZ / n \bZ \cong \bZ_n$.
+\end{example}
+
+The first isomorphism theorem makes computations involving kernels and
+homomorphisms much easier.
+
+\begin{example}
+    Let $G$ be the general linear group of 2 by 2 matrices over $\bR$, and let
+    $N$ be the special linear group of 2 by 2 matrices over $\bR$. Let $\phi$ be
+    the determinant function. Notice that $\phi$ is a surjective group
+    homomorphism onto the group of nonzero real numbers under multiplication,
+    and the kernel of $\phi$ is precisely $N$. Thus this shows that $G/N$ is
+    isomorphic to the nonzero reals under multiplication.
+\end{example}
+
+
+
+
 
 Although we have labelled the following as theorems, they really are corollaries
 to \cref{thm:first-iso}.

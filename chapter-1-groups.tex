@@ -6,7 +6,7 @@ Before we give the definition of a group, the reader might appreciate some
 motivation behind what a group is trying to capture. The axioms of a group are
 in the sense, all that you need for the equation $ax = b$ to have a unique
 solution. Of course, the reader may also be motivated by other examples, such as
-the rotations and reflections of a square, or other sorts of symmetries.
+the rotations and reflections of a square, or other sorts of symmetries. 
 \begin{definition}[Group]
 \label{def:group}
     A group is a set $G$ with a binary operation $\cdot: G \times G \to G$ such that
@@ -107,9 +107,45 @@ the usage of $+$ for the group operation.
     matrix multiplication.
 \end{example}
 
-\begin{example}
-    Let $n$ be an integer. Let $D_n$ be the set of symmetries of a regular
-    $n$-sided polygon. \textbf{TODO: This example needs to be improved}
+\begin{example}[Dihedral group $D_4$]
+    Consider a square. We shall label the square's vertices in a
+    counterclockwise direction. Let $r$ denote a clockwise rotation and let $s$
+    denote reflection on the vertical axis. The operation in this group shall be
+    defined by applying successive transformations. So for instance, $r^2$ would
+    be rotating clockwise, then rotating clockwise again. If we do instead $rs$,
+    we would first flip the square on the vertical axis, then rotate the square
+    clockwise. (The reader is highly encouraged to grab a piece of paper and do
+    these operations for themselves.) The set of all these transformations forms
+    a group under the operation of "doing a transformation after another". Of
+    course, we need to add in the rotation by 0 degrees, which is the identity.
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+            \draw (0,0) -- (2, 0) -- (2, 2) -- (0, 2) -- cycle;
+            \node[] at (0.2, 1.8) {1};
+            \node at (1.8, 1.8) {2};
+            \node at (1.8, 0.2) {3};
+            \node at (0.2, 0.2) {4};
+
+            \draw[->, dashed] (1.6, 2.4) .. controls (1.6, 2.4) and (2.4, 2.4) .. (2.4, 1.6);
+            \node[label={right:$r$}] at (2.2, 2.2) {};
+
+            \draw[dashed] (1, -0.4) -- (1, 2.4);
+            \draw[<->] (0.8, 2.7) -- (1.2, 2.7) node[label={above:$s$}, pos=0.5] {};
+            % \node[label={above:$s$}] at (1, 2.4) {};
+        \end{tikzpicture}
+        \caption{A square with some labels to help you visualize the dihedral group $D_4$}
+    \end{figure}
+
+    For better visuals, see \autocite[Fig.~1.1, \pno~28]{Gallian_2020}.
+
+    We can easily generalize this example. Given an $n$ sided regular polygon,
+    we can again let $r$ denote rotation by $360/n$ degrees, and we let $s$
+    denote reflection about some axis. The general construction of this is
+    called the \textbf{dihedral group of an $n$-sided polygon} $D_n$. We also
+    sometimes call this the dihedral group of order $2n$.
+    
 \end{example}
 
 \begin{example}
@@ -141,6 +177,7 @@ context, we shall simply say that $G$ is a group.
 We state a few more properties of groups. Many of the proofs below invoke the
 uniqueness of inverses, and the reader should keep this in mind as they read the
 proof.
+\newpage
 \begin{theorem}
 \label{thm:more-group-properties}
     Let $G$ be a group. Then, the following are true.
@@ -328,6 +365,14 @@ We close off this section with some exercises and problems.
 \begin{prob}
     Let $G$ be a group. Prove that if for every $g \in G$, we have $g^2 = e$,
     then $G$ is Abelian.
+\end{prob}
+
+\begin{prob}
+    Let $S$ be a set with an associative and commutative binary operation
+    $\cdot$ on it, with the additional property that given any $a, b \in S$,
+    there exists $c \in S$ such that, $a \cdot c = b$. Prove that for all $x,y,z
+    \in S$, if $x \cdot z = y \cdot z$, then $x = y$.
+    % Note: Taken from 2012 Putnam A2
 \end{prob}
 
 
@@ -527,6 +572,7 @@ future to prove the Sylow Theorems, and some other counting theorems.
 \begin{prob}
     Prove that no group is the union of 2 proper subgroups. (No cheating and
     looking this up)
+    % Note: 1969 Putnam
 \end{prob}
 
 \begin{prob}

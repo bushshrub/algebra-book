@@ -22,12 +22,83 @@ instead.
 
 \begin{definition}[Relation]
 \label{def:relation}
-    Let $G$ be a group and suppose $S$ generates $G$. Any equation that generators 
+    Let $G$ be a group and suppose $S$ generates $G$. Any equation that
+    generators satisfy is a called a \textbf{relation}.
 \end{definition}
 
 \begin{example}[Presentation of $\bZ$]
-    The reader has probably already guessed this. 
+    The reader has probably already guessed this. Every element of $\bZ$ is of
+    the form $1 + \cdots + 1$ where you add 1 to itself $n$ times to obtain $n$.
+    It thus follows that $\bZ = \gen{1}$. We also notice that we can actually
+    write any element as $-( -1 + \cdots + -1)$, adding $-1$ to itself $n$ times
+    and taking the inverse of it. Thus $\bZ = \gen{-1}$ too. It's not too hard
+    to see that any other element of $\bZ$ cannot be a generator of $\bZ$.  
 \end{example}
+
+
+Our main focus here shall be on the presentation of $D_n$. Before we can find
+ourselves a presentation for $D_n$, we must first take a look at some of the
+properties of $D_n$. Consider a regular $n$-gon, and let $r$ be a rotation of
+$360/n$ degrees counterclockwise. Let $s$ be reflection across the line between
+the vertex 1 and the origin. For a helpful visual, see
+\cref{fig:labelled-hexagon-for-dihedral-group}.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        % Define the radius
+        \def\radius{2}
+    
+        % Draw the hexagon
+        \foreach \i in {1,...,6} {
+            \coordinate (v\i) at ({\i*60+90}:\radius);
+        }
+        \draw (v1) -- (v2) -- (v3) -- (v4) -- (v5) -- (v6) -- cycle;
+    
+        % Place the labels outside the hexagon
+        \foreach \i/\label in {1/1, 2/2, 3/3, 4/4, 5/5, 6/6} {
+            \node at ({\i*60+30}:\radius + 0.5) {\label};
+        }
+
+        \draw[fill=black] (0, 0) circle[radius=0.05];
+    
+        % Draw the dotted line through the center
+        % \draw[dotted] (v3) -- (v6);
+        \draw[dotted] (0, 2.3) -- (0, -2.3); 
+    \end{tikzpicture}
+    \caption{Labelled hexagon}
+    \label{fig:labelled-hexagon-for-dihedral-group}
+\end{figure}
+
+Now, the following details can be easily deduced. We leave the details to the
+reader in \cref{ex:basic-properties-of-dihedral-group}.
+\begin{center}
+    \begin{enumerate}
+        \item The order of $r$ is $n$. This says that every rotation is distinct.
+        \item The order of $s$ is 2. This says that applying the reflection
+        twice leaves the $n$-gon unchanged.
+        \item For any $i$, $s \neq r^i$. This says that a rotation is never a reflection.
+        \item Whenever $i \neq j$, $sr^i \neq sr^j$ for $i, j \in \set{0, \dots, n-1}$. As such,
+        \[
+            D_n = \set{e, r, r^2, \dots, r^{n-1}, s, sr, sr^2, \dots, sr^{n-1}}.
+        \]
+        This means every element of $D_n$ can be written \emph{uniquely} in the
+        form $sr^k$ for some $k \in \set{0, \dots, n-1}$.
+        \item $r^j s = sr^{-j}$ for $j \in \set{0, \dots, n-1}$. This is better
+        understood by seeing that $rs = sr\inv$. The reader is encouraged to
+        pull out something that's square (or rectangular) and try this for
+        themselves.
+    \end{enumerate}
+\end{center}
+
+With these facts, we are now ready to construct a presentation of $D_n$. From 4,
+every element of $D_n$ can be written with $r$ and $s$, so we would have 2
+generators: $r, s$. At this point, we have no relations yet, but it seems
+sensible that we should write down the relations $r^n = e$ and $s^2 = e$. For
+our last relation, we shall write down $r^j s = sr^{n-j}$, a slight modification
+of number 5. Our choice for this relation is forced by the fact that the other
+facts simply say that something is not equal to something else. We now
+present\footnote{lmao} to the reader, the presentation of $D_n$.
 
 \begin{example}[Presentation of $D_n$]
 \label{example:presentation-of-dihedral}
@@ -35,6 +106,8 @@ instead.
     \[
         D_n = \gen{r, s \mid r^n = s^2 = e, \,\, sr^j = r^{-j}s}.
     \]
+    Intuitively, $r$ is a rotation and $s$ is a reflection. We leave it to the
+    reader to check that this presentation actually gives us $D_n$. 
 
     Of course, there are other presentations, such as 
     \[
@@ -43,5 +116,116 @@ instead.
     You can think about it as $a=s$ and $b=sr$ where $s, r$ are from the first
     presentation.
 \end{example}
+
+Group presentations are nice because they're a compact way to describe a group.
+Unfortunately, there are some caveats to group presentations. Given an arbitrary
+presentation, it can be difficult or impossible to distinguish between distinct
+elements. In the example with $D_n$, we worked backwards by deducing facts that
+the generators must satisfy and property 4 told us that everything in $D_n$ was
+able to be uniquely expressed in terms of the generators and relations, but this
+may not be true for an arbitrary group presentation. This has some nasty
+consequences. 
+
+\begin{example}[A group presentation that leads to an infinite group]
+    Consider the presentations
+    \begin{equation}
+    \label{eqn:group-that-is-finite}
+    \gen{a, b \mid a^2 = b^2 = (ab)^2 = e}
+    \end{equation}
+    \begin{equation}
+    \label{eqn:group-that-is-infinite}
+    \gen{a, b \mid a^3 = b ^3 = (ab)^3 = e}
+    \end{equation}
+    What do you think the order of \cref{eqn:group-that-is-finite} is? 2? 4? It
+    turns out that this is a group of order 4. (Actually this turns out to be
+    $D_2$. See \cref{ex:similar-presentations-but-finite-infinite}) Now what
+    about \cref{eqn:group-that-is-infinite}? Is it 3? 9? No! It's an infinite
+    group. As such, one must not get misled by things like 
+    \[
+        \gen{x, y, z \mid x^n = y^k = z^m = e, \cdots}
+    \]
+    and conclude that the group is necessarily finite.
+\end{example}
+
+Another important remark is in order. Given a group presentation, we cannot
+assume that the relations as written are the only relations. That is, there may
+be some hidden relations. 
+\begin{example}
+\label{example:hidden-relations-group}
+    This is taken from \autocite[Eqn 1.2, \pno~26]{Dummit_Foote_2004}.
+    Let 
+    \[
+        X_n = \gen{x, y \mid x^n = y^2 = 1, \,\, xy=yx^2}. 
+    \]
+    Although $X_n$ looks like a group that has order $2n$. This is not true. The
+    problematic relationship is $xy = yx^2$. Let's now see why this causes
+    problems. First, notice that $y$ has order 2, so that $y^2 = e$. Now we
+    consider the relationship $x = xy^2$. Now, $y^2 = yy$, so then we have
+    \[
+        x = (xy)y = (yx^2)y = (yx)(xy) = (yx)(yx^2) = y(xy)x^2 = y(yx^2)(x^2) = x^4.
+    \]
+    So this tells us that $x^3 = e$. So the order of $X_n$ can be at most 6. 
+\end{example}
+
+\begin{example}[A group with an elaborate presentation that degenerates]
+\label{example:elaborate-presentation-but-trivial}
+    This example is from \autocite[Eqn 1.3, \pno~27]{Dummit_Foote_2004}. Let 
+    \[
+        Y = \gen{u, v \mid u^4  = v^3 = 1, \,\, uv = v^2 u^2}.
+    \]
+    While the first relation may suggest that $Y$ has order 12, $Y$ turns out to
+    actually be the trivial group. A sketch of this proof is given in
+    \cref{ex:elaborate-presentation-but-trivial}.
+\end{example}
+
+Now why does this not happen with the presentation we gave for $D_n$? The reason
+is because we crafted a presentation from properties that the group already
+satisfies. As such, we have demonstrated that there is a group with generators
+$r, s$ that satisfy the relations as given in the standard presentation. This
+tells us that a group which satisfies the relations of the standard presentation
+of $D_n$ would have at least order $2n$, since it would contain $D_n$. It can
+also be proven that any group with the presentation as given would have order at
+most $2n$, so necessarily this presentation gives us the dihedral group. 
+
+\section{Problems and Exercises}
+
+\begin{exercise}[Properties of $D_n$]
+\label{ex:basic-properties-of-dihedral-group}
+    Prove the following properties about $D_n$. 
+    \begin{enumerate}
+        \item The order of $r$ is $n$.
+        \item The order of $s$ is 2.
+        \item For any $i$, $s \neq r^i$. 
+        \item Whenever $i \neq j$, $sr^i \neq sr^j$ for $i, j \in \set{0, \dots, n-1}$.
+        \item $r^j s = sr^{-j}$ for $j \in \set{0, \dots, n-1}$. A good strategy is to prove that $rs = sr\inv$
+        first, then apply induction on $j$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Find a presentation of $\bZ_n$. 
+\end{exercise}
+
+\begin{exercise}
+\label{ex:similar-presentations-but-finite-infinite}
+    Show that the presentation in \cref{eqn:group-that-is-finite} gives the
+    dihedral group $D_2$, but that the presentation in
+    \cref{eqn:group-that-is-infinite} is a presentation of an infinite group.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:elaborate-presentation-but-trivial}
+    We shall prove that $Y$ as defined in \cref{example:elaborate-presentation-but-trivial} is the trivial group.
+    \begin{enumerate}
+        \item Show that $v^2 = v\inv$.
+        \item Prove that $v\inv u^3 v = u^3$. To get started, notice that $v\inv
+        = v^2$, and so $v^2 u^3 v = (v^2 u^2) (uv)$. You will need to make use of part 1 again.
+        \item Prove that $u^3$ and $v$ commute.
+        \item Prove that $Y$ is abelian. Note that it suffices to show that $u$
+        and $v$ commute (why?). Try to prove that $u^9 = u$, and then apply (2)
+        \item Prove that $uv=e$, $u=e$ and $v=e$. Conclude that $Y$ is the
+        trivial group.
+    \end{enumerate}
+\end{exercise}
 
 \end{document}

@@ -24,7 +24,14 @@ A \textbf{(group) isomorphism} is a group homomorphism that is bijective.
 So a homomorphism is a function that preserves group operations. You can call
 this an operation-preserving map. Additionally, we shall say that $G$ and $H$
 are isomorphic, or $G$ is isomorphic to $H$ if there is an isomorphism $\phi: G
-\to H$.
+\to H$. 
+
+\begin{definition}[Group Automorphism]
+\label{def:group-automorphism}
+Let $G$ be a group. A \textbf{(group) automorphism} is an isomorphism $f: G \to G$.
+\end{definition}
+So a group automorphism is a group isomorphism where the domain and the codomain
+are the same.
 
 Before we continue, the reader should really appreciate how simple this
 definition is. With just the simple equation $\phi(xy) = \phi(x)\phi(y)$, we can
@@ -83,6 +90,21 @@ We shall immediately prove some useful properties of homomorphisms.
 
 \begin{exercise}
     Prove the rest of \cref{thm:properties-of-homomorphisms}
+\end{exercise}
+
+\begin{exercise}
+    Let $G$ be a group. The set of automorphisms on a group $G$ is denoted
+    $\operatorname{Aut}(G)$, and this is called the \textbf{group of automorphisms on $G$}. 
+
+    For $g \in G$, define $\varphi_g: G \to G$ to be the function $\varphi_g(x) = gxg\inv$. 
+    Let $\operatorname{Inn}(G) = \set{\varphi_g: g \in G}$. This is called the \textbf{inner automorphism group on $G$}.
+
+    \begin{enumerate}
+        \item Prove that $\operatorname{Aut}(G)$ is a group under function
+        composition.
+        \item Prove that $\varphi_g$ is an automorphism. Conclude that
+        $\operatorname{Inn}(G)$ is a subgroup of $\operatorname{Aut}(G)$.
+    \end{enumerate}
 \end{exercise}
 
 \subsection{Problems}

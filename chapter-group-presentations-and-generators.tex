@@ -20,6 +20,8 @@ generators for $G$, we shall write $G = \gen{S}$. If $S$ is a finite set, say $S
 = \set{g_1, \dots, g_n}$, then we shall write $G = \gen{g_1, \dots, g_n}$
 instead.
 
+
+
 \begin{definition}[Relation]
 \label{def:relation}
     Let $G$ be a group and suppose $S$ generates $G$. Any equation that
@@ -118,7 +120,20 @@ present\footnote{lmao} to the reader, the presentation of $D_n$.
 \end{example}
 
 Group presentations are nice because they're a compact way to describe a group.
-Unfortunately, there are some caveats to group presentations. Given an arbitrary
+Unfortunately, there are some caveats to group presentations. Due to the
+flexibility of group presentations, we do not require that the generators come
+from some preexisting group. What this means is that we can write down some
+presentation like $\gen{a, b \mid a^4 = b^2 = e}$ and consider all the strings
+formed by $a$ and $b$ and their formal inverses\footnote{This is a horrible name
+and very pedagogically disastrous, I'll need to change this soon}. What this
+means is that this presentation defines a group $G$ where the set is all finite
+strings with letters $a, b$ and letters $a\inv, b\inv$, with the property that
+$aa\inv$, $a\inv a$ and $bb\inv, b\inv b$ are removed from the string. For
+example, the string $aab\inv ba$ is equal to $aaa$. The same conventions apply:
+if we have $aaaa \cdots a$ $n$ times, we would write $a^n$ instead. Such a
+construction is called a \emph{free group}. The relations then specify what
+strings are equal in this group. We will return to the concept of free groups in
+a latter chapter, but because of this, if we are given an arbitrary
 presentation, it can be difficult or impossible to distinguish between distinct
 elements. In the example with $D_n$, we worked backwards by deducing facts that
 the generators must satisfy and property 4 told us that everything in $D_n$ was
@@ -187,7 +202,7 @@ of $D_n$ would have at least order $2n$, since it would contain $D_n$. It can
 also be proven that any group with the presentation as given would have order at
 most $2n$, so necessarily this presentation gives us the dihedral group. 
 
-\section{Problems and Exercises}
+\subsection{Problems and Exercises}
 
 \begin{exercise}[Properties of $D_n$]
 \label{ex:basic-properties-of-dihedral-group}

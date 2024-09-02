@@ -1,0 +1,81 @@
+\documentclass[./main.tex]{subfiles}
+
+\begin{document}
+
+
+\section{Classification of finite abelian groups}
+Of all the groups, the finite abelian groups are relatively nice behaved,
+because they're abelian. What is even nicer behaved are the finite cyclic
+groups. Since they're so nicely behaved, it would be nice if we could understand
+everything about them. The theorem we present in this chapter will go a long way
+to dealing with this.
+
+To motivate the theorem, recall that the fundamental theorem of arithmetic tells
+us that every number can be factorized uniquely as a product of primes, i.e. $n
+= p_1^{k_1} \cdots p_m^{k_m}$, where the $p_i$'s are distinct primes. It turns
+out that we can do something similar for groups. We first state the theorem; the
+proof is difficult.
+
+\begin{theorem}[Classification of finite abelian groups]
+\label{thm:classification-of-finite-abelian-groups}
+    Every finite abelian group is a unique product of cyclic groups of prime
+    power order. 
+\end{theorem}
+Now let's see what this means. Let $G$ be a finite abelian group of order $n$.
+Then, \cref{thm:classification-of-finite-abelian-groups} says that 
+\[
+    G \cong \bZ_{p_1^{k_1}} \times \cdots \times \bZ_{p_m^{k_m}}.
+\]
+However, note that \emph{the $p_i$'s may not be distinct primes}. However, this
+"factorization" is unique, meaning that if 
+\[
+    G \cong \bZ_{q_1^{l_1}} \times \cdots \times \bZ_{q_n^{l_n}},
+\]
+where $q_i$'s are primes, then $n = m$, and $\set{p_1, \dots, p_n} = \set{q_1,
+\dots, q_m}$, and if $p_j = q_i$ then their powers are the same too.
+
+
+This theorem is extremely powerful. It is extremely easy to determine \emph{all}
+Abelian groups of a certain order. In contrast, classifying non abelian groups
+is extremely difficult. We additionally obtain a partial converse to Lagrange's
+theorem as a corollary.
+\begin{corollary}[Subgroups of finite abelian groups]
+\label{cor:subgroups-fin-abelian-groups}
+    Let $G$ be a finite abelian group and $m$ divide the order of $G$. Then $G$
+    has a subgroup of order $m$.
+\end{corollary}
+\begin{proof}
+    See \cref{ex:subgroups-fin-abelian-groups}.
+\end{proof}
+
+We will now prove the theorem. This proof comes from \autocite[Ch~11]{Gallian_2020}. 
+
+\begin{lemma}
+    Let $G$ be a finite abelian group of order $p^n m$ where $p$ does not divide
+    $m$. Then, $G = H \times K$\footnote{This is an internal direct product. See
+    \cref{ex:internal-direct-products} for the definition of an internal direct
+    product.}, where $H = \set{x \in G: x^{p^n} = e}$ and $K = \set{x \in G: x^m
+    = e}$. Additionally, $\abs H = p^n$.
+\end{lemma}
+\begin{proof}
+    Obviously $H$ and $K$ are subgroups. Let us show that $H \cap K = \set{e}$
+    and $HK = G$. 
+\end{proof}
+
+
+\subsection{Exercises and Problems}
+
+\begin{exercise}[Subgroups of finite abelian groups]
+\label{ex:subgroups-fin-abelian-groups}
+Prove \cref{cor:subgroups-fin-abelian-groups}. A sketch is given in the next paragraph.
+
+Let $G$ be a finite abelian group of order $n$. We perform induction on $n$.
+When $n=1$ or $m=1$ it is trivial. Suppose the theorem is true for all abelian
+groups of order less than $n$. Let $p$ be a prime dividing $m$, so that $G$ has
+a subgroup of order $p$, say $K$ (by Cauchy's Theorem). Then $G/K$ has order
+$n/p$, and by the inductive hypothesis there is some subgroup of $G/K$ of the
+form $H/K$ that has order $m/p$.
+\end{exercise}
+
+
+\end{document}

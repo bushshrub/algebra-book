@@ -155,7 +155,8 @@ obvious, they are still good to mention.
     Prove \cref{cor:consequences-of-lagrange}.
 \end{exercise}
 
-Let us now see an application of Lagrange's Theorem.
+To really demonstrate the power of Lagrange's theorem, we shall see some
+applications of it. The first application is in number theory. 
 
 \begin{corollary}[Fermat's Little Theorem]
 \label{cor:fermat-little-theorem}
@@ -170,6 +171,89 @@ Let us now see an application of Lagrange's Theorem.
 \end{proof}
 \begin{exercise}
     Fill in the details of \cref{cor:fermat-little-theorem}.
+\end{exercise}
+
+Lagrange's theorem also gives us a useful counting theorem which tells us what
+the sizes of subgroups can be.
+\begin{theorem}[$HK$ theorem]
+\label{thm:hk-theorem}
+    Let $H, K$ be finite subgroups of some group $G$. Define $HK = \set{hk : h \in H, k \in K}$. Then, 
+    \[
+        \abs{HK} = \frac{\abs H \abs K}{\abs{H \cap K}}.
+    \]
+\end{theorem}
+Let's talk strategy. Of course, $HK$ has $\abs H \cdot \abs K$ products, but
+they may not be distinct group elements. What this means is that we could have
+$hk = h' k'$ where $h \neq h', k \neq k'$. The formula suggests that duplicates
+occur in multiples of $\abs{H \cap K}$. We need some way to tie each product in
+$HK$ to every single element of $\abs{H \cap K}$. The first observation comes
+from noticing that if $t \in H \cap K$, then $hk = (ht)(t\inv k)$. 
+
+\begin{proof}
+    Let $h \in H, k\in K$. If $t \in H \cap K$, then $hk = (ht)(t\inv k)$. This
+    tells us that every element of $HK$ is represented by at least $\abs{H \cap
+    K}$ products in $HK$. Suppose $hk = h' k'$, then,
+    \[
+        t t\inv = h\inv h' k' k\inv.
+    \]
+    So if $t = h\inv h' = k {k'}\inv$, then it all works out. This shows that
+    every element in $HK$ is represented by precisely $\abs{H \cap K}$ products.
+\end{proof}
+
+
+Let us now see another application of Lagrange's theorem. This time, we classify
+all groups of order $2p$ where $p$ is some odd prime.
+\begin{theorem}[Classification of groups of order $2p$]
+\label{thm:groups-order-2p}
+    Let $p$ be a prime such that $p > 2$. Let $G$ be a group of order $2p$. Then
+    $G$ is isomorphic to $\bZ_{2p}$ or $D_p$.
+\end{theorem}
+\begin{proof}
+    See \cref{ex:prove-thm-classifying-order-2p}.
+\end{proof}
+
+
+Counting can be useful. We now make use of Lagrange's theorem to prove a fact
+about group actions.
+\begin{theorem}[Orbit-Stabilizer Theorem]
+\label{thm:orb-stab-thm}
+    Let $G$ be a finite group acting on a set $S$. Then,
+    \[
+        \abs{G} = \abs{\operatorname{orb}_G (s)} \abs{\operatorname{stab}_G (s)}.
+    \]
+\end{theorem}
+\begin{proof}
+    The stabilizer of $s$ is a subgroup of $G$. It will suffice to provide a
+    bijection between left cosets of $\operatorname{stab}_G (s)$ and elements in
+    $\operatorname{orb}_G(s)$. The map $\varphi: g \operatorname{stab}_G (s) \mapsto g
+    \cdot s$ will do. We leave the details to the reader in
+    \cref{ex:orb-stab-thm}.
+\end{proof}
+
+
+\subsection{Exercises and Problems}
+
+\begin{exercise}
+\label{ex:prove-thm-classifying-order-2p}
+    Prove \cref{thm:groups-order-2p} by following the steps below.
+    \begin{enumerate}
+        \item Assume that $G$ has no element of order $2p$. Show that $G$ must have an element of order $p$, call it $a$.
+        \item Find an element of order 2, call it $b$.
+        \item Show that $a$ and $b$ satisfy the relations of $D_p$: in particular, $a^j b = b a^{-j}$ for $j \in \set{1, \dots, p-1}$.
+        \item Show that every element of $G$ can be uniquely expressed in the form $a^jb^k$. 
+        \item Conclude that $G$ is isomorphic to $D_p$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Orbit-Stabilizer Theorem]
+\label{ex:orb-stab-thm}
+Complete the proof of \cref{thm:orb-stab-thm}. In particular, show that the map
+$\varphi$ as defined is well-defined and a bijection. Note that
+the facts in \cref{ex:orbits-partition-set} will be needed.
+\end{exercise}
+
+\begin{exercise}
+    Prove that the rotation group of a cube is $S_4$.
 \end{exercise}
 
 \end{document}

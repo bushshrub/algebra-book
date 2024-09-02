@@ -28,11 +28,11 @@ normality. The definition above was chosen due to ease of application.
     \]
 \end{lemma}
 \begin{proof}
-    See \cref{ex:prove-normality0-criterion}.
+    See \cref{ex:prove-normality-criterion}.
 \end{proof}
 
 \begin{exercise}
-\label{ex:prove-normality0-criterion}
+\label{ex:prove-normality-criterion}
     Prove \cref{lem:normality-criterion}
 \end{exercise}
 
@@ -323,7 +323,30 @@ reader (\cref{ex:kernel-of-projection}) to verify this is indeed a homomorphism,
 and it has kernel $N$.
 
 
-\section{Problems}
+\section{Exercises and Problems}
+
+\begin{exercise}
+    Let $G$ be a group and let $x, y \in G$. Let $H$ be a subgroup of $G$. Show
+    that if $xH = Hy$, then $xHy\inv \subseteq H$. Find an example where they
+    are not equal.
+\end{exercise}
+
+\begin{exercise}[Internal direct products]
+\label{ex:internal-direct-products}
+    Let $G$ be a group. We say that $G$ is the \textbf{internal direct product
+    of $H$ and $K$} and write $G = H \times K$ if
+    \begin{enumerate}
+        \item $H, K$ are normal subgroups of $G$,
+        \item $HK = G$,
+        \item $H \cap K = \set{e}$.
+    \end{enumerate}
+    Note that this seemes similar to a vector space being a direct sum of
+    subspaces. 
+
+    Show that $G$ is isomorphic to $H \times K$. This justifies the abuse of the
+    group product notation. Extend this to the case where $G$ is an internal
+    direct product of a finite number of groups.
+\end{exercise}
 
 \begin{exercise}[Center is always normal]
 \label{ex:center-is-always-normal}

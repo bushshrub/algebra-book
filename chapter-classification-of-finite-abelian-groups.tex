@@ -59,7 +59,43 @@ We will now prove the theorem. This proof comes from \autocite[Ch~11]{Gallian_20
 \end{lemma}
 \begin{proof}
     Obviously $H$ and $K$ are subgroups. Let us show that $H \cap K = \set{e}$
-    and $HK = G$. 
+    and $HK = G$. The fact that $H \cap K = \set{e}$ is trivial. By Bezout's
+    lemma, let $s, t$ be integers such that $1 = sm + tp^n$. For any $x \in G$,
+    we have
+    \[
+        x = x^{sm + tp^n} = x^{sm} x^{tp^n}.
+    \]
+    Then observe that $(x^{sm})^{p^n} = x^{sm p^n} = e$ so $x^{sm} \in H$. A
+    similar idea holds to show $x^{tp^n} \in K$. This shows $G = HK$. To prove
+    the order statement, notice that
+    \[
+        p^n m = \abs{HK} = \frac{\abs{H} \abs K}{\abs{H \cap K}},
+    \]
+    by \cref{thm:hk-theorem}, so that $\abs{H} \abs K = p^n m$. Now, by Cauchy's
+    Theorem (for finite abelian groups) (\cref{thm:cauchy-thm-fin-abelian}) and
+    \cref{cor:element-power-being-identity}, if $p$ divides $\abs K$ then there
+    would be an element of order $p$ in $K$, call it $k$. But then $k^m  = e$
+    and $p$ does not divide $m$ so that is not possible. Thus $p$ does not
+    divide $\abs K$. So $p$ divides $\abs H$, thus $\abs{H} = p^n$.
+\end{proof}
+
+\begin{corollary}
+    Suppose $G$ is an abelian group where $\abs{G} = p_1^{k_1} \cdots
+    p_n^{k_n}$. Define $G(p_i) = \Set{x \in G : x^{p_i^{n_i}} = e}$. Then, $G =
+    G(p_1) \times \cdots \times G(p_n)$, and $\abs{G(p_i)} = p_i^{k_i}$.
+\end{corollary}
+\begin{proof}
+    Induction.
+\end{proof}
+
+
+\begin{lemma}
+    Suppose $G$ is an Abelian group of order $p^n$. Let $a \in G$ be an element
+    of maximum order. Then, $G = \gen{a} \times K$ for some subgroup $K$ of $G$.
+\end{lemma}
+\begin{proof}
+    We induct on $n$. If $n=1$, it is trivial. Assume the lemma is true for all
+    abelian groups of order $p^k$ where $k < n$.
 \end{proof}
 
 

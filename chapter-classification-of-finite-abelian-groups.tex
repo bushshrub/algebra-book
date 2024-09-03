@@ -79,6 +79,7 @@ We will now prove the theorem. This proof comes from \autocite[Ch~11]{Gallian_20
     divide $\abs K$. So $p$ divides $\abs H$, thus $\abs{H} = p^n$.
 \end{proof}
 
+We apply the lemma in the following form.
 \begin{corollary}
     Suppose $G$ is an abelian group where $\abs{G} = p_1^{k_1} \cdots
     p_n^{k_n}$. Define $G(p_i) = \Set{x \in G : x^{p_i^{n_i}} = e}$. Then, $G =
@@ -95,7 +96,10 @@ We will now prove the theorem. This proof comes from \autocite[Ch~11]{Gallian_20
 \end{lemma}
 \begin{proof}
     We induct on $n$. If $n=1$, it is trivial. Assume the lemma is true for all
-    abelian groups of order $p^k$ where $k < n$.
+    abelian groups of order $p^k$ where $k < n$. Let $a$ be an element of
+    maximum order, say $\abs a = p^m$. This means that $x^{p^m} = e$ for all $x
+    \in G$. Assume $m < n$, else it is trivial. Let $b$ be an element of minimum
+    order such that $b \not \in \gen{a}$.
 \end{proof}
 
 

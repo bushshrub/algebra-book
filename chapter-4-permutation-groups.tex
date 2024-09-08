@@ -1,6 +1,8 @@
 \documentclass[./main.tex]{subfiles}
 
 \begin{document}
+
+\section{Permutations and cycles}
 Now that we have looked at a bunch of abelian groups, let us look at some non
 abelian groups. In particular, we will be looking at an infinite familiy of non
 abelian groups, called permutation groups. The importance of permutation groups
@@ -220,6 +222,8 @@ this is not true.
         (12345) &= (54)(53)(52)(51) \\
         (12345) &= (54)(52)(21)(25)(23)(13).
     \end{align*}
+
+    A simpler example would be $(123) = (13)(12) = (12)(23) = (23)(13)$.
 \end{example}
 
 Can a permutation be both even or odd? No. In fact, if a permutation can be
@@ -227,14 +231,19 @@ decomposed as an even number of 2 cycles, then any 2-cycle decomposition of this
 permutation must also result in an even number of 2 cycles. 
 
 Let us first find out the parity of the identity permutation. Since $e =
-(12)(12)$ it makes sense that it should be even. 
+(12)(12)$ it makes sense that it should be even. It turns out that this is true.
+Unfortunately, the following proof is very long and painful.
 \begin{proposition}[Identity permutation is even]
 \label{prop:identity-permutation-is-even}
     Let $e$ be the identity permutation. If $e = \alpha_1 \cdots \alpha_n$ where
     $\alpha_i$ is a 2-cycle, then $n$ is even.
 \end{proposition}
 \begin{proof}
-    Painful. \textbf{TODO: Insert proof}
+    Suppose otherwise. Say $\beta_1 \cdots \beta_n = e$ where $n$ is odd.
+    Obviously, $n > 1$. Without loss of generality assume $\beta_1 = (a,b)$.
+    Then there is some 2-cycle $\beta_i$, $i > 1$, which contains $a$, otherwise
+    this product will send $a$ to $b$. Again without loss of generality assume
+    $i$ is the smallest such index which contains $a$, and that this product is 
 \end{proof}
 
 \begin{theorem}[Parity of a permutation is well-defined]
@@ -250,6 +259,8 @@ Let us first find out the parity of the identity permutation. Since $e =
     So \cref{prop:identity-permutation-is-even} this implies $k+m$ is even. So
     $k,m$ are both odd or both even.
 \end{proof}
+
+An alternative proof of this fact can be found in \cref{ex:jacobson-permutation-sign}.
 
 The set of even permutations of a permutation group is extremely important, and
 so it deserves its own name. Although we will not see its importance at the
@@ -422,12 +433,49 @@ the importance of constructing good definitions.
     of $\alpha$ divides $S_n$. 
 \end{exercise}
 
+\begin{exercise}[An alternative proof that the sign of a permutation is well-defined]
+\label{ex:jacobson-permutation-sign}
+    We give an alternative proof that the sign of a permutation is well-defined,
+    due to \autocite[\pno~50]{Jacobson_2009}.
+
+    Recall that an $n$-cycle can be decomposed into $n-1$ transpositions. Given
+    some $\alpha \in S_n$, let $N(\alpha)$ be the number of transpositions that
+    $\alpha$ is a product of when $\alpha$ is decomposed into disjoint cycles, i.e. 
+    if 
+    \[
+        \alpha = \gamma_1 \cdots \gamma_n,
+    \]
+    and $\gamma_i$ is a $u_i$ cycle, then $N(\alpha) = \sum_{i=1}^n u_i - 1$.
+    Also note that $N(e) = 0$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that $N(\alpha)$ is uniquely determined by $\alpha$. 
+        \item Let $a, b, c_1, \dots, c_h, d_1, \dots, d_k$ be distinct elements,
+        where $h, k \geq 0$. Verify that 
+        \[
+            (ab)(ac_1 \cdots c_h b d_1 \cdots d_k) = (bd_1 \cdots d_k)(ac_1 \cdots c_h).
+        \]
+        \item Let $p = (ac_1 \cdots c_h b d_1 \cdots d_k)$. Check that $N(p) = h
+        + k + 1$, and that $N((ab)p) = h + k$. 
+        \item Let $\alpha$ be some permutation. Show that $N((ab) \alpha) =
+        N(\alpha) - 1$ if $a, b$ occur in the same cycle in the decomposition of
+        $\alpha$ into disjoint cycles, and $N((ab)\alpha) = N(\alpha) + 1$ if
+        $a, b$ occur in different cycles. 
+        \item Suppose that $\alpha$ is a product of $m$ transpositions. Prove
+        that $N(\alpha) = \sum_{i=1}^m \eps_i$, where $\eps_i = \pm 1$.
+        \textit{Hint: Decompose $\alpha$ into disjoint cycles first to make life
+        easy}.
+        \item Prove that $N(\alpha)$ and $m$ have the same parity, i.e.
+        $N(\alpha)$ is even if and only if $m$ is even.
+    \end{enumerate}
+\end{exercise}
+
 \begin{exercise}[Group actions and the symmetric group]
 \label{ex:group-actions-symmetric-group}
     Let $G$ act on $X$. For a fixed $g \in G$, define $\sigma_g(x) = g \cdot x$. 
     \begin{enumerate}
         \item For every $g \in G$, show that $\sigma_g$ is a bijection.
-        \item Show that the map $g \mapsto \sigma_g$ is a homomorphism. (i.e. $\sigma_g \sigma_h = \sigma_{gh}$)
+        \item Show that the map $g \mapsto \sigma_g$ is a homomorphism. (i.e.
+        $\sigma_g \sigma_h = \sigma_{gh}$)
     \end{enumerate}
 \end{exercise}
 

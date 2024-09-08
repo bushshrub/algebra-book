@@ -199,6 +199,7 @@ from noticing that if $t \in H \cap K$, then $hk = (ht)(t\inv k)$.
     So if $t = h\inv h' = k {k'}\inv$, then it all works out. This shows that
     every element in $HK$ is represented by precisely $\abs{H \cap K}$ products.
 \end{proof}
+The proof here actually leads to a proof of a more general fact, which is outlined in \cref{ex:generalization-of-hk-theorem}.
 
 
 Let us now see another application of Lagrange's theorem. This time, we classify
@@ -254,6 +255,16 @@ the facts in \cref{ex:orbits-partition-set} will be needed.
 
 \begin{exercise}
     Prove that the rotation group of a cube is $S_4$.
+\end{exercise}
+
+\begin{exercise}[Generalization of $HK$ theorem]
+\label{ex:generalization-of-hk-theorem}
+    Let $H, K$ be subgroups of $G$, and $\alpha: H \times K \to G$ be the map
+    defined by $\alpha(h, k) = hk$. Prove that $\alpha\inv \paren{hk} = \set{(ht, t\inv k): t \in H \cap K}$,
+    and that additionally the cardinality of $\alpha\inv\paren{hk}$ equals to the cardinality of $H \cap K$. 
+    Conclude that if $HK$ has finite cardinality then $\abs{HK} = \abs H \abs K/(\abs{H \cap K})$.
+
+    See \autocite[Exercise~9,\pno~58]{Jacobson_2009}
 \end{exercise}
 
 \end{document}

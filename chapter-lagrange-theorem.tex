@@ -138,7 +138,12 @@ the coset equivalence relation, we cut up $G$ into pieces of size $\abs{H}$.
 We again direct our attention to the power of definitions. Having the correct
 choice of equivalence relation made the proof of Lagrange's Theorem very easy.
 As such, it would do a lot of good to understand how such an equivalence
-relation was chosen.
+relation was chosen. Lagrange's theorem now motivates the following definition:
+the \emph{index of a subgroup}. If $H$ is a subgroup of $G$, then we let $[G:H]$
+denote the number of left cosets of $H$. This is called the \emph{index of $H$
+in $G$}. We leave it to the reader to verify that $[G:H]$ is the same number if
+we used right cosets instead of left. If there are infinitely many cosets, we
+write $[G:H] = \infty$.
 
 We now state some corollaries of Lagrange's Theorem. While
 obvious, they are still good to mention.
@@ -199,7 +204,8 @@ from noticing that if $t \in H \cap K$, then $hk = (ht)(t\inv k)$.
     So if $t = h\inv h' = k {k'}\inv$, then it all works out. This shows that
     every element in $HK$ is represented by precisely $\abs{H \cap K}$ products.
 \end{proof}
-The proof here actually leads to a proof of a more general fact, which is outlined in \cref{ex:generalization-of-hk-theorem}.
+The proof here actually leads to a proof of a more general fact, which is
+outlined in \cref{ex:generalization-of-hk-theorem}.
 
 
 Let us now see another application of Lagrange's theorem. This time, we classify
@@ -235,6 +241,11 @@ about group actions.
 \subsection{Exercises and Problems}
 
 \begin{exercise}
+    Suppose that $G$ is finite. Let $H \leq G$ and $K \leq H$. Show that $[G:K]
+    = [G:H][H:K]$.
+\end{exercise}
+
+\begin{exercise}
 \label{ex:prove-thm-classifying-order-2p}
     Prove \cref{thm:groups-order-2p} by following the steps below.
     \begin{enumerate}
@@ -260,9 +271,10 @@ the facts in \cref{ex:orbits-partition-set} will be needed.
 \begin{exercise}[Generalization of $HK$ theorem]
 \label{ex:generalization-of-hk-theorem}
     Let $H, K$ be subgroups of $G$, and $\alpha: H \times K \to G$ be the map
-    defined by $\alpha(h, k) = hk$. Prove that $\alpha\inv \paren{hk} = \set{(ht, t\inv k): t \in H \cap K}$,
-    and that additionally the cardinality of $\alpha\inv\paren{hk}$ equals to the cardinality of $H \cap K$. 
-    Conclude that if $HK$ has finite cardinality then $\abs{HK} = \abs H \abs K/(\abs{H \cap K})$.
+    defined by $\alpha(h, k) = hk$. Prove that $\alpha\inv \paren{hk} =
+    \set{(ht, t\inv k): t \in H \cap K}$, and that additionally the cardinality
+    of $\alpha\inv\paren{hk}$ equals to the cardinality of $H \cap K$. Conclude
+    that if $H, K$ are finite, then $\abs{HK} = \abs H \abs K/(\abs{H \cap K})$.
 
     See \autocite[Exercise~9,\pno~58]{Jacobson_2009}
 \end{exercise}

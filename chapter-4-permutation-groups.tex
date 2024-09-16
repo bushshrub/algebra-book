@@ -469,6 +469,22 @@ the importance of constructing good definitions.
     \end{enumerate}
 \end{exercise}
 
+\begin{exercise}[Another proof that the sign of a permutation is well-defined]
+    Let $T$ be the set of all polynomials in $x_1, \dots, x_n$. For $\sigma \in
+    S_n$, define a group action on $T$ by $\sigma \cdot x_i = x_{\sigma(i)}$ and
+    extending this in a natural way, so for instance, we have $\sigma \cdot 4x_i
+    + 3x_i x_j = 4x_{\sigma(i)} + 3 x_{\sigma(i)} x_{\sigma(j)}$. Let $\Delta =
+    \prod_{i > j} (x_i - x_j)$, where $i, j$ runs from 1 to $n$.
+    
+    \begin{enumerate}
+        \item Prove that the group action defined is actually a group action.
+        \item Show that if $\tau$ is a transposition, $\tau \cdot \Delta = -\Delta$.
+        \item Prove that if $\sigma$ can be decomposed into an even number of
+        transpositions, then any decomposition of $\sigma$ into transpositions
+        yields an even number of permutations.
+    \end{enumerate}
+\end{exercise}
+
 \begin{exercise}[Group actions and the symmetric group]
 \label{ex:group-actions-symmetric-group}
     Let $G$ act on $X$. For a fixed $g \in G$, define $\sigma_g(x) = g \cdot x$. 

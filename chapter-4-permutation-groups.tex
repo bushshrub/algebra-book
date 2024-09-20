@@ -232,18 +232,42 @@ permutation must also result in an even number of 2 cycles.
 
 Let us first find out the parity of the identity permutation. Since $e =
 (12)(12)$ it makes sense that it should be even. It turns out that this is true.
-Unfortunately, the following proof is very long and painful.
+Unfortunately, the following proof is very long and painful. 
+
+Alternative proofs of the fact that the parity of permutation is well-defined
+can be found in \cref{ex:jacobson-permutation-sign} or
+\cref{exercise:permutation-sign-using-group-actions}.
+
 \begin{proposition}[Identity permutation is even]
 \label{prop:identity-permutation-is-even}
     Let $e$ be the identity permutation. If $e = \alpha_1 \cdots \alpha_n$ where
     $\alpha_i$ is a 2-cycle, then $n$ is even.
 \end{proposition}
 \begin{proof}
-    Suppose otherwise. Say $\beta_1 \cdots \beta_n = e$ where $n$ is odd.
-    Obviously, $n > 1$. Without loss of generality assume $\beta_1 = (a,b)$.
-    Then there is some 2-cycle $\beta_i$, $i > 1$, which contains $a$, otherwise
-    this product will send $a$ to $b$. Again without loss of generality assume
-    $i$ is the smallest such index which contains $a$, and that this product is 
+    Suppose otherwise. Say $\beta_1 \cdots \beta_n = e$ where $n$ is odd. Note
+    that $n > 1$. Without loss of generality assume $\beta_1 = (ab)$. Then there
+    is some 2-cycle $\beta_i$, $i > 1$, which contains $a$, otherwise this
+    product will send $a$ to $b$.
+
+    We make a few additional assumptions, which can be done without loss of generality:
+    \begin{enumerate}
+        \item Assume that $i$ is
+        the smallest such index which contains $a$;
+        \item assume that this product is
+        one with the fewest number of $a$'s as a entry in any cycle.
+    \end{enumerate}
+    
+    If $i = 2$, then $\beta_1 \beta_2$ is $(ab)(ab)$ or $(ab)(ac)$ where $c \neq
+    b$. (Note that if it is of the form $(ab)(ca)$ then we have $(ca) = (ac)$
+    anyway.) In the first case, $(ab)(ab)$ is the identity, so we now have the
+    identity being a product of an odd number of 2-cycles, with fewer
+    appearances of $a$'s, contradicting assumption 2. In the latter, we have
+    $(ab)(ac) = (ac)(bc)$. We may replace $\beta_1 \beta_2$ with $\beta_1'
+    \beta_2' = (ab)(bc)$ in our product. This contradicts assumption 2 again.
+    Since $i = 2$ gives us contradictions, let's assume $i > 2$. Now,
+    $\beta_{i-1}$ does not contain $a$, by assumption 1, but it has to contain
+    $c$. If this is not true, $\beta_i$ and $\beta_{i-1}$ are disjoint. We now
+    see that 
 \end{proof}
 
 \begin{theorem}[Parity of a permutation is well-defined]
@@ -260,7 +284,7 @@ Unfortunately, the following proof is very long and painful.
     $k,m$ are both odd or both even.
 \end{proof}
 
-An alternative proof of this fact can be found in \cref{ex:jacobson-permutation-sign}.
+
 
 The set of even permutations of a permutation group is extremely important, and
 so it deserves its own name. Although we will not see its importance at the
@@ -470,6 +494,7 @@ the importance of constructing good definitions.
 \end{exercise}
 
 \begin{exercise}[Another proof that the sign of a permutation is well-defined]
+\label{exercise:permutation-sign-using-group-actions}
     Let $T$ be the set of all polynomials in $x_1, \dots, x_n$. For $\sigma \in
     S_n$, define a group action on $T$ by $\sigma \cdot x_i = x_{\sigma(i)}$ and
     extending this in a natural way, so for instance, we have $\sigma \cdot 4x_i

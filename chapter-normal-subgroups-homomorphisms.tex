@@ -323,11 +323,24 @@ reader (\cref{ex:kernel-of-projection}) to verify this is indeed a homomorphism,
 and it has kernel $N$.
 
 
+We now make use of the concept of factor groups to prove the following useful
+theorem. This theorem is used to prove the Sylow Theorem's.
 \begin{theorem}[Cauchy's Theorem (for finite abelian groups)]
 \label{thm:cauchy-thm-fin-abelian}
     Let $G$ be a finite abelian group and let $p$ be a prime that divides $\abs
     G$. Then, $G$ contains an element of order $p$.
 \end{theorem}
+\begin{proof}
+    We induct on the order of $G$. Let $\abs G = n$. Clearly if $\abs G = 1$ it
+    is trivial. Suppose the statement is true when $\abs G < n$. Let $a \in G$,
+    $a \neq e$. If $\abs a = r$ and $p$ divides $r$, then the element $a^{r/p}$
+    has order $p$. If not, then $p, r$ are coprime. Let us consider $G/\gen a$.
+    This group has order $\abs G / r$, and necessarily $p$ divides the order of
+    this group. Thus there is some $b \gen a \in G/\gen a$ which has order $p$.
+    Let $\abs b = s$; we claim $p$ divides $s$. Indeed, $\paren{a \gen{a}}^s =
+    a^s \gen a = \gen a$, and $a^p \gen a = \gen a$. So $p$ divides $s$. Now
+    $b^{s/p}$ has order $p$.
+\end{proof}
 
 \section{Exercises and Problems}
 

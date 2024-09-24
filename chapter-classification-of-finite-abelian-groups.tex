@@ -14,7 +14,8 @@ To motivate the theorem, recall that the fundamental theorem of arithmetic tells
 us that every number can be factorized uniquely as a product of primes, i.e. $n
 = p_1^{k_1} \cdots p_m^{k_m}$, where the $p_i$'s are distinct primes. It turns
 out that we can do something similar for groups. We first state the theorem; the
-proof is difficult.
+proof is difficult. Before embarking on this proof, please check out
+\cref{ex:internal-direct-products}. 
 
 \begin{theorem}[Classification of finite abelian groups]
 \label{thm:classification-of-finite-abelian-groups}
@@ -48,9 +49,11 @@ theorem as a corollary.
     See \cref{ex:subgroups-fin-abelian-groups}.
 \end{proof}
 
-We will now prove the theorem. This proof comes from \autocite[Ch~11]{Gallian_2020}. 
-
-\begin{lemma}
+We will now prove the theorem. This proof comes from
+\autocite[Ch~11]{Gallian_2020}. We first ``factorize'' the group $G$ using
+primes. We will encounter the following lemma but stated more generally; it is
+essentially Sylow's First Theorem.
+\begin{lemma}[Sylow's First Theorem for Abelian groups]
     Let $G$ be a finite abelian group of order $p^n m$ where $p$ does not divide
     $m$. Then, $G = H \times K$\footnote{This is an internal direct product. See
     \cref{ex:internal-direct-products} for the definition of an internal direct
@@ -89,8 +92,11 @@ We apply the lemma in the following form.
     Induction.
 \end{proof}
 
+Next, we show that if an abelian group $G$ has prime power order, we can
+``factorize'' it with one of the factors being cyclic.
 
 \begin{lemma}
+\label{lem:lemma-prime-power-order-abelian-groups-factorization}
     Suppose $G$ is an Abelian group of order $p^n$. Let $a \in G$ be an element
     of maximum order. Then, $G = \gen{a} \times K$ for some subgroup $K$ of $G$.
 \end{lemma}
@@ -99,7 +105,65 @@ We apply the lemma in the following form.
     abelian groups of order $p^k$ where $k < n$. Let $a$ be an element of
     maximum order, say $\abs a = p^m$. This means that $x^{p^m} = e$ for all $x
     \in G$. Assume $m < n$, else it is trivial. Let $b$ be an element of minimum
-    order such that $b \not \in \gen{a}$.
+    order such that $b \not \in \gen{a}$. We claim that $\gen a \cap \gen b =
+    \{e\}$. 
+    
+    Firstly, $b^p$ has order $\abs b/p$. Since $b$ is of minimum order with $b
+    \not\in \gen a$, we know that $b^p$ having a smaller order will satisfy $b^p
+    \in \gen a$, so let $b^p = a^i$. Now, since $e = (b^p)^m = (b^p)^{p^{m-1}} =
+    (a^i)^{p^{m-1}}$, we know that $a^i$ does not generate $\gen a$, so that
+    $\gcd(i, p^m) \neq 1$ (by \cref{cor:generator-of-group-criteria}). Thus $p$
+    divides $i$, so let $i = pj$. Then $b^p = a^{pj}$. Let us consider the
+    element $c = a^{-j}b$ (for reasons that will become clear shortly). Note
+    that $c \not\in \gen a$. Also, $c^p = a^{-jp}b^p = a^{-i}b^p = b^{-p} b^p =
+    e$. This shows $c$ has order $p$, and $c \not\in \gen a$. Since $b$ is an
+    element of minimum order such that $b \not\in \gen a$, we know $b$ has order
+    $p$. We have now shown the claim, since if $g \in \gen a \cap \gen b$, but
+    $g \neq e$, then $g$ generates $\gen b$, but then $b \in \gen a$, a contradiction.
+
+    We still need to show $\gen a \gen b = G$. To do so, we study a factor group
+    and use induction. Let $\overline G = G / \gen b$. Let $\overline x$ denote
+    the coset $x \gen b \in \overline G$. It's not hard to see that
+    $\abs{\overline a} = \abs a$. If not, we have $\overline{a}^{p^{m-1}} =
+    \overline e$. This shows that $a^{p^{m-1}} \in \gen b$, but then we would
+    have $\gen a \cap \gen b$ having nontrivial intersection, since $a^{p^{m-1}}
+    \neq e$. As such, $\overline a$ is an element of maximum order in $\overline
+    G$. By induction, this tells us that $\overline G = \gen{\overline a} \times
+    \overline K$ where $\overline K \leq \overline G$. Letting $\pi: G \to
+    \overline G$ be the homomorphism defined by $\pi(g) = g \gen b$, we see that
+    $K := \pi\inv\Paren*{\,\overline K\,}$ is a subgroup of $G$. Now, we claim
+    that $\gen a \cap K = \{e\}$. If $x \in \gen a \cap K$, then $\overline x
+    \in \gen{\overline a} \cap \overline K = \{\overline e \} = \{ e\gen b \}$.
+    In particular we have $\overline x = \gen b$, but this means $x \in \gen b$,
+    and since $x \in \gen a$, it must be that $x = e$. Now consider the order of
+    $K$, and notice that $\abs G = \abs {\gen a} \cdot \abs K$, so it must be
+    that $G = \gen a K$. 
+\end{proof}
+
+
+The above lemma implies the following:
+\begin{lemma}
+    Let $G$ be an abelian group of prime power order. Then, it is an (internal)
+    direct product of cyclic groups.
+\end{lemma}
+\begin{proof}
+    Use \cref{lem:lemma-prime-power-order-abelian-groups-factorization} and
+    induction on order of $G$.
+\end{proof}
+
+We now need to deal with uniqueness.
+
+\begin{lemma}
+    Let $G$ be a finite abelian group with order $p^n$. If $G = H_1 \times
+    \cdots \times H_m$, and $G = K_1 \times \cdots \times H_n$, where all $H_i,
+    K_j$ are nontrivial cyclic subgroups such that $\abs{H_1} \geq \cdots \geq
+    \abs{H_i} \geq \abs{H_{i+1}} \geq \cdots$, $\abs{K_1} \geq \cdots \geq
+    \abs{K_j} \geq \abs{K_{j+1}} \geq \cdots$, then $n = m$, and $\abs{H_i} =
+    \abs{K_i}$ for all $i$.
+\end{lemma}
+\begin{proof}
+    We start by induction on order of $G$. 
+    % TODO: finish this proof
 \end{proof}
 
 

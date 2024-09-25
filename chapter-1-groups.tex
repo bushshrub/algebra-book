@@ -521,6 +521,7 @@ center of a group. These are both subgroups (exercise) and will be used in the
 future to prove the Sylow Theorems, and some other counting theorems.
 
 \begin{definition}[Centralizer]
+\label{def:centralizer-of-element}
     Let $G$ be a group and $a \in G$. Then define 
     \[
         C(a) = \set{g \in G: ga=ag}.
@@ -533,6 +534,7 @@ future to prove the Sylow Theorems, and some other counting theorems.
 \end{exercise}
 
 \begin{definition}[Center of a group]
+\label{def:center-of-group}
     Let $G$ be a group. Then define 
     \[
         Z(G) = \set{g \in G: \forall x \in G, gx = xg}.
@@ -540,6 +542,8 @@ future to prove the Sylow Theorems, and some other counting theorems.
     We call this the \textbf{center of $G$}. This is the subgroup of the
     elements in $G$ that commute with all other elements.
 \end{definition}
+If the group is clear, we will sometimes simply write just $C$ to indicate the
+center of the group.
 \begin{exercise}
     Prove that $Z(G)$ is a subgroup of $G$.
 \end{exercise}
@@ -592,6 +596,12 @@ future to prove the Sylow Theorems, and some other counting theorems.
     define $x \sim y$ if and only there exists $g \in G$ such that $x =
     gyg\inv$. This exercise is important because we will use this concept to
     prove the Sylow Theorems.
+\end{exercise}
+
+\begin{exercise}[Centralizers and conjugates]
+\label{exercise:conjugates-centralizer-relation}
+    Let $G$ be a group and let $x \in G$. Show that $g \in C(x)$ if and only if
+    $gxg\inv = x$. Conclude that $C(x) = \set{g \in G: gxg\inv = x}$.
 \end{exercise}
 
 

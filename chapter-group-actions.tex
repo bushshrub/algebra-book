@@ -4,6 +4,608 @@
 
 
 \section{Group actions}
+We teased the concept of group actions in \cref{chapter:permutation-groups}; now
+we come back to it. The abstract study of groups is a rather modern treatment.
+Historically, group theory only dealt with the theory of groups of permutations.
+However, it turns out that studying how a group acts on a set can be very
+insightful into the properties of groups. We already know of one example:
+Cayley's Theorem. We also can understand Lagrange's Theorem in the language of
+group actions. Later on, we will prove a partial converse to Lagrange's Theorem
+- the Sylow Theorems. All this is to say that the study of group actions is
+worthwhile.
 
+
+For convenience, we shall restate the definition of a group action. At this
+point, the reader is likely to be sufficiently used to abstract concepts that
+there can be no confusion with the group action and the group multiplication.
+
+\begin{definition}[Group action]
+\label{def:group-action-abstract}
+    A \textbf{group action} of $G$ on a set $S$ is a function $\cdot: G \times S
+    \to S$ satisfying the following properties:
+    \begin{enumerate}[label=(\arabic*)]
+        \item \textbf{(Associativity)} For all $g, h \in G$ and $x \in S$, we
+        have $gh \cdot x = g \cdot (h \cdot x)$.
+        \item \textbf{(Identity)} For all $x \in S$, we have $e \cdot x = x$.
+    \end{enumerate}
+\end{definition}
+Sometimes, when it is clear, we will omit the use of $\cdot$, and just write
+$gx$ to indicate $g \cdot x$. (Warning: Some authors such as
+\autocite{Jacobson_2009} are quite abusive with this notation.)
+
+We wish to investigate further the properties of the function $\cdot$ which is
+defined by the action of $G$ on $S$. Let $G$ be a group and suppose $G$ acts on
+$S$. The function $\cdot$ takes in 2 arguments; a group element and an element
+of $S$. To best investigate this function, we should probably do it by fixing
+one of the arguments. For now, fix some $g \in G$, and let $m_g: S \to S$ be the
+function given by $m_g(x) = g \cdot x$. Is $m_g$ injective or surjective? Yes. 
+\begin{exercise}
+    Show that $m_g$ is bijective.
+\end{exercise}
+
+The above discussion shows us that for each $g$, the function $m_g$ is a
+bijection, hence a permutation. What we can do now is define a function $T: G
+\to \operatorname{Sym}(S)$ (here $\operatorname{Sym}(S)$ is the set of
+permutations on $S$), which takes $T(g) = m_g$. Both the domain and codomain of
+$T$ are groups. Is $T$ a group homomorphism? For that to hold we need $m_g \circ
+m_h = m_{gh}$. But this is immediate from the definition of a group action.
+Thus, we have a positive answer. We leave it for the reader to verify this
+claim.
+\begin{exercise}
+    Check that $T$ as defined above is indeed a group homomorphism.
+\end{exercise}
+After all that work, we can conclude that any group action induces a group
+homomorphism of $G$ into $\operatorname{Sym}(S)$. In this case, we call the
+homomorphism $T$, the \emph{homomorphism induced by the action of $G$ on $S$}.
+If the context is clear, we shall simply say \emph{action induced homomorphism} The
+image of the group $G$ under $T$, $T[G] \subseteq \operatorname{Sym}(S)$, we
+shall call the \emph{associated transformation group}. 
+
+All this discussion begs the following question: If we have a group $G$ and a
+set $S$, and we are given a homomorphism $\varphi: G \to \operatorname{Sym} S$,
+is there some way we can define an action of $G$ on $S$ using $\varphi$? The
+answer is positive as well (see
+\cref{exercise:homomorphism-inducing-group-action}. If you think you have an
+idea of how to define it, don't go to the exercise yet. Try to come up with it
+yourself before looking at the exercise.)
+
+\begin{definition}[Effective action]
+\label{def:acting-effectively}
+    Let $G$ act on $S$, and let $T$ be the action induced homomorphism. Then we
+    say that \textbf{$G$ acts effectively on $S$} if $T$ is injective.
+\end{definition}
+
+
+Previously, we have defined the kernel of a group action to be the set 
+\[ 
+    \set{g \in G: g \cdot x = x \text{ for every $x$} \in S}.
+\] 
+We will now show that the name ``kernel'' is not an abuse of notation - this set
+is exactly equal to the kernel of the homomorphism induced by the action of $G$. 
+\begin{exercise}
+    Let $G$ act on $S$. Let $T: G \to \operatorname{Sym}(S)$ be the homomorphism
+    induced by the action of $G$ on $S$. Show that $\ker T$ is exactly equal to
+    the kernel of the action of $G$ on $S$.
+\end{exercise}
+
+We now look at examples of group actions. 
+
+\begin{example}[Group acting on itself by left translation]
+\label{example:action-left-translations}
+    This example really illustrates the power of group actions - it yields the
+    proof of Cayley's Theorem (\cref{ex:cayley-thm}). Let $G$ be a group and let
+    $S = G$. We shall define an action $\cdot: G \times S \to S$ by $g \cdot x =
+    gx$. This action is called \textbf{the action of $G$ on itself by left
+    translation (or left multiplication)}. Note that on the right side, $gx$ is
+    the group multiplication. On the left side, $g \cdot x$ is the group action.
+    The proof of Cayley's Theorem yields the fact that the induced homomorphism
+    $T: G \to \operatorname{Sym}(G)$ is injective. The group of symmetries which
+    $G$ is isomorphic to is actually its image $T[G]$.
+\end{example}
+
+\begin{example}[Group acting on itself by right translations]
+\label{example:action-right-translations}
+    We can let $G$ act on itself with right multiplications in a similar way.
+    However, we have to be careful. Notice if we define $g \cdot x = xg$, then
+    we have $(gh) \cdot x = xgh$, and $g \cdot (h \cdot x) = xhg$. If $G$ is not
+    abelian then these may not be equal. However, we can repair the issue by
+    instead defining $g \cdot x = x g\inv$. Then, we have $gh \cdot x =
+    x(gh)\inv = x h\inv g\inv = g \cdot (h \cdot x)$. This action is called the
+    \textbf{action of $G$ on itself by right translations}. We leave it for the
+    reader to verify that this action is effective.
+\end{example}
+
+\begin{example}[Group acting on itself by conjugations]
+\label{example:action-conjugations}
+    Another important action of $G$ on itself is what we shall call \textbf{$G$
+    acting on itself by conjugations}. This will be essential in our proof of
+    the Sylow Theorems. Let $S = G$. Define an action $\cdot: G \times S \to S$
+    by $g \cdot x = gxg\inv$. We can also denote this with $\prescript{g}{}{x}$.
+    We leave it to the reader to check that conjugation is an action. We also
+    leave it to the reader to verify that the kernel of this action is $Z(G)$
+    (see \cref{exercise:kernel-of-conjugation-action}).
+    
+    % Let's find
+    % out what the kernel of this action is. Note that $g$ is in the kernel of the
+    % action if and only if $gxg\inv = x$ for every $x \in G$. Now, $gxg\inv = x$
+    % is equivalent to $gx = xg$. Thus $gxg\inv = x$ for all $x \in G$ if and only
+    % if $g \in Z(G)$, the center of $G$. Thus, $Z(G)$ is the kernel of this
+    % action. As a result, we can determine that 
+\end{example}
+
+\begin{example}[Restricting the action]
+\label{example:restricting-action}
+    Let $G$ be a group acting on a set $S$. If $H$ is a subgroup of $G$, then
+    $H$ also acts on $S$, by restricting the action of $G$ to $H$, i.e. $\cdot
+    \lvert_H: H \times S \to S$.
+\end{example}
+
+\begin{example}[Actions on coset space]
+\label{example:action-on-coset-space}
+    Let $G$ be a group, and let $H$ be a subgroup of $G$. Recall that $G/H$
+    denotes the set of all left cosets of $H$, i.e. $G/H = \set{xH: x \in G}$.
+    There is a canonical action of $G$ on $G/H$ given by setting $g \cdot xH =
+    (gx)H$. We shall call this the \textbf{action of $G$ on $G/H$ by left
+    translations}. We leave it to the reader to show that the kernel of this
+    action is the set of all $g \in G$ such that $g \in \bigcap_{x \in G}
+    xHx\inv$.
+\end{example}
+
+Recall that we defined the 
+\begin{definition}[Orbit of an element]
+    Let $G$ act on a set $S$, and let $x \in S$. The \textbf{orbit of $x$ (under
+    the action of $G$)} is the set 
+    \[
+        \operatorname{Orb}_G(x) = \set{g \cdot x: g \in G}. 
+    \]
+    
+\end{definition}
+We will write $\operatorname{Orb}(x)$ whenever the group $G$ is clear. This is
+sometimes denoted $\mc O_x$\footnote{We will not use $\mc O_x$ since this
+notation is bad. However, \autocite{Dummit_Foote_2004} does.}, or $G \cdot x$.
+
+The orbits of \cref{example:action-on-coset-space} are rather interesting. Pick
+some $xH \in G/H$, and let us consider what $\operatorname{Orb}(xH)$ will be. If
+$yH$ is any other coset, then we have $yx\inv \cdot xH = yH$. What this means is
+$\operatorname{Orb}(xH)$ is all of the coset space $G/H$. We call group actions
+where this happens transitive actions. 
+
+\begin{definition}[Transitive group action]
+    Let $G$ act on $S$. Then we say \textbf{$G$ acts transitively on $S$} if
+    there exists $x \in S$, such that $\operatorname{Orb}(x) = S$.
+\end{definition}
+
+Notice that if there is a single $x \in S$ with orbit being all of $S$, then for
+any $x \in S$, $G \cdot x = S$.
+\begin{exercise}
+    Show that if there is some $x \in S$ such that $G \cdot x = S$, then for
+    every $y \in S$, $G \cdot y = S$.
+\end{exercise}
+
+We make a trivial but important observation that if $\Sigma$ is some orbit, then
+$G$ acts transitively on $\Sigma$. Let's take a look at some transitive actions.
+\begin{example}
+    Let $S_n$ act on the set $\set{1, \dots, n}$ in the obvious way (i.e.
+    $\sigma \cdot x = \sigma(x)$). Then $S_n$ acts transitively on this set, as
+    you should verify.
+\end{example}
+\begin{example}
+    Let $G$ act on itself by left multiplications, as in
+    \cref{example:action-left-translations}. Then this action is transitive,
+    since if $x \in G$, we have $yx\inv \cdot x = y$, so that $G \cdot x = G$.
+\end{example}
+\begin{example}
+    Similarly, the action of $G$ on itself by right translations is transitive. 
+\end{example}
+
+Of course, not all group actions are transitive.
+\begin{example}[A non-transitive group action]
+    Let $O(n)$ be the orthogonal group of $\bR^n$. Recall that elements of
+    $O(n)$ are isometries (distance-preserving linear maps). Consider some
+    vector $v \in \bR^n$ with norm 1. Then for any $T \in O(n)$, it follows that
+    $\norm{T(v)} = 1$. Thus any vector with norm that is not 1 is not in the
+    orbit of this $v$. 
+\end{example}
+
+\subsection{Problems and Exercises}
+
+\begin{exercise}[Left translations]
+    Check that \cref{example:action-left-translations} is indeed a group action.
+    Also verify that 
+\end{exercise}
+
+\begin{exercise}
+    Verify that the actions defined in
+    \cref{example:action-left-translations,example:action-right-translations,example:action-conjugations,example:restricting-action,example:action-on-coset-space}.
+    are actually group actions.
+\end{exercise}
+
+\begin{exercise}[Kernel of conjugation]
+\label{exercise:kernel-of-conjugation-action}
+    Prove that the kernel of the action of $G$ on itself by conjugation as
+    defined in \cref{example:action-conjugations} is the center of $G$, $Z(G)$.
+    Conclude that this action is effective if and only if $Z(G)$ is trivial.
+\end{exercise}
+
+\begin{exercise}[Action of a group on coset space]
+\label{exercise:action-on-coset-space}
+Let $G$ be a group and let $H$ be a subgroup of $G$. Let $G$ act on $G/H$
+canonically (as in \cref{example:action-on-coset-space}).
+
+\begin{enumerate}[label=(\roman*)]
+    \item Check that this action is transitive. 
+    \item Show that the kernel of this action is precisely $\bigcap_{x \in G}
+    xHx\inv$. To get started, note that $gxH = xH$ if and only if $x\inv gx \in
+    H$ for all $x$.
+    \item Show that $G$ acts on $G/H$ effectively if and only if $H$ contains no
+    nontrivial subgroups that are normal in $G$. (\textit{Hint: The kernel of
+    the action is the largest normal subgroup of $G$ contained in $H$})
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Group actions induced by homomorphisms]
+\label{exercise:homomorphism-inducing-group-action}
+    Let $G$ be a group, and let $S$ be a set. Let $\varphi: G \to
+    \operatorname{Sym}(S)$ be a homomorphism of $G$ into the group of symmetries
+    on the set $S$.
+
+    Define the function $\cdot: G \times S \to S$ by $g \cdot x =
+    \varphi(g)(x)$. Here, $\varphi(g)$ is a permutation on $S$.
+    Verify that $\cdot$ is an action of $G$ on $S$.
+\end{exercise}
+
+\section{Transitive actions and counting}
+Transitive actions are special, in the sense that there is really only ``one''.
+In particular, if $G$ acts on $S$ transitively, then we can study this action by
+studying how $G$ acts on a coset space $G/H$. To make this notion precise, we
+shall define essentially what is an ``isomorphism'' of group actions.
+\begin{definition}[Equivalent actions]
+    Let $G$ act on $S$ with $\cdot_1$ and $S'$ with $\cdot_2$. We say that the
+    actions of $G$ on $S$ and $S'$ are \textbf{equivalent} if there is a
+    bijection $\beta: S \to S'$ such that
+    \[
+        g \cdot_2 \beta(x) = \beta(g \cdot_1 x).
+    \]
+\end{definition}
+We can express this diagramatically with 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJTIl0sWzAsMSwiUyciXSxbMSwwLCJTIl0sWzEsMSwiUyciXSxbMCwyLCJnIFxcY2RvdCAtIl0sWzAsMSwiXFxiZXRhIiwyXSxbMiwzLCJcXGJldGEiXSxbMSwzLCJnIFxcdGltZXMgLSIsMl1d
+\[\begin{tikzcd}
+	S & S \\
+	{S'} & {S'}
+	\arrow["{g \cdot -}", from=1-1, to=1-2]
+	\arrow["\beta"', from=1-1, to=2-1]
+	\arrow["\beta", from=1-2, to=2-2]
+	\arrow["{g \times -}"', from=2-1, to=2-2]
+\end{tikzcd}\] 
+
+Here, $g$ is fixed, and $\cdot, \times$ are actions of $G$ on $S$ and $S'$
+respectively. The map $g \cdot -$ is the map $s \mapsto g \cdot s$ (likewise
+with $g \times -$). We can understand this intuitively as saying that it does
+not matter whether we first do the action in $S$ and move to $S'$, or whether we
+first move over to $S'$ and do the action in $S'$.
+
+Recall we have defined the
+\begin{definition}[Stabilizer of an element]
+    Let $G$ act on $S$ and let $x \in S$. Then the \textbf{stabilizer of $x$} is the set 
+    \[
+        \operatorname{Stab}(x) = \set{ g \in G: g \cdot x = x}.
+    \]
+\end{definition}
+It turns out that the stabilizer is exactly what we need to show that transitive
+actions are equivalent to the action of a group on some coset space.
+
+Suppose $G$ acts transitively on $S$. Pick some element $x \in S$, and let $H =
+\operatorname{Stab}(x)$. What do the left cosets of $H$ represent? Well, if $h
+\in H$, then $h \cdot x = x$. So given some $g \in G$, then $(gh) \cdot x = g
+\cdot x$. Now, suppose that $g' \in G$ has the property that $g' \cdot x = g
+\cdot x$. This tells us that $g\inv g' \cdot x = x$, so that $g\inv g' \in H$.
+Equivalently, this means $g' \in gH$. We thus see that $gH$ is the set of all
+the $g' \in G$ that takes $x$ to $g \cdot x$, (i.e. $g' \cdot x = g \cdot x$ for
+all $g' \in H$). Now, for each $gH \in G/H$, let's associate to it the element
+of $S$, $g \cdot x$. This actually defines a map $gH \mapsto g \cdot x$ (which
+is well-defined, of course), with codomain in $S$. Does this map hit everything
+in $S$? Well, since $G$ acts transitively on $S$, given any element $y \in S$,
+there is some $g'$ such that $g' \cdot x = y$. This $g'$ lives in some left
+coset of $H$. This shows that the map is actually surjective. At this point we
+may have an inkling that a coset $gH$ represents exactly one element of $S$,
+namely the element $g \cdot x$. Is that true? Suppose that $aH$ and $bH$ both
+represent the element $y \in S$. This means that $a \cdot y = b \cdot y$. Now,
+using the same line of reasoning as above, when investigating what left cosets
+of $H$ represent, we see that $b\inv a \cdot y = y$, so that $a \in bH$. This
+means $aH = bH$.
+
+The discussion above has proven the following
+\begin{theorem}[Transitive actions are equivalent to actions on coset space]
+\label{thm:transitive-actions-are-just-coset-space-actions}
+    Let $G$ act on $S$ transitively. Let $x \in S$ be some element, and let $H =
+    \operatorname{Stab}(x)$. Then, the action of $G$ on $S$ is equivalent to the
+    action of $G$ on $G/H$.
+\end{theorem}
+\begin{proof}
+    Fix $x \in S$, and let $\alpha: G \to S$ be defined by $\alpha(g) = g \cdot
+    x$. Note that $\alpha$ is surjective, since the action is transitive. Thus
+    let $\overline G = \set{\alpha\inv(x): x \in S}$. An element $\overline g
+    \in \overline G$ is the set $\overline g = \set{a \in G: \alpha(a) =
+    \alpha(g)} = \set{a \in G: a \cdot x = g \cdot x}$. We now let $\overline
+    \alpha: \overline G \to S$ be the map defined by $\overline \alpha
+    (\overline g) = \alpha(g)$. This map is obviously well-defined. We claim
+    that $\overline \alpha$ is bijective. Surjectivity is due to surjectivity of
+    $\alpha$. We leave it for the reader to check injectivity.
+
+    We next check that $\overline g$ is the left coset $g
+    \operatorname{Stab}(x)$. This will show that $\overline G =
+    G/\operatorname{Stab}(x)$ and so the map $\overline \alpha$ takes
+    $g\operatorname{Stab}(x)$ to $g \cdot x$. An element $a$ is in $\overline g$
+    if and only if $a \cdot x = g \cdot x$ if and only if $g\inv a \cdot x = x$,
+    which is equivalent to $g\inv a \in \operatorname{Stab}(x)$. This is
+    equivalent to $a \in g \operatorname{Stab}(x)$. 
+
+    All that remains is to check that $\overline \alpha$ is indeed an
+    equivalence of actions. We leave this for the reader.
+\end{proof}
+
+\begin{exercise}
+    Complete the proof of
+    \cref{thm:transitive-actions-are-just-coset-space-actions}.
+\end{exercise}
+
+
+If $G$ is a finite group, then we obtain an important 
+\begin{corollary}
+    Let $G$ be a finite group acting transitively on a set $S$. Then, for any $x \in S$, 
+    \[
+        \abs S = [G: \operatorname{Stab}(x)].
+    \]
+\end{corollary}
+\begin{proof}
+    This follows immediately since $\overline \alpha$ is a bijection of $G/H$ to $S$.
+\end{proof}
+Consequently, if a finite group acts transitively on a set, then the set is
+finite, and the cardinality of that set divides $\abs G$. Of course, not all
+actions are transitive. Let $G$ be a finite group acting on a finite set $S$. We
+have previously shown in \cref{ex:orbits-partition-set} that orbits partition
+$S$. Since $S$ is finite we can write 
+\begin{equation}
+\label{eqn:partition-of-set-into-orbits}
+    S = \operatorname{Orb}(x_1) \cup \operatorname{Orb}(x_2) \cup \cdots \cup \operatorname{Orb}(x_k),
+\end{equation}
+where $x_k$ are representatives of orbits. We have previously remarked that $G$
+acts transitively on $\operatorname{Orb}(x_i)$, so in particular for any $y \in
+\operatorname{Orb}(x_i)$, then $\abs{\operatorname{Orb}(x_i)} = [G:
+\operatorname{Stab}(y)]$. Since $x_i \in \operatorname{Orb}(x_i)$ we can simply
+say $\abs{\operatorname{Orb}(x_i)} = [G:\operatorname{Stab}(x_i)]$.
+As such, we can say that 
+
+\begin{equation}
+\label{eqn:enumeration-of-elements-of-finite-set-under-action}
+    \abs S = \sum_{x_i \in \set{x_1, \dots, x_k}} [G:\operatorname{Stab}(x_i)]
+\end{equation}
+where the set $\set{x_1, \dots, x_k}$ is a set of representatives of the orbits.
+We also remark that each term we sum over, the $[G:\operatorname{Stab}(x_i)]$'s
+are divisors of $\abs G$. 
+
+At this point, the reader is likely curious how stabilizers of different
+elements within an orbit are related. Let $O$ be some orbit and say we had $x, y
+\in O$. How is $\operatorname{Stab}(x)$ related to $\operatorname{Stab}(y)$?
+Since $x$ and $y$ lie in the same orbit, we have $y = g \cdot x$ for some $g$.
+Now, $a \cdot y = y$ if and only if $a \cdot (g \cdot x) = y$. We can apply
+$g\inv$ on both sides to obtain $(g\inv a g) \cdot x = g\inv \cdot y = x$. So,
+$a \in \operatorname{Stab}(y)$ if and only if $g\inv a g \in
+\operatorname{Stab}(x)$. This is equivalent to saying that $a \in
+g\operatorname{Stab}(x)g\inv$. We shall write this as 
+\begin{equation}
+\label{eqn:stabilizers-are-conjugate-within-same-orbit}
+    \operatorname{Stab}(g \cdot x) = g\operatorname{Stab}(x)g\inv.
+\end{equation}
+As such, if $x$ and $y$ lie in the same orbit, then their stabilizers are
+conjugate. Consequently, if the action is transitive, all stabilizers are
+conjugate to each other.
+
+\begin{exercise}
+    Prove the claim in \cref{eqn:stabilizers-are-conjugate-within-same-orbit}.
+\end{exercise}
+
+\subsection{Problems and exercises}
+
+\begin{exercise}
+    Let $G$ be a finite group and let $H$ be a subgroup of $G$ such that $[G:H]
+    = n$. Show that there is a normal subgroup $N$ of $G$ such that $N \subseteq
+    H$ and $[G:N]$ is a divisor of $n!$. \textit{(Hint: Let $G$ act on $G/H$ by
+    left translations. See \cref{example:action-on-coset-space})}
+\end{exercise}
+
+\begin{exercise}[Generalization of index 2 subgroups are normal]
+    Let $G$ be a finite group. Let $p$ be the \emph{smallest} prime dividing
+    $\abs G$. Show that if $H$ is a subgroup of $G$ such that $[G:H] = p$, then
+    $H$ is normal. \textit{(Hint: Again let $G$ act on $G/H$ by left
+    translations.)}
+\end{exercise}
+
+\begin{exercise}[Classification of groups of order $p^2$]
+    Let $p$ be a prime. Prove that if $G$ has order $p^2$, $G$ is abelian. Show
+    that there are only 2 groups of order $p^2$ up to isomorphism.
+\end{exercise}
+
+\begin{exercise}[Semidirect products]
+\label{exercise:semidirect-products}
+    Let $H, K$ be groups. We say that \emph{$H$ acts on $K$ by automorphisms} if
+    $H$ acts on $K$ with $\cdot$, and for every $h \in H$, the map $k \mapsto h
+    \cdot k$ is an automorphism of $K$.
+
+    Suppose $H$ acts on $K$ by automorphisms. Let $G = K \times H$ (cartesian
+    product). Define a binary operation on $G$ by
+    \[
+        (k_1, h_1) (k_2, h_2) = (k_1 (h_1 \cdot k_2), h_1 h_2),
+    \]
+    with $e_G = (e_K,e_H)$. 
+
+    \begin{enumerate}[label=(\roman*)]
+        \item Show that $G$ is a group under the operation defined above.
+        \item Show that the map $h \mapsto (e_K, h)$ from $H$ into $K \times H$ is an injective homomorphism.
+        \item Show that the map $k \mapsto (k, e_H)$ from $K$ to $K \times H$ is
+        an injective homomorphism, and that the image of $K$ under this map is a
+        normal subgroup.
+        \item Suppose $H, K$ are finite. Show that $\abs G = \abs K \abs H$.
+    \end{enumerate}
+
+    The construction above is called the \textbf{semi-direct product} of $K$ and
+    $H$. We will see this construction soon.
+\end{exercise}
+
+\section{The class equation and Sylow theorems}
+Our study into group actions has proven rather fruitful into extracting insights
+about the structure of a group, especially when the group is finite. We first
+observed that if $G$ acts on itself by left translations, we have Cayley's
+Theorem, telling us that every group is really just a group of permutations.
+Now, we shall let $G$ act on itself by conjugations. We have lightly explored
+this in \cref{example:action-conjugations}. This action will be immensely useful
+for us when we prove the Sylow Theorems. 
+
+Recall that Lagrange's theorem states if we have a finite group, the order of
+any of its subgroups must divide the order of the group. The converse is not
+true: given some divisor of the order of a finite group, there may not
+necessarily be a subgroup of that order. Not to be discourage, we shall relax
+the conditions on the converse slightly, and ask a weaker question: Given some
+prime $p$ that divides the order of a finite group $G$, is there necessarily a
+subgroup of that order? We know this question is answered positively if $G$ is
+abelian by Cauchy's Theorem for finite abelian groups
+(\cref{thm:cauchy-thm-fin-abelian}). But it turns out it is true for all groups
+in general. In fact, something much more can be said. Namely, if $p^k$ is a
+divisor of the order of a finite group $G$, then there is a subgroup of order
+$p^k$. This is the content of Sylow's first theorem.
+
+Given a group action of $G$ on a set $S$, we have a partitioning of $S$ into
+orbits. In the finite case we can write it as in
+\cref{eqn:partition-of-set-into-orbits}. We shall study the orbits of $G$ when
+it acts on itself by conjugation. This orbit is so important, it gets its own name,
+\begin{definition}[Conjugacy class]
+\label{def:conjugacy-class}
+    Let $G$ act on itself by conjugation and let $x \in G$. The
+    \textbf{conjugacy class of $x$} is the orbit of $x$ under the action of
+    conjugation, i.e. 
+    \[
+        \set{gxg\inv: g \in G}.
+    \]
+\end{definition}
+The collection of all these orbits is called the set of conjugacy classes of
+$G$.
+
+From the previous section, we have an enumeration of the set $G$ acts on
+(\cref{eqn:enumeration-of-elements-of-finite-set-under-action}). Let $G$ be a
+finite group, and let $G$ act on itself by conjugations. Given some $x \in G$,
+what is $\operatorname{Stab}(x)$? An element $g \in G$ stabilizes $x$ if and
+only if $gxg\inv = x$. From \cref{exercise:conjugates-centralizer-relation},
+this is equivalent to $g \in C(x)$. Thus $\operatorname{Stab}(x)$ is exactly
+equal to $C(x)$. We can thus rewrite
+\cref{eqn:enumeration-of-elements-of-finite-set-under-action} as 
+
+\begin{equation}
+\label{eqn:midpoint-class-equation-of-finite-group}
+    \abs G = \sum_{x_i \in \set{x_1, \dots, x_k}} [G:C(x_i)],
+\end{equation}
+where $\set{x_1, \dots, x_k}$ is a set of representatives of all the conjugacy
+classes of $G$. However, this formula has some redundancy. It is quite possible
+that $C(x_i) = G$, in which case we have $[G:C(x_i)] = 1$. However, notice that
+$C(x_i) = G$ is equivalent to saying that $x_i$ commutes with everything in $G$.
+This means that $x_i \in Z(G)$ if and only if $C(x_i) = G$. Actually, this means
+that every element of $Z(G)$ represents a conjugacy class. So instead of adding
+a bunch of ones (caused by $[G:C(x_i)] = 1$) for each $x_i \in Z(G)$, we might
+as well remove those $x_i$'s from our set of representatives and just add
+$\abs{Z(G)}$ all at once. This leaves us with the \textbf{class equation of the
+finite group $G$}.
+\begin{equation}
+\label{eqn:class-equation-of-finite-group}
+\abs G = \abs C + \sum_{y_i \in \set{y_1, \dots, y_m}} [G:C(y_i)].
+\end{equation}
+Note that the set $\set{y_1, \dots, y_m}$ is a set of representatives of
+conjugacy classes of $G$ such that the conjugacy class determined by $y_i$ has
+more than one element, i.e. the orbit of $y_i$ under the action of conjugation
+has more than one element. In particular, that means $[G:C(y_i)] > 1$.
+
+The technique of using
+\cref{eqn:enumeration-of-elements-of-finite-set-under-action} yields many rather
+useful results. We shall demonstrate the utility of the technique by using the class equation (\cref{eqn:class-equation-of-finite-group}) to prove the following rather useful
+\begin{proposition}
+    If $G$ is a finite group and $G$ has prime power order, then $Z(G)$ is nontrivial
+\end{proposition}
+\begin{proof}
+    Suppose that $\abs G = p^k$ for some $k > 0$. We consider the class equation
+    \cref{eqn:class-equation-of-finite-group}. On the left side, we have $\abs
+    G$ being divisible by $p$. On the right side, all the terms must be a power
+    of $p$, since $C$ is a subgroup of $G$, and each $C(y_j)$ is also a subgroup
+    of $G$. Now, since $[G:C(y_j)] > 1$, we know that each of those terms is
+    divisible by $p$. We can rearrange it and we have 
+    \[
+        \abs G - \sum [G:C(y_j)] = \abs C.
+    \]
+    Thus $p$ divides $\abs C$, so the conclusion follows.
+\end{proof}
+
+We now use the class equation to prove
+\begin{theorem}[Sylow's First Theorem]
+\label{thm:sylow-first-theorem}
+    Let $G$ be a finite group. Let $p$ be a prime, let $k \geq 0$, and suppose
+    that $p^k$ divides $\abs G$. Then, $G$ has a subgroup of order $p^k$.
+\end{theorem}
+\begin{proof}
+    Let $G$ have order $n$. We shall induct on the order of $G$. Clearly if $G$
+    has order 1 it is trivial. Suppose the result is true for all groups of
+    order $<n$. Consider the class equation
+    \cref{eqn:class-equation-of-finite-group}: $\abs G = \abs C + \sum
+    [G:C(y_j)]$. If $p$ does not divide $\abs C$, then there is some $j$ such
+    that $p$ does not divide $[G:C(y_j)]$. This implies that $p^k$ divides
+    $\abs{C(y_j)}$, since $\abs G = \abs{C(y_j)} \cdot [G:C(y_j)]$. Since
+    $C(y_j)$ is not all of $G$, it has order $<n$ and so it contains a subgroup
+    of order $p^k$. If $p$ does divide $\abs C$, then by
+    \cref{thm:cauchy-thm-fin-abelian}, there is some element $z \in C$ such that
+    $\abs z = p$. Now, $\gen z$ is normal in $G$ (since any subgroup of $C$ is
+    normal), and $G/\gen z$ has order $n/p$, which is divisible by
+    $p^{k-1}$\footnote{There is a small technicality here since we only assumed
+    $k \geq 0$, and so $p^{0-1}$ is nonsense. However the case when $k = 0$ is a
+    triviality, so it is ignored. We might as well say $k > 0$, but eh.}. By
+    induction, $G/\gen z$ has a subgroup of order $p^{k-1}$, which is of the
+    form $H/\gen z$ for some $H \leq G$, such that $H \supseteq \gen c$. Then we
+    have
+    \[
+        \abs H = [H : \gen z] \cdot \abs{\gen z} = p^{k-1} \cdot p = p^k.
+    \]
+\end{proof}
+
+A useful corollary is 
+\begin{corollary}[Cauchy's Theorem for finite groups]
+\label{cor:cauchy-thm-finite-groups}
+    Let $G$ be a finite group and $p$ a prime dividing the order of $G$. Then,
+    $G$ contains an element of order $p$.
+\end{corollary}
+\begin{proof}
+    Immediate.
+\end{proof}
+
+With this theorem, we are now allowed to define what is known as a
+\begin{definition}[Sylow $p$-subgroup]
+    Let $G$ be a fiite group and suppose $p^m$ is the largest power of $p$ that
+    divides $\abs G$, i.e. $p^m \mid \abs G$ and $p^{m+1} \nmid \abs G$. If $H$
+    is a subgroup of $G$ of order $p^m$, then $H$ is called a \textbf{Sylow
+    $p$-subgroup} of $G$.
+\end{definition}
+These are the largest subgroups of prime power order contained in $G$. We know
+these must exist because of \cref{thm:sylow-first-theorem}. Sylow's Second
+Theorem gives us some insight into the properties of these subgroups.
+
+\begin{theorem}[Sylow's Second Theorem]
+    Let $G$ be a finite group. 
+    \begin{enumerate}[label=(\arabic*)]
+        \item Sylow $p$-subgroups of $G$ are conjugates; that is, given Sylow
+        $p$-subgroups $P_1, P_2$, there is some $a \in G$ such that $P_2 = a P_1
+        a\inv$.
+
+        \item If $P$ is \emph{any} Sylow $p$-subgroup, then the number of Sylow
+        $p$-subgroups divides $[G:P]$. Additionally, this number is congruent to
+        1 modulo $p$.
+
+        \item If $H$ is a subgroup of prime power order, then it is contained in
+        a Sylow $p$-subgroup.
+    \end{enumerate}
+\end{theorem}
 
 \end{document}

@@ -98,6 +98,11 @@ this will be true.
     We have thus proven the following proposition: Let $H$ be normal in $G$ and
     $K$ be a subgroup of $G$. Then, $HK$ is a subgroup of $G$.
 \end{example}
+\begin{warning}
+    If $H$ is not normal, then $HK$ may not be a subgroup. Let $G = D_3$, let $H
+    = \set{e,s}$ and let $K = \set{e, rs}$. Then, $HK = \set{e, s, rs,
+    srs=r\inv}$, which cannot be a subgroup due Lagrange's Theorem.
+\end{warning}
 
 
 \section{Quotient groups}
@@ -346,8 +351,7 @@ theorem. This theorem is used to prove the Sylow Theorem's.
 
 \begin{exercise}
     Let $G$ be a group and let $x, y \in G$. Let $H$ be a subgroup of $G$. Show
-    that if $xH = Hy$, then $xHy\inv \subseteq H$. Find an example where they
-    are not equal.
+    that if $xH = Hy$, then $xHy\inv \subseteq H$. 
 \end{exercise}
 
 \begin{exercise}[Internal direct products]
@@ -421,6 +425,22 @@ theorem. This theorem is used to prove the Sylow Theorem's.
 \label{ex:index-2-subgroups-normal}
     Let $G$ be a group and $H$ be a subgroup such that $[G:H] = 2$. Prove that
     $H$ is normal in $G$. \textit{Hint: Think about the pigeonhole principle}
+\end{exercise}
+
+\begin{exercise}
+    Show that the intersection of any arbitrary collection of normal subgroups
+    is normal.
+\end{exercise}
+
+
+Note: The tools to do the following exercise have not been developed in this book yet. 
+% TODO: Write that
+\begin{exercise}
+    Show that if $\set{N_\alpha: \alpha \in \Lambda}$ is a collection of normal
+    subgroups of $G$, then $\gen{N_\alpha: \alpha \in \Lambda}$, the smallest
+    normal subgroup that contains all $N_\alpha$, is normal in $G$.
+
+    For an added challenge, do this with the intersection definition.
 \end{exercise}
 
 

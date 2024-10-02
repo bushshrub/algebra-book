@@ -1,0 +1,135 @@
+\documentclass[./main.tex]{subfiles}
+
+\begin{document}
+
+
+
+
+\section{Introduction to Rings}
+At this point, we have now studied one kind of algebraic structure - groups.
+Groups are rather general things, but their flexibility means that we can say
+less about them. We now introduce a second kind of algebraic structure -- rings.
+
+Consider the integers, $\bZ$. Within the integers, we have 2 operations: that of
+addition, and of multiplication. Adding 2 integers certainly yields another
+integer, and multiplying two integers also yields another integer. From
+elementary school, we also know that given integers $a, b, c$, we have 
+
+\[
+    a \cdot (b + c) = a \cdot b + a \cdot c,
+\]
+the distributive law. We also have the property that 1 multiplied by any integer
+simply yields that integer itself.
+
+Motivated by this example, we can now define a
+\begin{definition}[Ring]
+\label{definition:ring}
+    A \textbf{ring} is a set $R$ equipped with 2 binary operations $+, \cdot$
+    such that $R$ forms an abelian group under $+$, and 
+    \begin{enumerate}
+        \item \textbf{(Associativity)} For all $a, b, c \in R$, we have $a \cdot (b \cdot c) = (a \cdot b) \cdot c$.
+        \item \textbf{(Distributivity)} For all $a, b, c \in R$, we have 
+            \[
+                a \cdot (b + c) = a \cdot b + a \cdot c \quad (b + c) \cdot a = b \cdot a + c \cdot a.
+            \]
+            The former is called left distributivity, and the latter is right distributivity.
+        \item \textbf{(Unity)} There is an element $1 \in R$ such that for all $a \in R$, $1
+        \cdot a = a \cdot 1 = a$.
+    \end{enumerate}
+\end{definition}
+Whenever possible, we shall drop the use of $\cdot$ to make it less messy, and
+simply write $a(b+c)$ to mean $a \cdot (b+c)$. Note that what we have just
+defined here is a ring with unity. Some authors (e.g. \autocite{Gallian_2020})
+defines what is generally called a Rng, a ring without unity. 
+
+Given some $a \in R$, if there is an element $b$ such that $ab = ba = 1$, then
+$a$ is said to be a \emph{unit} and we write $b = a\inv$. The following
+proposition justifies this notation.
+
+\begin{proposition}[Uniqueness of units and unity]
+    Let $R$ be a ring. Then, the unity of $R$ is unique, and units are unique.
+\end{proposition}
+\begin{proof}
+    Repeat the proof for groups.
+\end{proof}
+
+\begin{example}[The integers]
+    It is not too hard to verify that $\bZ$ forms a ring. In fact, it is
+    arguably the most important ring of all.
+\end{example}
+
+The multiplication in a ring need not be commutative at all. If a ring has
+commutative multiplication, we call it a commutative ring.
+\begin{example}[Square matrices]
+    Let $\mc M_n(\mbb F)$ denote the set of $n \times n$ matrices with entries
+    from $\mbb F$. For a concrete example, let $\mbb F = \bR$, and let $R = \mc
+    M_n(\bR)$. Then $R$ forms a ring under usual matrix addition and
+    multiplication. This ring is also noncommutative when $n > 1$, which we
+    leave for the reader to verify.
+\end{example}
+
+\begin{example}[Any field]
+    Any field whatsoever is a ring. Some fields that may come to your mind are
+    $\bQ, \bR, \bC$. It is not too hard to check that these are all in fact,
+    rings. We also have the relationship $\bZ \subset \bQ \subset \bR \subset
+    \bC$, and they are all subrings of each other in that way.
+\end{example}
+
+We haven't defined what a subring is yet, but we shall now. Intuitively, a
+subring $S$ of a ring $R$ should form a ring as well, but with the operations of
+$R$. That means $S$ has to contain the additive identity of $R$, the
+multiplicative identity of $R$, and remain closed under addition and
+multiplication.
+\begin{exercise}
+    Formulate the definition of a subring.
+\end{exercise}
+
+We shall now see some basic properties of rings. These properties will allow us
+to use the familiar rules from multiplication and subtraction of integers that
+we are used to.
+\begin{proposition}[Basic properties of rings]
+\label{prop:basic-properties-of-rings}
+    Let $R$ be a ring, and let $a, b, c \in R$.
+    Then, the following are true:
+    \begin{enumerate}
+        \item $a0 = 0a = 0$;
+        \item $a(-b) = (-a)b = -(ab)$;
+        \item $(-a)(-b) = ab$;
+        \item $a(b-c) = ab -ac$, $(b-c)a = ba-ca$;
+        \item $(-1)a = -a$;
+        \item $(-1)(-1) = 1$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We will prove this without making use of the element $1 \in R$, so that this
+    proposition remains true for rngs. For the first one, notice that 
+    \[
+        0 + a0 = a0 = a(0+0) = a0 + a0.
+    \]
+    Subtract $a0$ on both sides to obtain the result. The other way is similar.
+
+    For 2, we have 
+    \[
+        a(-b) + ab = a(-b + b) = a0 = 0.
+    \]
+    Adding $-(ab)$ to both sides yields $a(-b) = -(ab)$. Switch the roles of $a$
+    and $b$ to get the other one.
+\end{proof}
+
+\begin{exercise}
+    Complete the proof of \cref{prop:basic-properties-of-rings} without making
+    use of the unity 1, except in rules 5 and 6.
+\end{exercise}
+
+This proposition is useful and not difficult to prove.
+\begin{proposition}[Subring test]
+\label{prop:subring-test}
+    Let $S \subseteq R$ be a subset of $R$. Then $S$ is a subring of $R$ if and
+    only if $S$ contains 1, and given $a, b \in S$, we have $a-b \in S$ and $ab
+    \in S$.
+\end{proposition}
+\begin{exercise}
+    Supply the proof of \cref{prop:subring-test}.
+\end{exercise}
+
+\end{document}

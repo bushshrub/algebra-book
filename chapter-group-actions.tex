@@ -459,6 +459,31 @@ conjugate to each other.
     $H$. We will see this construction soon.
 \end{exercise}
 
+\begin{exercise}[Primitive actions]
+Let $G$ be a group acting on $S$. Let $S$ be a set with at least 2 elements, and
+let $\pi(S)$ be a partition of $S$. We shall say that $\pi(S)$ is
+\textbf{stabilized by the action of $G$ on $S$} if for every $A \in \pi(S)$ and
+$g \in G$, then $gA = \set{g \cdot a: a \in A} \in \pi(S)$. 
+
+There are always at least 2 partitions of $S$ that have this property: The
+trivial partition of $S$ given by $\pi_0(S) = \set{S}$ and the partition of $S$
+into singletons, given by $\pi_1(S) = \set{{s}: s \in S}$. Let us call an action
+of $G$ on $S$ \textbf{primitive} if $\pi_0(S)$ and $\pi_1(S)$ are the only
+partitions with this property. 
+
+\begin{enumerate}[label=(\roman*)]
+    \item Show that $G$ acts imprimitively on $S$ if and only if there is an $A
+    \subset S$ with at least 2 elements such that for any $g \in G$, either $gA
+    = A$ or $gA \cap A = \varnothing$. Such a proper subset of $S$ is called a
+    \textbf{block}.
+
+    \item Show that $G$ acts primitively on $S$ if and only if the only blocks
+    of $S$ are singletons or $S$ itself.
+    
+\end{enumerate}
+    
+\end{exercise}
+
 \section{The class equation and Sylow theorems}
 Our study into group actions has proven rather fruitful into extracting insights
 about the structure of a group, especially when the group is finite. We first
@@ -614,5 +639,6 @@ Theorem gives us some insight into the properties of these subgroups.
         a Sylow $p$-subgroup.
     \end{enumerate}
 \end{theorem}
+
 
 \end{document}

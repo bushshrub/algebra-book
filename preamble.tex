@@ -40,7 +40,7 @@
 		linecolor = ForestGreen,
 		backgroundcolor = ForestGreen!5,
 		innertopmargin=+10pt,
-		innerbottommargin=+10pt
+		innerbottommargin=+5pt
 		}
 ]{greenbox}
 \declaretheoremstyle[
@@ -54,7 +54,7 @@
 		linecolor = NavyBlue,
 		backgroundcolor = NavyBlue!5,
 		innertopmargin=+10pt,
-		innerbottommargin=+10pt
+		innerbottommargin=+5pt
 		}
 ]{bluebox}
 \declaretheoremstyle[
@@ -68,7 +68,7 @@
 		linecolor = Mulberry,
 		backgroundcolor = Mulberry!5,
 		innertopmargin=+10pt,
-		innerbottommargin=+10pt
+		innerbottommargin=+5pt
 		}
 ]{purplebox}
 
@@ -83,7 +83,7 @@
 		linecolor = RawSienna,
 		backgroundcolor = RawSienna!5,
 		innertopmargin=+10pt,
-		innerbottommargin=+10pt
+		innerbottommargin=+5pt
 		}
 ]{redbox}
 
@@ -98,7 +98,7 @@
 		linecolor = YellowOrange,
 		backgroundcolor = YellowOrange!5,
 		innertopmargin=+10pt,
-		innerbottommargin=+10pt
+		innerbottommargin=+5pt
 		}
 ]{orangebox}
 
@@ -113,26 +113,26 @@
 		linecolor = RubineRed,
 		backgroundcolor = RubineRed!5,
 		innertopmargin=+10pt,
-		innerbottommargin=+10pt
+		innerbottommargin=+5pt
 		}
 ]{rubineredbox}
 
-\declaretheoremstyle[
-		headfont = \bfseries\sffamily\color{RawSienna!70!black},
-		bodyfont = \normalfont,
-		numbered = no,
-		mdframed = {
-		linewidth = 2pt,
-		rightline = false,
-		topline = false,
-		bottomline = false,
-		linecolor = RawSienna,
-		backgroundcolor = RawSienna!1,
-		innertopmargin=+10pt,
-		innerbottommargin=+10pt
-		},
-		qed = \qedsymbol
-]{proofbox}
+% \declaretheoremstyle[
+% 		headfont = \bfseries\sffamily\color{RawSienna!70!black},
+% 		bodyfont = \normalfont,
+% 		numbered = no,
+% 		mdframed = {
+% 		linewidth = 2pt,
+% 		rightline = false,
+% 		topline = false,
+% 		bottomline = false,
+% 		linecolor = RawSienna,
+% 		backgroundcolor = RawSienna!1,
+% 		innertopmargin=+10pt,
+% 		innerbottommargin=+10pt
+% 		},
+% 		qed = \qedsymbol
+% ]{proofbox}
 
 \declaretheorem[name = Theorem, numberwithin=chapter, style=rubineredbox]{theorem}
 \declaretheorem[name = Proposition, style=purplebox, numberlike=theorem]{proposition}

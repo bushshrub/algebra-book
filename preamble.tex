@@ -27,48 +27,52 @@
 % Theorem environment configuration
 % colors stolen from math discord
 
+\def\varthmboxtopmargin{+10pt}
+\def\varthmboxbtmmargin{+5pt}
+\def\varthmboxlinewidth{2pt}
+
 \newcommand{\sslash}{\mathbin{/\mkern-6mu/}}
 
 \declaretheoremstyle[
 		headfont = \bfseries\sffamily\color{ForestGreen!70!black},
 		bodyfont = \normalfont,
 		mdframed = {
-		linewidth = 2pt,
+		linewidth = \varthmboxlinewidth,
 		rightline = false,
 		topline = false,
 		bottomline = false,
 		linecolor = ForestGreen,
 		backgroundcolor = ForestGreen!5,
-		innertopmargin=+10pt,
-		innerbottommargin=+5pt
+		innertopmargin=\varthmboxtopmargin
+		innerbottommargin=\varthmboxbtmmargin
 		}
 ]{greenbox}
 \declaretheoremstyle[
 		headfont = \bfseries\sffamily\color{NavyBlue!70!black},
 		bodyfont = \normalfont,
 		mdframed = {
-		linewidth = 2pt,
+		linewidth = \varthmboxlinewidth,
 		rightline = false,
 		topline = false,
 		bottomline = false,
 		linecolor = NavyBlue,
 		backgroundcolor = NavyBlue!5,
-		innertopmargin=+10pt,
-		innerbottommargin=+5pt
+		innertopmargin=\varthmboxtopmargin,
+		innerbottommargin=\varthmboxbtmmargin
 		}
 ]{bluebox}
 \declaretheoremstyle[
 		headfont = \bfseries\sffamily\color{Mulberry!70!black},
 		bodyfont = \normalfont,
 		mdframed = {
-		linewidth = 2pt,
+		linewidth = \varthmboxlinewidth,
 		rightline = false,
 		topline = false,
 		bottomline = false,
 		linecolor = Mulberry,
 		backgroundcolor = Mulberry!5,
-		innertopmargin=+10pt,
-		innerbottommargin=+5pt
+		innertopmargin=\varthmboxtopmargin,
+		innerbottommargin=\varthmboxbtmmargin
 		}
 ]{purplebox}
 
@@ -76,14 +80,14 @@
 		headfont = \bfseries\sffamily\color{RawSienna!70!black},
 		bodyfont = \normalfont,
 		mdframed = {
-		linewidth = 2pt,
+		linewidth = \varthmboxlinewidth,
 		rightline = false,
 		topline = false,
 		bottomline = false,
 		linecolor = RawSienna,
 		backgroundcolor = RawSienna!5,
-		innertopmargin=+10pt,
-		innerbottommargin=+5pt
+		innertopmargin=\varthmboxtopmargin,
+		innerbottommargin=\varthmboxbtmmargin
 		}
 ]{redbox}
 
@@ -91,14 +95,14 @@
 		headfont = \bfseries\sffamily\color{YellowOrange!70!black},
 		bodyfont = \normalfont,
 		mdframed = {
-		linewidth = 2pt,
+		linewidth = \varthmboxlinewidth,
 		rightline = false,
 		topline = false,
 		bottomline = false,
 		linecolor = YellowOrange,
 		backgroundcolor = YellowOrange!5,
-		innertopmargin=+10pt,
-		innerbottommargin=+5pt
+		innertopmargin=\varthmboxtopmargin,
+		innerbottommargin=\varthmboxbtmmargin
 		}
 ]{orangebox}
 
@@ -106,33 +110,33 @@
 		headfont = \bfseries\sffamily\color{RubineRed!70!black},
 		bodyfont = \normalfont,
 		mdframed = {
-		linewidth = 2pt,
+		linewidth = \varthmboxlinewidth,
 		rightline = false,
 		topline = false,
 		bottomline = false,
 		linecolor = RubineRed,
 		backgroundcolor = RubineRed!5,
-		innertopmargin=+10pt,
-		innerbottommargin=+5pt
+		innertopmargin=\varthmboxtopmargin,
+		innerbottommargin=\varthmboxbtmmargin
 		}
 ]{rubineredbox}
 
-% \declaretheoremstyle[
-% 		headfont = \bfseries\sffamily\color{RawSienna!70!black},
-% 		bodyfont = \normalfont,
-% 		numbered = no,
-% 		mdframed = {
-% 		linewidth = 2pt,
-% 		rightline = false,
-% 		topline = false,
-% 		bottomline = false,
-% 		linecolor = RawSienna,
-% 		backgroundcolor = RawSienna!1,
-% 		innertopmargin=+10pt,
-% 		innerbottommargin=+10pt
-% 		},
-% 		qed = \qedsymbol
-% ]{proofbox}
+\declaretheoremstyle[
+		headfont = \bfseries\sffamily\color{RawSienna!70!black},
+		bodyfont = \normalfont,
+		numbered = no,
+		mdframed = {
+		linewidth = \varthmboxlinewidth,
+		rightline = false,
+		topline = false,
+		bottomline = false,
+		linecolor = RawSienna,
+		backgroundcolor = RawSienna!1,
+		innertopmargin=\varthmboxtopmargin,
+		innerbottommargin=\varthmboxbtmmargin
+		},
+		qed = \qedsymbol
+]{proofbox}
 
 \declaretheorem[name = Theorem, numberwithin=chapter, style=rubineredbox]{theorem}
 \declaretheorem[name = Proposition, style=purplebox, numberlike=theorem]{proposition}

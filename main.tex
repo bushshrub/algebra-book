@@ -1,4 +1,4 @@
-\documentclass[oneside]{book}
+\documentclass[twoside]{book}
 
 \input{./preamble.tex}
 
@@ -36,8 +36,7 @@
 \fancyhead[C]{\textsc{\mytitle}}
 \fancyhead[R]{}
 \fancyfoot{}
-\fancyfoot[L]{\leftmark}
-\fancyfoot[R]{\thepage}
+\fancyfoot[LO, RE]{\thepage}
 
 
 \begin{document}
@@ -100,125 +99,12 @@
 \chapter{Rings}
 \label{chapter:introduction-to-rings}
 \subfile{chapter-introduction-to-rings.tex}
- 
-\chapter{Field Extensions and Splitting Fields}
 
-\section{Extension fields}
-Given a polynomial, is it possible to find a field in which that polynomial has
-a root? For example, consider the polynomial $x^2 + 1$. 
 
-\begin{definition}
-    Let $F$ be a field. If $E \supseteq F$ is a field and the operations of $E$
-    restricted to $F$ are the same as the operations of $F$, then $E$ is an
-    \textbf{extension field} of $F$.
-\end{definition}
-If $E$ is an extension field of $F$, we can say that $E$ is an extension of $F$,
-or $E$ extends $F$. Note the abuse of notation here again: $F$ may not actually
-be a subset of $E$, but if it is isomorphic to a subfield of $E$ it is good
-enough.
+\chapter{Fields}
+\label{chapter:intro-field-theory}
+\subfile{chapter-introductory-field-theory.tex}
 
-\begin{example}
-    $\bC$ is clearly an extension field of $\bR$. Additionally, $\bR$ is an
-    extension field of $\bQ$.
-\end{example}
-
-\begin{example}
-    Let $F$ be a field and let $p \in F[x]$ be irreducible over $F$. Then,
-    $F[x]/\gen{p}$ is an extension field of $F$. Notice that we can embed $F$ as
-    a subfield of $F/\gen{p}$ by the map 
-    \[
-        x \mapsto x + \gen{p}.
-    \]
-    It is not too hard to see that this map is an isomorphism onto its image. We
-    will use this example to motivate the following theorem.
-\end{example}
-
-\begin{theorem}[Existence of Extension Fields]
-\label{thm:extension-fields-exist}
-    Let $F$ be a field and let $f \in F[x]$ be a nonconstant polynomial. Then
-    there exists an extension field $E$ of $F$ such that $f$ has a root in $E$.
-\end{theorem}
-\begin{proof}
-    Let $p(x)$ be an irreducible factor of $f$. This exists as $F[x]$ is a UFD.
-    It suffices to produce an extension field of $F$ where $p$ has a root in.
-    Let $E = F[x] / \gen{p}$. Then $F$ embeds into $E$. Now, we see that $x +
-    \gen{p}$ is a root of $p$ in $E$. Write $p(x) = \sum_{i=0}^n a_i x^i$, then 
-    \[ 
-        p(x + \gen{p}) = \sum_{i=0}^n a_i (x+\gen{p})^i =  \paren{\sum_{i=0}^n a_i x^i} + \gen{p} = \gen{p}.
-    \]
-\end{proof}
-
-Note that if $D$ is an integral domain and $p \in D[x]$, then there is an
-extension field of $Q(D)$ that contains a root of $p$. This means that there is
-an extension field that contains $D$. This need not be true if $D$ is not an integral domain. 
-
-\begin{example}
-    Let $f(x) = 2x+1$ in $\bZ_4[x]$. Then given any ring $R \supseteq \bZ_4$,
-    $f$ has no roots in $R$. 
-\end{example}
-
-\section{Splitting Fields}
-
-\begin{definition}
-    Let $F$ be a field, and let $E$ be an extension of $F$. Then we
-    \emph{define} $F(a_1, \dots, a_n)$ to be the \emph{smallest} subfield of $E$
-    that contains $F$ and $\set{a_1, \dots, a_n}$. 
-\end{definition}
-It immediately follows that $F(a_1, \dots, a_n)$ is the intersection of all
-subfields of $E$ that contain $F$ and $\set{a_1, \dots, a_n}$. We warn the
-reader that it is important that we have an extension field to talk about.  For
-example, it is nonsensical to write something like $\bQ(\text{apple})$ when we
-don't have any field that contains apple in it.
-
-\begin{definition}[Polynomial splitting]
-    Let $F$ be a field and let $E$ be an extension of $F$. Let $f \in F[x]$.
-    Then \underline{$f$ \textbf{splits} in $E$} if it can be factorized into linear
-    factors, i.e. we have $a \in F$, $a_i \in E$ such that 
-    \[
-        f(x) = a(x - a_1) \cdots (x-a_n).
-    \]
-
-    We say that $E$ is a \textbf{splitting field for $f$} if $E = F(a_1, \dots, a_n)$.
-\end{definition}
-In other words, $E$ is a splitting field for $f$ it is the smallest field that
-contains $F$ and all roots of $f$. We remark that whether a polynomial splits
-depends on which field the polynomial comes from.
-
-\begin{example}
-    Let $f(x) = x^2 + 1$ in $\bQ[x]$. Then $\bC$ is \emph{not} a splitting field
-    of $f$ over $\bQ$, since we can find a smaller field that still contains
-    roots of $f$, namely, $\bQ[x]/\gen{f}$.
-\end{example}
-
-It would be pretty stupid if splitting fields did not exist. Luckily they do.
-\begin{theorem}[Splitting fields exist]
-    Let $F$ be a field and $f \in F[x]$ be nonconstant. Then there is a
-    splitting field of $f$ over $F$.
-\end{theorem}
-The proof of the theorem is simple: induction on $\deg f$ and use
-\cref{thm:extension-fields-exist}.
-\begin{proof}
-    We go by induction\footnote{Note that strong induction is used here, since
-    $\deg g$ may not necessarily be $\deg f - 1$. If I am wrong, please correct
-    me.} on $\deg f$. If $\deg f = 1$ it is trivial: $f(x) = (x-a)$ for some $a
-    \in F$. Now suppose the theorem is true for all polynomials of degree less
-    than $\deg f$ and all fields. By \cref{thm:extension-fields-exist}, there is
-    an extension field $E \supseteq F$ such that $f$ has a root in $E$. Let this
-    root be $a_1$. Then we factorize $f$ over $E$, so write $f(x) = (x-a_1)
-    g(x)$, where $g(x) \in E[x]$. Thus there is a splitting field $K \supseteq
-    E$ of $g$ over $E$. $K$ has all roots of $g$, say they are $a_2, \dots,
-    a_n$. Since $E \supseteq F$, $K$ contains $a_1$, $F$ and $a_2, \dots, a_n$.
-    So we can take the splitting field to be $F(a_1, \dots, a_n)$.
-\end{proof}
-
-Now we can finally give some examples of splitting fields.
-
-\begin{example}
-    Let $f(x) = x^2 + 1$, but this time considered as an element of $\bR[x]$.
-    Then $\bC$ is a splitting field of $f$ over $\bR$. Notice that $\bR[x] /
-    \gen{f}$ also is a splitting field of $f$. Are these the same splitting
-    field? We will answer this soon.
-\end{example}
 
 \backmatter
 \addcontentsline{toc}{chapter}{References}

@@ -9,7 +9,9 @@
 \usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
 \addbibresource{main.bib}
 
+\usepackage{xr}
 \usepackage{subfiles}
+\externaldocument[M-]{\subfix{main}}
 
 \declaretheorem[name=Problem, numberwithin=chapter, style=definition]{prob}
 

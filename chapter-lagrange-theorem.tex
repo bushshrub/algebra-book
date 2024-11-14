@@ -261,7 +261,7 @@ about group actions.
 \label{ex:orb-stab-thm}
 Complete the proof of \cref{thm:orb-stab-thm}. In particular, show that the map
 $\varphi$ as defined is well-defined and a bijection. Note that
-the facts in \cref{ex:orbits-partition-set} will be needed.
+the facts in \cref{M-ex:orbits-partition-set} will be needed.
 \end{exercise}
 
 \begin{exercise}
@@ -277,6 +277,15 @@ the facts in \cref{ex:orbits-partition-set} will be needed.
     that if $H, K$ are finite, then $\abs{HK} = \abs H \abs K/(\abs{H \cap K})$.
 
     See \autocite[Exercise~9,\pno~58]{Jacobson_2009}
+\end{exercise}
+
+
+\begin{exercise}[Index is multiplicative]
+    Let $G$ be a group (not necessarily finite) and let $H \leq K \leq G$. Prove
+    that $[G:H] = [G:K][K:H]$. Do not assume that any of the indices are finite.
+
+    \textit{Hint: There is a canonical surjection $p$ from left cosets of $H$ to
+    left cosets of $K$. Consider the size of $p\inv\paren*{\{gK\}}$.}
 \end{exercise}
 
 \end{document}

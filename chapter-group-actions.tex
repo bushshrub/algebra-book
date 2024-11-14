@@ -4,7 +4,7 @@
 
 
 \section{Group actions}
-We teased the concept of group actions in \cref{chapter:permutation-groups}; now
+We teased the concept of group actions in \cref{M-chapter:permutation-groups}; now
 we come back to it. The abstract study of groups is a rather modern treatment.
 Historically, group theory only dealt with the theory of groups of permutations.
 However, it turns out that studying how a group acts on a set can be very
@@ -93,7 +93,7 @@ We now look at examples of group actions.
 \begin{example}[Group acting on itself by left translation]
 \label{example:action-left-translations}
     This example really illustrates the power of group actions - it yields the
-    proof of Cayley's Theorem (\cref{ex:cayley-thm}). Let $G$ be a group and let
+    proof of Cayley's Theorem (\cref{M-ex:cayley-thm}). Let $G$ be a group and let
     $S = G$. We shall define an action $\cdot: G \times S \to S$ by $g \cdot x =
     gx$. This action is called \textbf{the action of $G$ on itself by left
     translation (or left multiplication)}. Note that on the right side, $gx$ is
@@ -291,7 +291,7 @@ Recall we have defined the
         \operatorname{Stab}(x) = \set{ g \in G: g \cdot x = x}.
     \]
 \end{definition}
-The last use of stabilizers was in \cref{thm:orb-stab-thm}. The ideas from this
+The last use of stabilizers was in \cref{M-thm:orb-stab-thm}. The ideas from this
 theorem will come to light in the proceeding discussion. It turns out that the
 stabilizer is exactly what we need to show that transitive actions are
 equivalent to the action of a group on some coset space. 
@@ -364,7 +364,7 @@ If $G$ is a finite group, then we obtain an important
 Consequently, if a finite group acts transitively on a set, then the set is
 finite, and the cardinality of that set divides $\abs G$. Of course, not all
 actions are transitive. Let $G$ be a finite group acting on a finite set $S$. We
-have previously shown in \cref{ex:orbits-partition-set} that orbits partition
+have previously shown in \cref{M-ex:orbits-partition-set} that orbits partition
 $S$. Since $S$ is finite we can write 
 \begin{equation}
 \label{eqn:partition-of-set-into-orbits}
@@ -409,7 +409,7 @@ conjugate to each other.
 \subsection{Problems and exercises}
 
 \begin{exercise}[Orbit-stabilizer is a corollary]
-    Show how the Orbit-Stabilizer Theorem (\cref{thm:orb-stab-thm}) can be
+    Show how the Orbit-Stabilizer Theorem (\cref{M-thm:orb-stab-thm}) can be
     obtained as a corollary to
     \cref{thm:transitive-actions-are-just-coset-space-actions}.
 \end{exercise}
@@ -501,7 +501,7 @@ the conditions on the converse slightly, and ask a weaker question: Given some
 prime $p$ that divides the order of a finite group $G$, is there necessarily a
 subgroup of that order? We know this question is answered positively if $G$ is
 abelian by Cauchy's Theorem for finite abelian groups
-(\cref{thm:cauchy-thm-fin-abelian}). But it turns out it is true for all groups
+(\cref{M-thm:cauchy-thm-fin-abelian}). But it turns out it is true for all groups
 in general. In fact, something much more can be said. Namely, if $p^k$ is a
 divisor of the order of a finite group $G$, then there is a subgroup of order
 $p^k$. This is the content of Sylow's first theorem.
@@ -526,7 +526,7 @@ From the previous section, we have an enumeration of the set $G$ acts on
 (\cref{eqn:enumeration-of-elements-of-finite-set-under-action}). Let $G$ be a
 finite group, and let $G$ act on itself by conjugations. Given some $x \in G$,
 what is $\operatorname{Stab}(x)$? An element $g \in G$ stabilizes $x$ if and
-only if $gxg\inv = x$. From \cref{exercise:conjugates-centralizer-relation},
+only if $gxg\inv = x$. From \cref{M-exercise:conjugates-centralizer-relation},
 this is equivalent to $g \in C(x)$. Thus $\operatorname{Stab}(x)$ is exactly
 equal to $C(x)$. We can thus rewrite
 \cref{eqn:enumeration-of-elements-of-finite-set-under-action} as 
@@ -589,7 +589,7 @@ We now use the class equation to prove
     $\abs{C(y_j)}$, since $\abs G = \abs{C(y_j)} \cdot [G:C(y_j)]$. Since
     $C(y_j)$ is not all of $G$, it has order $<n$ and so it contains a subgroup
     of order $p^k$. If $p$ does divide $\abs C$, then by
-    \cref{thm:cauchy-thm-fin-abelian}, there is some element $z \in C$ such that
+    \cref{M-thm:cauchy-thm-fin-abelian}, there is some element $z \in C$ such that
     $\abs z = p$. Now, $\gen z$ is normal in $G$ (since any subgroup of $C$ is
     normal), and $G/\gen z$ has order $n/p$, which is divisible by
     $p^{k-1}$\footnote{There is a small technicality here since we only assumed
@@ -615,6 +615,7 @@ A useful corollary is
 
 With this theorem, we are now allowed to define what is known as a
 \begin{definition}[Sylow $p$-subgroup]
+\label{def:sylow-subgroup}
     Let $G$ be a finite group and suppose $p^m$ is the largest power of $p$ that
     divides $\abs G$, i.e. $p^m \mid \abs G$ and $p^{m+1} \nmid \abs G$. If $H$
     is a subgroup of $G$ of order $p^m$, then $H$ is called a \textbf{Sylow
@@ -625,6 +626,7 @@ these must exist because of \cref{thm:sylow-first-theorem}. Sylow's Second
 Theorem gives us some insight into the properties of these subgroups.
 
 \begin{theorem}[Sylow's Second Theorem]
+\label{thm:sylow-2}
     Let $G$ be a finite group. 
     \begin{enumerate}[label=(\arabic*)]
         \item Sylow $p$-subgroups of $G$ are conjugates; that is, given Sylow
@@ -639,6 +641,74 @@ Theorem gives us some insight into the properties of these subgroups.
         a Sylow $p$-subgroup.
     \end{enumerate}
 \end{theorem}
+
+Before we embark on the proof, let's discuss the strategy. The first part of
+\cref{thm:sylow-2} seems to suggest that we should consider the action of $G$ on
+Sylow $p$-subgroups of $G$ by conjugation. But is this even a valid action? 
+
+Let's consider the general situation. Let $\Gamma$ be the set of all subgroups
+of $G$. Can we let $G$ act on $\Gamma$ by conjugation? Well, if $g \in G$, and
+$H$ is a subgroup of $G$, then $gHg\inv$ is still a subgroup of $G$. From here,
+it is not too hard to see that conjugation defines an action of $G$ on $\Gamma$.
+Moreover, $\abs{gHg\inv} = \abs H$, since conjugation by a fixed element is an
+automorphism. This shows that the conjugate of a Sylow $p$-subgroup remains a
+Sylow $p$-subgroup (\cref{ex:conjugate-of-sylow-subgroup}). Hence the action of
+$G$ on $\Gamma$ by conjugation induces an action of $G$ on $\Pi$.
+
+
+Anyway, before we proceed with the proof, we will need the following
+\begin{lemma}
+\label{lem:p-subgroups-contained-in-normalizers-of-sylow-subgroups}
+    Let $P$ be a Sylow $p$-subgroup of $G$, and $H \leq G$ have order $p^j$ such
+    that $H \subseteq N(P)$. Then $H \subseteq P$.
+\end{lemma}
+\begin{proof}
+    We have $H$ being a subgroup of $N(P)$, and $P$ is normal in $N(P)$. This
+    implies $HP$ is a subgroup with $HP/P \cong H /H \cap P$. Hence $HP$ is
+    isomorphic to a factor grop of $H$, so $HP$ has prime power order $p^k$.
+    Moreover, $\abs{HP} = p^k \abs P$. But $P$ is a Sylow $p$-subgroup so we
+    must have $k = 0$. This implies $HP$ is $P$, and so $H \subseteq P$.
+\end{proof}
+
+If $P$ is a Sylow $p$-subgroup of $G$, then $P$ is the only Sylow
+$p$-subgroup of $N(P)$, by the lemma. 
+
+
+\begin{proof}[Proof of \cref{thm:sylow-2}]
+    Let $\Pi$ be the set of Sylow $p$-subgroups of $G$. Consider the action of
+    $G$ on $\Pi$ by conjugation. Let $\Sigma = G \cdot P$ be an orbit under this
+    action, and consider the action of $P$ on $\Sigma$. This partitions $\Sigma$
+    into $P$-orbits. Call the set of these $P$-orbits $\mc U$. Notice that
+    $\{P\} \in \mc U$. We next claim that this orbit is the only singleton
+    $P$-orbit in $\Sigma$; if $\{ P'\} \in \Sigma$, then conjugation by elements
+    of $P$ fixes $P'$, hence $P \subseteq N(P')$. Thus $P = P'$ since $P$ is the
+    only Sylow $p$-subgroup of $N(P')$. Now let $\mc O \in \mc U$, and consider
+    $\abs {\mc O}$. It must be a power of $p$, since $\abs{\mc O}$ divides $\abs
+    P$. This proves that $\abs{\Sigma} \equiv 1 \pmod p$. We now show that $\Pi
+    = \Sigma$, which will prove (2). If not, there is a $Q \in \Pi \not\in
+    \Sigma$. Use the argument above on this $Q$; this shows there are no
+    $Q$-orbits in $\Sigma$ of cardinality 1, giving $\abs{\Sigma} \equiv 0 \pmod
+    p$. This contradicts $\abs{\Sigma} \equiv 1 \pmod p$. Hence $\Sigma = \Pi$
+    and so $G$ acts transitively on $\Pi$. We have now proven (1). (2) is proven
+    with the additional observation that $\abs{\Pi} = [G:N(P)]$. To prove (3),
+    let $H \leq G$ with order $p^k$. Restrict the action of $G$ on $\Pi$ to $H$
+    acting on $\Pi$. The $H$-orbits have cardinality a power of $p$, and since
+    $\abs{\Pi} \equiv 1 \pmod p$, there is a singleton orbit $\{P\}$. Then $H
+    \subseteq N(P)$ and by
+    \cref{lem:p-subgroups-contained-in-normalizers-of-sylow-subgroups}, $H
+    \subseteq P$.
+\end{proof}
+
+
+
+
+
+\subsection{Problems and exercises}
+\begin{exercise}[Conjugate of Sylow $p$-subgroup is a Sylow $p$-subgroup]
+\label{ex:conjugate-of-sylow-subgroup}
+    Let $G$ be a finite group, let $g \in G$ and let $P$ be a Sylow
+    $p$-subgroup. Show that $gPg\inv$ is a Sylow $p$-subgroup.
+\end{exercise}
 
 
 \end{document}

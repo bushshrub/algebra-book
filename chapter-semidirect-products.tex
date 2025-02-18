@@ -1,0 +1,172 @@
+\documentclass[./main.tex]{subfiles}
+
+\begin{document}
+
+We have previously constructed the direct product of 2 groups. This enables us
+to build a bigger group using 2 smaller groups. However, many groups cannot be
+realized as a direct product of 2 groups, even the finite groups. If we
+relax the conditions on the product, it turns out we can do so. 
+
+The main ``issue'' that occurs with the direct product construction is if we had
+groups $H, K$, then both $H, K$ (identified as subgroups of $H \times K$) appear
+as normal subgroups in the direct product. It seems somewhat natural to ask what
+if only one of those factors were normal. This is the idea behind semidirect products.
+
+To motivate the construction of semidirect products, we first start by analyzing
+the case when $H$ is a normal subgroup of $G$, and $K$ is a subgroup of $G$.
+Recall that we have previously proven if $H$ is a \emph{normal} subgroup of $G$,
+and $K$ is some subgroup of $G$, then $HK$ is a subgroup of $G$. However, each
+element of $HK$ is not so cleanly represented (see for example
+\cref{M-ex:generalization-of-hk-theorem}). If we require that $H \cap K = 0$,
+then we get the additional property that every element of $HK$ can be written
+\emph{uniquely} as a product $hk$ for some $h \in H, k \in K$. This means in
+particular that there is a bijection of sets $HK \to H \times K$.
+
+At this point, we have collected a few ingredients to define the semidirect
+product of 2 groups. We have the underlying set: $H \times K$, and we would like
+$H$ to be normal in our newly constructed group. We still need to figure out how
+the multiplication in our newly constructed group should work. This can be done
+by turning back to looking at how multiplication works in $HK$. If $h_1 k_1, h_2
+k_2 \in HK$, then we wish to write their product $(h_1 k_1)(h_2 k_2)$ in the
+form $hk$ for some $h \in H, k \in K$. The trick here is to make use of the
+normality of $H$ by applying conjugation on $h_2$ by $k_1$. Indeed, we see that 
+\begin{align*}
+    (h_1 k_1) (h_2 k_2) &= h_1 k_1 h_2 (k_1\inv k_1) k_2 \\ 
+    &= h_1 (k_1 h_2 k_1 \inv) k_1 k_2 \\
+    &= [h_1 (k_1 h_2 k_1\inv)] [k_1 k_2].
+\end{align*}
+We exploited the normality of $H$ to ensure that $k_1 h_2 k_1 \inv \in H$. 
+
+This gives us a sense on how to define the multiplication in our new semidirect product:
+given $(h_1,k_1)$ and $(h_2, k_2)$ in our underlying set, we define their product to be 
+\[
+    (h_1 (k_1 h_2 k_1\inv), k_1 k_2). 
+\]
+But what on earth is $k_1 h_2 k_1\inv$? This doesn't make sense if $H, K$ are
+some completely arbitrary groups. This is where another insight about
+conjugations come into play - the fact they are automorphisms. For a fixed $k$,
+we see that the map $\varphi_k: H \to H$ given by $h \mapsto k h k\inv$ is an
+automorphism of $H$, since $H$ is normal in $G$. Now, if we had some sort of map
+from $K$ into the automorphisms of $H$, we can define what $k_1 h_2 k_1\inv$
+meant. Let $\varphi: K \to \operatorname{Aut}(H)$ be such a map. We can then
+modify our product definition to be 
+\[
+    (h_1 \varphi(k_1)(h_2), k_1 k_2),
+\]
+which we can write in a cleaner way by defining $k_1 \cdot h_2$ to mean
+$\varphi(k_1)(h_2)$. We should check probably the most important quality:
+associativity. Does it work? Well,
+
+\[
+    ((h_1, k_1)(h_2, k_2))(h_3, k_3) = (h_1 (k_1 \cdot h_2), k_1 k_2) (h_3, k_3) = (h_1 (k_1 \cdot h_2) ((k_1 k_2) \cdot h_3), k_1 k_2 k_3),
+\]
+and 
+\[
+    (h_1, k_1)((h_2, k_2)(h_3, k_3)) = (h_1, k_1) (h_2 (k_2 \cdot h_3), k_2 k_3) = (h_1 [k_1 \cdot (h_2 (k_2 \cdot h_3))], k_1 k_2 k_3).
+\]
+
+So associativity would hold if we had $h_1 (k_2 \cdot h_2)( (k_1 k_2) \cdot h_3)
+= h_1 [k_1 \cdot (h_2 (k_2 \cdot h_3))]$. This is a bit messy, but not too bad.
+We can ignore the $h_1$ term (by applying the inverse of $h_1$ on the left), and
+expand $k_1 \cdot (h_2 (k_2 \cdot h_3))$ to be $(k_1 \cdot h_2) k_1 \cdot (k_2
+\cdot h_3)$, since $\varphi(k_1)$ is an automorphism. Thus we need 
+\[
+    (k_1 \cdot h_2) (k_1 \cdot (k_2 \cdot h_3)) = (k_1 \cdot h_2) (k_1 k_2) \cdot h_3.
+\]
+Again, the $k_1 \cdot h_2$ term can be ignored, so what we really need is $k_1
+\cdot (k_2 \cdot h_3) = (k_1 k_2) \cdot h_3$. This would be true if $\varphi$ is
+a \emph{homomorphism}. 
+
+With that, we can finally give the 
+
+\begin{definition}[Semidirect product]
+\label{def:semidirect-product}
+    Let $H, K$ be groups, and let $\varphi: K \to \operatorname{Aut}(H)$ be a
+    homomorphism. Then, the \textbf{semidirect product of $H$ and $K$}, denoted
+    $H \rtimes_\varphi K$, is the group with underlying set $H \times K$ and product 
+    \[
+        (h_1, k_2) (h_2, k_2) = (h_1 k_1 \cdot h_2, k_1 k_2).
+    \]
+\end{definition}
+We still have yet to check the existence of inverses and identities, but these
+are not hard, and we leave it to the reader as 
+\begin{exercise}
+    Verify that the construction of semidirect product above is actually a
+    group. 
+\end{exercise}
+
+Note that the notation $H \rtimes_\varphi K$ is chosen to remind us that $H$ is
+normal in the semidirect product. If the homomorphism $\varphi$ is clear we can
+drop the subscript and just write $H \rtimes K$. Let's discuss some properties
+of the construction we just created.
+
+\begin{proposition}[Properties of semidirect product]
+\label{prop:properties-of-semidirect-product}
+Let $H, K$ be groups, and let $\varphi: K \to \operatorname{Aut}(K)$ be a
+homomorphism. Let $H \rtimes K$ be the semidirect product of $H$ and $K$, using
+$\varphi$. Then, the following hold:
+
+\begin{enumerate}[label=(\arabic*)]
+    \item The order of $H \rtimes K$ is $\abs H \abs K$.
+    \item There are embeddings (injective homomorphisms) of $H$ and $K$ into $H \rtimes K$.
+
+Moreover, if we identify $H$ and $K$ with their isomorphic copies, we have
+    \item $H$ is normal in $G$, 
+    \item $H \cap K = 0$,
+    \item Conjugation of elements of $h$ by elements of $k$ is defined by $k
+    \cdot h$, i.e. $k h k\inv = k \cdot h$.
+\end{enumerate}
+
+\end{proposition}
+\begin{proof}
+    All of these follow very easily from the construction of the semidirect
+    product, and are left to the reader in
+    \cref{ex:prove-properties-of-semidirect-product}.
+\end{proof}
+\begin{exercise}
+\label{ex:prove-properties-of-semidirect-product}
+    Prove \cref{prop:properties-of-semidirect-product}
+\end{exercise}
+
+
+The following proposition is also often useful in showing that a semidirect
+product is the same as a direct product
+\begin{proposition}
+\label{prop:identifying-degenerate-semidirect-products}
+    Let $H, K$ be groups, $\varphi$ a homomorphism of $K \to
+    \operatorname{Aut}(H)$. Let $H \rtimes K$ denote their semidirect product.
+    Then, the following are equivalent:
+
+    \begin{enumerate}
+        \item $H \rtimes K$ is isomorphic to the direct product $H \times K$ with the identity map,
+        \item $\varphi$ is the trivial homomorphism, 
+        \item $K$ is normal in $H \rtimes K$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Exercise; see \cref{ex:prop:identifying-degenerate-semidirect-products}
+\end{proof}
+
+\begin{exercise}
+\label{ex:prop:identifying-degenerate-semidirect-products}
+    Prove \cref{prop:identifying-degenerate-semidirect-products}.
+\end{exercise}
+
+Now let's see some examples of semidirect products. 
+
+\begin{example}[Dihedral groups]
+    Let $H$ be a cyclic group of order $n$ generated by $r$, and let $K$ be a
+    cyclic group of order 2, generated by $s$. Define $\varphi: K \to
+    \operatorname{Aut}(H)$ by sending $s$ to the inversion automorphism on $H$,
+    which is $h \mapsto h\inv$. In the semidirect product, $K$ has order 2 and
+    $H$ has order $n$. Notice that $shs\inv = h\inv$ for all $h \in H$. If we
+    recall the presentation of $D_n$, we see these are precisely the relations
+    that give $D_n$. Hence this semidirect product is actually $D_n$, so we
+    conclude $\bZ_n \rtimes_\varphi \bZ_2$ is isomorphic to $D_n$.
+\end{example}
+If we replace $H$ with an infinite cyclic group, we get the infinite dihedral
+group. Of course, $H$ can be any abelian group, since the inversion automorphism
+is valid provided $H$ is abelian. 
+
+
+\end{document}

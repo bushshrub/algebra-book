@@ -3,8 +3,6 @@
 \begin{document}
 
 
-
-
 \section{Introduction to Rings}
 At this point, we have now studied one kind of algebraic structure - groups.
 Groups are rather general things, but their flexibility means that we can say
@@ -18,8 +16,7 @@ elementary school, we also know that given integers $a, b, c$, we have
 \[
     a \cdot (b + c) = a \cdot b + a \cdot c,
 \]
-the distributive law. We also have the property that 1 multiplied by any integer
-simply yields that integer itself.
+the distributive law. 
 
 Motivated by this example, we can now define a
 \begin{definition}[Ring]
@@ -33,14 +30,19 @@ Motivated by this example, we can now define a
                 a \cdot (b + c) = a \cdot b + a \cdot c \quad (b + c) \cdot a = b \cdot a + c \cdot a.
             \]
             The former is called left distributivity, and the latter is right distributivity.
-        \item \textbf{(Unity)} There is an element $1 \in R$ such that for all $a \in R$, $1
-        \cdot a = a \cdot 1 = a$.
     \end{enumerate}
 \end{definition}
+Sometimes, a ring may have what is called a 
+\begin{center}
+    \textbf{(Unity)} There is an element $1 \neq 0 \in R$ such that for all $a
+        \in R$, $1 \cdot a = a \cdot 1 = a$.
+\end{center}
 Whenever possible, we shall drop the use of $\cdot$ to make it less messy, and
-simply write $a(b+c)$ to mean $a \cdot (b+c)$. Note that what we have just
-defined here is a ring with unity. Some authors (e.g. \autocite{Gallian_2020})
-defines what is generally called a Rng, a ring without unity. 
+simply write $a(b+c)$ to mean $a \cdot (b+c)$. Be warned that some authors will
+require the unity axiom in their definition of a ring. The additive identity of
+$R$ will be denoted 0. We emphasize that the unity 1 is expected to be distinct
+from the additive identity -- this is where the $1 \neq 0$ in the definition
+comes from. 
 
 Given some $a \in R$, if there is an element $b$ such that $ab = ba = 1$, then
 $a$ is said to be a \emph{unit} and we write $b = a\inv$. The following
@@ -57,6 +59,11 @@ proposition justifies this notation.
     It is not too hard to verify that $\bZ$ forms a ring. In fact, it is
     arguably the most important ring of all.
 \end{example}
+
+\begin{example}[Ring without a unity]
+    The even integers $2 \bZ$ form a ring without unity.
+\end{example}
+
 
 The multiplication in a ring need not be commutative at all. If a ring has
 commutative multiplication, we call it a commutative ring.
@@ -75,18 +82,54 @@ commutative multiplication, we call it a commutative ring.
     \bC$, and they are all subrings of each other in that way.
 \end{example}
 
+\begin{example}[Inheriting a ring structure]
+    Let $X$ be any set and let $R$ be any ring whatsoever. Let
+    $\operatorname{Hom}_{\mathbf{Set}}(X, R)$\footnote{This notation is chosen
+    for consistency with category theoretic notation. Readers are welcome to
+    replace this notation.} denote the set of all functions from $X$ into $R$.
+    Define the sum of 2 elements of the set $f+g$ to be the function $(f+g)(x) =
+    f(x) + g(x)$, and the product of 2 elements $fg$ to be the function $(fg)(x)
+    = f(x) g(x)$. We ask that the reader verify this indeed forms a ring. 
+\end{example}
+The example above illustrates the idea of ``passage''. The set of functions from
+$X$ into $R$ inherits the ring structure of $R$, so in a sense we have
+``passed'' the ring structure of $R$ to $\operatorname{Hom}_{\mathbf{Set}}(X, R)$. 
+
+\begin{example}[Continuous functions]
+    Let $C^0([0,1])$\footnote{This notation was chosen for consistency with
+    multivariate calculus, which uses $C^k(S)$ to denote the set of real-valued
+    functions with continuous $k$-th order partial derivatives. It is convention
+    to let $C^0(S)$ denote the set of real-valued continuous functions with
+    domain $S$.} be the set of continuous real-valued functions with domain
+    $[0,1]$. There is a canonical ring structure on this set given by pointwise
+    addition and multiplication, i.e. define $f+g$ to be the function $(f+g)(s)
+    = f(s) + g(s)$, and the product $fg$ to be $(fg)(s) = f(s) g(s)$. Since the
+    pointwise sum and product of 2 continuous functions remains continuous, we
+    see that $\mc C([0,1])$ forms a ring.
+\end{example}
+
+\begin{example}[The Gaussian integers]
+    This is a ring whose importance in number theory cannot be overstated. Let
+    $\bZ[i] = \{ a + bi: a, b \in \bZ \}$ where $i$ is the imaginary unit $i^2 =
+    -1$. Addition and multiplication are as in the complex numbers. It is not
+    hard to see that this forms a ring. 
+\end{example}
+
 We haven't defined what a subring is yet, but we shall now. Intuitively, a
 subring $S$ of a ring $R$ should form a ring as well, but with the operations of
-$R$. That means $S$ has to contain the additive identity of $R$, the
-multiplicative identity of $R$, and remain closed under addition and
-multiplication.
+$R$. That means $S$ has to contain the additive identity of $R$, and remain
+closed under addition and multiplication. Note that we do not require $S$ to
+contain the multiplicative identity even if $R$ contains a multiplicative
+identity\footnote{The reason this is so is because we will make use of subrings
+in our definition for ideals.}.
+
 \begin{exercise}
     Formulate the definition of a subring.
 \end{exercise}
 
 We shall now see some basic properties of rings. These properties will allow us
 to use the familiar rules from multiplication and subtraction of integers that
-we are used to.
+we are used to. Note that we do not assume the ring has a unity.
 \begin{proposition}[Basic properties of rings]
 \label{prop:basic-properties-of-rings}
     Let $R$ be a ring, and let $a, b, c \in R$.
@@ -96,13 +139,14 @@ we are used to.
         \item $a(-b) = (-a)b = -(ab)$;
         \item $(-a)(-b) = ab$;
         \item $a(b-c) = ab -ac$, $(b-c)a = ba-ca$;
+        
+        If $R$ contains 1, then we additionally have:
         \item $(-1)a = -a$;
         \item $(-1)(-1) = 1$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    We will prove this without making use of the element $1 \in R$, so that this
-    proposition remains true for rngs. For the first one, notice that 
+    For the first one, notice that 
     \[
         0 + a0 = a0 = a(0+0) = a0 + a0.
     \]
@@ -125,11 +169,198 @@ This proposition is useful and not difficult to prove.
 \begin{proposition}[Subring test]
 \label{prop:subring-test}
     Let $S \subseteq R$ be a subset of $R$. Then $S$ is a subring of $R$ if and
-    only if $S$ contains 1, and given $a, b \in S$, we have $a-b \in S$ and $ab
+    only if $S$ is nonempty, and given $a, b \in S$, we have $a-b \in S$ and $ab
     \in S$.
 \end{proposition}
 \begin{exercise}
     Supply the proof of \cref{prop:subring-test}.
+\end{exercise}
+
+Now we can see some examples of subrings.
+
+\begin{example}
+    We can realize the integers $\bZ$ as a subring of $\bQ$. For similar reasons
+    we see that $\bQ$ is a subfield of $\bR$ too, which in addition is a
+    subfield of $\bC$. 
+\end{example}
+
+\begin{example}
+    If $R = \operatorname{Hom}_{\mathbf{Set}}(\bR, \bR)$ is the ring of all
+    functions from $\bR$ to $\bR$, then $C^0(\bR)$, the set of all continuous
+    real-valued functions, forms a subring of $R$. Likewise, the set of all
+    differentiable functions real-valued functions $C^1(\bR)$ is a subring of
+    $C^0(\bR)$.
+\end{example}
+
+
+\section{Integral domains}
+We previously mentioned that the integers is arguably the most important ring of
+all. The integers are of course a very nice ring -- it is commutative, it has a
+unity, and as a group it is cyclic. We focus on one of the properties that make
+the integers such a nice ring: If we have integers $a,b,c$ with the property
+that $ab = ac$, then we can cancel off $a$, provided $a \neq 0$, and get $b=c$.
+A general ring with this property is called an integral domain. It turns out
+that having cancellation is equivalent to not having elements called \emph{zero
+divisors}, which we shall now define.
+
+\begin{definition}[Zero divisors]
+\label{def:zero-divisor}
+Let $R$ be a ring. An element $a \in R$ is a \textbf{zero divisor} if $a \neq
+0$, and there exists a nonzero $b \in R$ such that $ab = 0$ or $ba = 0$.
+\end{definition}
+We can also define a left or right zero divisor: if $ab = 0$, but both of $a$
+and $b$ are nonzero then $a$ is a left zero divisor and $b$ is a right zero
+divisor, but we shall have no need of this more general definition.
+
+With this, we can now give the official definition of a integral domain.
+\begin{definition}[Integral domain]
+\label{def:integral-domain}
+Let $R$ be a commutative ring with unity. Then $R$ is said to be an
+\textbf{integral domain} if it has no zero divisors.
+\end{definition}
+
+\begin{exercise}
+    Show that a commutative ring $R$ having no zero divisors is equivalent to
+    having cancellation, i.e. for all $a,b,c \in R$, if $a \neq 0$ and $ab =
+    ac$, then $b = c$.
+\end{exercise}
+
+We now see some examples and nonexamples of integral domains.
+
+\begin{example}
+    Any field whatsoever is an integral domain. In fact, we shall prove later on
+    that any integral domain can be embedded in a field (its field of fractions).
+\end{example}
+
+\begin{example}
+    The ring of all functions $\bR \to \bR$ under pointwise addition and
+    multiplication is not an integral domain, since it has a zero divisor. Let
+    $f$ be the function which is 0 everywhere except at $0$, where it is 1 and
+    let $g$ be the function which is 1 everywhere except at 0, where it is 0. It
+    is clear that neither $f$ nor $g$ are the zero function, but their product
+    is the zero function.
+\end{example}
+
+One can construct similar examples by considering the ring of continuous
+functions from $\bR \to \bR$. We leave this as \cref{ex:real-valued-cts-functions-is-not-an-integral-domain}.
+
+\begin{example}
+    Let $n$ be any composite number, and suppose $n = ab$ where $1 < a,b < n$.
+    Then, in $\bZ_n$, the element $a$ is a zero divisor, since $ab = 0$. But
+    what about when $n$ is prime? Does $\bZ_p$ have zero divisors? It turns out
+    the answer is no, since it is easily shown (using Bezout's lemma) that every
+    element of $\bZ_p$ has a multiplicative inverse. So $\bZ_p$ is actually a
+    \emph{field}.
+\end{example}
+
+Finite integral domains are quite special, because all of them are fields.
+\begin{proposition}
+    Any finite integral domain is a field.
+\end{proposition}
+\begin{proof}
+    Let $a$ be a nonzero element; we shall find an inverse for $a$. Consider the
+    sequence of elements
+    \[
+        a, a^2, a^3, \dots,
+    \]
+    Since the integral domain is finite, there are integers $i, j$ with $i < j$
+    such that $a^i = a^j$. This means $a^{j-i} = 1$, and so $a^{j-i-1}$ is a
+    multiplicative inverse for $a$.
+\end{proof}
+
+% TODO: Maybe define what a homomorphism is?
+
+\section{Problems and Exercises}
+
+\begin{exercise}
+\label{ex:real-valued-cts-functions-is-not-an-integral-domain}
+    Find a zero divisor in the ring of continuous functions from $\bR$ to $\bR$.
+\end{exercise}
+
+\begin{exercise}
+    Let $\{S_\alpha\}$ be a collection of subrings of a ring $R$. Show that the
+    intersection $\bigcap S_\alpha$ is a subring of $R$.
+\end{exercise}
+
+\begin{exercise}[Center of rings]
+\label{ex:center-of-rings}
+    The \emph{center} of a ring $R$ is the set $\set{r \in R: sr = rs \text{ for
+    all } s \in R}$. 
+    
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that the center of a ring is a subring containing the
+        identity.
+        \item If $r \in R$, define $C(r) = \set{x \in R: xr = rx}$. This is the
+        set of all ring elements which commute with $r$. Show that the center of
+        $R$ is equal to $\bigcap_{r \in R} C(r)$. 
+    \end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}[Division rings]
+\label{ex:division-rings}
+    A \emph{division ring} is a ring $R$ with unity (not necessarily
+    commutative) such that for all $r \in R$, there is an $s \in R$ such that
+    $rs = sr = 1$.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item The real Hamilton Quaternions is the set 
+        \[
+            \mbb H = \set{a + bi + cj + dk: a,b,c,d \in \bR}
+        \]
+        with the relations $i^2 = j^2 = k^2 = -1$ and $ij = -ji = k$, $jk = -kj
+        = i$ and $ki = -ik = j$. Show that the real Hamilton Quaternions form a
+        division ring. \textit{Hint: In $\bC$, if $z$ is nonzero, then $z
+        \overline z$ divided by $\abs z^2$ is 1, where $\overline z$ is complex
+        conjugation. There is a similar notation of quaternion conjugation.}
+
+        \item Show that the center of a division ring is a field.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Nilpotent elements]
+\label{ex:nilpotent-elements}
+    Let $R$ be a ring. Given $x \in R$, if there is an $m > 0$ such that $x^m =
+    0$, then $x$ is called \emph{nilpotent}.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that the set of nilpotent elements of $R$ forms a subring of
+        $R$. 
+        \item Let $X$ be a nonempty set, let $\mbb F$ be a field and let $R =
+        \operatorname{Hom}_{\mathbf{Set}}(X, \mbb F)$ be the ring of functions
+        from $X$ into $\mbb F$. Show that $R$ has no nonzero nilpotent elements.
+        \item If $x$ is nilpotent, show that it is either 0 or a zero divisor.
+        
+        For the next few parts, assume $R$ is commutative and $x \in R$ is nilpotent.
+        
+        \item Show that if $r \in R$, then $rx$ is nilpotent.
+        \item Prove that $1+x$ is a unit in $R$. \emph{Hint: Recall that $x^3 -
+        1 = (x-1)(1 + x + x^2)$. What about $x^4 - 1$, $x^5 - 1$, etc.?}
+        \item Prove that if $u$ is a unit then $u + x$ is a unit.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Boolean rings are commutative]
+\label{ex:boolean-rings-commutative}
+    Let $R$ be a ring with the property that $r^2 = r$ for every $r \in R$.
+    (Such rings are called \emph{Boolean rings}.) Prove that $R$ is commutative.
+\end{exercise}
+
+\begin{exercise}[Constructing boolean rings]
+    Let $X$ be a nonempty set, and let $\mc P(X)$ be the power set of $X$. For
+    $A, B \in \mc P(X)$, define 
+    \[
+        A + B = (A \setminus B) \cup (B \setminus A), \quad A \cdot B = A \cap B.
+    \]
+    Put more succinctly, addition in $\mc P(X)$ is given by symmetric
+    difference, and multiplication by intersection. Prove that $\mc P(X)$
+    forms a ring with unity under these operations. Prove additionally that it
+    is a Boolean ring.
+\end{exercise}
+
+\begin{exercise}
+    Show that if $R$ is a boolean ring that is an integral domain, then $R$ is
+    isomorphic to $\bZ_2$.
 \end{exercise}
 
 

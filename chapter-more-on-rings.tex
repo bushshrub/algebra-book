@@ -1,0 +1,43 @@
+\documentclass[./main.tex]{subfiles}
+
+\begin{document}
+
+Now that we have the basic language to talk about rings, we shall discuss more
+examples of rings, which will come up time and time again. 
+
+\section{Polynomial rings}
+The first class of rings we shall talk about are polynomial rings. These are
+extremely important in the study of rings.
+
+The reader is likely already familiar with polynomials (as functions), which
+take on coefficients in the real numbers (or complex numbers). It is not much of
+a jump to allow polynomials to take on coefficients in an arbitrary ring. Let
+$R$ be a commutative\footnote{It is possible to define polynomial rings over
+noncommutative rings, but we leave this to the exercises since they're not used
+much.} ring with unity. Let $x$ be an indeterminate. The
+\emph{formal}\footnote{For the sake of intuition and exposition we will not
+define this in terms of sequences. We leave this definition to the exercises.}
+sum 
+\[
+    a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0
+\]
+is called a \textbf{polynomial} in $x$ with coefficients $a_i$ in $R$. If $a_n$
+is nonzero then the \textbf{degree} of this polynomial is said to be $n$. The
+polynomial is said to be \textbf{monic} if $a_n = 1$. We define the set of all
+such polynomials to be the \textbf{polynomial ring in the indeterminate $x$ with
+coefficients in $R$}, denoted $R[x]$. 
+
+The reader has probably already guessed how addition and multiplication should
+behave\footnote{This is why we did not choose to define these with sequences}.
+We simply add 2 polynomials by lining up their terms and adding their
+coefficients:
+
+\begin{align*}
+    a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
+    + &b_n x^n + b_{n-1} x^{n-1}
+\end{align*}
+
+
+
+
+\end{document}

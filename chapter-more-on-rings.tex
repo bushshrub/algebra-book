@@ -33,9 +33,50 @@ We simply add 2 polynomials by lining up their terms and adding their
 coefficients:
 
 \begin{align*}
-    a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
-    + &b_n x^n + b_{n-1} x^{n-1}
+    &a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0 \\
+    + &b_n x^n + b_{n-1} x^{n-1} + \cdots + b_0 \\
+    \cline{1-2} 
+    = &(a_n + b_n) x^n + (a_{n-1} + b_{n-1}) x^{n-1} + \cdots + (a_0 + b_0).
 \end{align*}
+Here, some of the $a_i$'s and $b_j$'s could be zero, to make the equation work
+out. Of course, it is only reasonable to omit them when writing it down in a
+specific situation.
+
+Multiplication is also as how one should expect. In this case we first define
+$(a x^i)(b x^j) = ab x^{i+j}$, then we extend it in general to all polynomials
+by using distributivity, i.e.
+
+\begin{align*}
+    (a_n x^n + a_{n-1} x^{n-1} + \cdots + a_0) \cdot (b_n x^n + b_{n-1} x^{n-1} + \cdots + b_0) \\
+    &= a_n x^n (b_n x^n + b_{n-1} x^{n-1} + \cdots + b_0) \\
+    &+ a_{n-1} x^{n-1} (b_n x^n + b_{n-1} x^{n-1} + \cdots + b_0) \\
+    &+ \cdots \\
+    &+ a_0 (b_n x^n + b_{n-1} x^{n-1} + \cdots + b_0).
+\end{align*}
+In general, the coefficient of $x^k$ in the product is given by $\sum_{i=0}^k
+a_i b_{k-i}$\footnote{Some readers may recognize this as convolution.}. 
+
+With these operations, it is not too difficult to verify $R[x]$ forms a ring.
+Moreover, there is an isomorphic copy of $R$ embedded in $R[x]$, namely, the
+constant polynomials.
+
+When $R$ is an integral domain, the following familiar properties of polynomials
+with integer coefficients hold:
+\begin{proposition}
+    Let $R$ be an integral domain, and $p(x), q(x) \in R[x]$ be nonzero polynomials. Then, 
+    \begin{enumerate}
+        \item $\deg p(x) q(x) = \deg p(x) + \deg q(x)$,
+        \item if $u(x) \in R[x]$ is a unit then it is a constant polynomial,
+        \item $R[x]$ is an integral domain as well.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    The proof is routine.
+\end{proof}
+
+\begin{exercise}
+    Prove the previous proposition.
+\end{exercise}
 
 
 

@@ -1,0 +1,74 @@
+\documentclass[./main.tex]{subfiles}
+
+\begin{document}
+
+When we studied groups, we studied structure-preserving maps between groups. Now
+it is time to study structure-preserving maps between rings. 
+
+\begin{definition}[Ring homomorphisms]
+\label{def:ring-homomorphisms}
+Let $R, S$ be a rings and $\varphi: R \to S$. Then $\varphi$ is a \textbf{ring
+homomorphism} if $\varphi$ is a group homomorphism: $\varphi(a+b) = \varphi(a) +
+\varphi(b)$ for $a,b \in R$ and $\varphi$ is multiplicative: $\varphi(ab) =
+\varphi(a) \varphi(b)$.
+\end{definition}
+
+Some authors (e.g. \cite{Jacobson_2009}) generally require the following axiom:
+If additionally both $R, S$ have a unity, then $\varphi(1) = 1$. This
+stipulation is made in order to ensure that units are mapped onto units. 
+
+We also make the definition of a 
+\begin{definition}[Kernel]
+\label{def:ring-homomorphism-kernel}
+The \textbf{kernel} of a ring homomorphism $\varphi$ is the set 
+\[
+    \ker \varphi = \set{r \in R: \varphi(r) = 0}.
+\]
+\end{definition}
+
+% TODO: Include D&F ch 7.3 exercise 17 (p263 in pdf)
+
+\begin{example}
+    For $n > 0 \in \bZ$, there is a canonical group homomorphism $\bZ \to \bZ_n$
+    given by $m \mapsto m \pmod n$. Since modular arithmetic is multiplicative,
+    this map is in fact a ring homomorphism. 
+\end{example}
+
+\begin{example}
+    If $n \in \bZ$, the map $\varphi_n: \bZ \to \bZ$ defined by $m \mapsto mx$
+    is not a ring homomorphism unless $n^2 = n$. However $\varphi_n$ is always a
+    group homomorphism on the additive group of $\bZ$. This example emphasizes
+    the importance of checking the multiplicativity of a map.
+\end{example}
+
+\begin{example}[Evaluation homomorphism]
+    Let $R$ be a commutative ring with unity, let $r \in R$, and let
+    $\operatorname{eval}_r: R[x] \to R$ denote the mapping $f(x) \mapsto f(r)$.
+    This is called the \emph{evaluation homomorphism} because it simply
+    evaluates the polynomial $f$ at $r$. We leave it to the reader to check that
+    this is indeed a homomorphism. 
+\end{example}
+% We digress to comment on the evaluation map. On one hand $R[x]$ is the set of
+% formal polynomials in $x$ -- sequences of elements in $R$. Yet, we can connect
+% them with polynomial functions $R \to R$ using the evaluation homomorphism.
+
+Let us now look at a few properties of ring homomorphisms. 
+
+\begin{proposition}
+    Let $R, S$ be rings and $\varphi: R \to S$ be a homomorphism. Then,
+    $\varphi[R]$ is a subring of $S$, and $\ker \varphi$ is a subring of $R$. 
+\end{proposition}
+\begin{proof}
+    Routine.
+\end{proof}
+\begin{exercise}
+    Prove the above proposition.
+\end{exercise}
+
+The fact that $\ker \varphi$ is a subring of $R$ is only part of the story
+though. If $r \in R$, and $a \in \ker \varphi$, then $\varphi(ra) = \varphi(r)
+\varphi(a) = 0$, so $ra \in \ker \varphi$ too; similary for $ar$. This 
+
+
+
+\end{document}

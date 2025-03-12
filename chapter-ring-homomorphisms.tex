@@ -67,7 +67,92 @@ Let us now look at a few properties of ring homomorphisms.
 
 The fact that $\ker \varphi$ is a subring of $R$ is only part of the story
 though. If $r \in R$, and $a \in \ker \varphi$, then $\varphi(ra) = \varphi(r)
-\varphi(a) = 0$, so $ra \in \ker \varphi$ too; similary for $ar$. This 
+\varphi(a) = 0$, so $ra \in \ker \varphi$ too; similary for $ar$. Such subrings
+are given a special name:
+
+\begin{definition}[Ideal]
+\label{def:ideal}
+    A(n) (two-sided) \textbf{ideal} $I$ of a ring $R$ is a subring of $R$ such
+    that for all $i \in I$ and all $r \in R$, both $ri$ and $ir$ are in $R$.
+\end{definition}
+
+Note if we only assume that $ri \in R$ then $I$ is a left ideal, and if only $ir
+\in R$ we call $I$ a right ideal. So a two-sided ideal is both a left and right
+ideal. Some authors do define left and right ideals, but their utility is rather
+limited and so we have chosen to omit them. Nevertheless, the concept of
+one-sided ideals will be developed in the exercises for the interested reader.
+Henceforth, whenever we say ideal, we shall mean two-sided ideal as in
+\cref{def:ideal}.
+
+It would be rather silly to give a name to a concept that doesn't have utility.
+It turns out the utility of ideals is much like normal subgroups: they help us
+form quotient rings. 
+
+\begin{proposition}[Existence of quotient rings]
+\label{prop:existence-of-quotient-rings}
+    Let $I \subseteq R$ be a subring. Then $I$ is an ideal of $R$ if and only if
+    the operation $(a + I)(b + I) := ab + I$ is well-defined. if this operation
+    is well-defined, $R/I$ is a quotient ring with multiplication given by said
+    operation.
+\end{proposition}
+
+
+\begin{proof}
+    Recall that $R/I$ is denoted to be the set of left cosets of $I$. We shall
+    denote the left coset $\set{a + i: i \in I}$ by $a + I$. Clearly $R/I$ is
+    already a quotient group since $R$ is abelian. So all that's left to check is
+    the ring operation. We leave checking that as an exercise.
+\end{proof}
+
+\begin{exercise}
+    Complete the proof of \cref{prop:existence-of-quotient-rings}.
+\end{exercise}
+
+Just like how the study of group homomorphisms is intimately related to the
+study of normal subgroups, so is the study of ring homomorphisms with the study
+of ideals.
+
+\begin{proposition}
+\label{prop:all-ideals-are-kernels}
+    Every ideal is the kernel of some ring homomorphism
+\end{proposition}
+\begin{proof}
+    Consider $r \mapsto r + I$.
+\end{proof}
+
+Now that we are sufficiently convinced of the utility of ideals, let's see some
+examples. In the following examples, notice how we construct homomorphisms to
+avoid directly arguing that a certain set is an ideal.
+
+\begin{example}
+    The kernel of any homomorphism is an ideal. Note that
+    \cref{prop:all-ideals-are-kernels} shows that these are precisely all the
+    ideals. 
+\end{example}
+
+\begin{example}
+    The trivial ideal $\set{0}$ and the whole ring $R$ are both ideals. This can
+    be done by definition, or by observing that the whole ring $R$ is the kernel
+    of the trivial homomorphism, and the trivial ideal is the kernel of the
+    identity homomorphism $R \to R$.
+\end{example}
+
+\begin{example}[The ideals of the integers]
+    Let's analyze what the ideals of $\bZ$ can be -- this will completely
+    characterize \emph{all} homomorphisms out of $\bZ$. Of course, we should
+    tackle the easier task first, finding exmaples of ideals of $\bZ$. Since the
+    only subgroups of $\bZ$ are cyclic of the form $\gen{a}$, this severely
+    limits candidates for ideals. We claim these are all in fact ideals. To see
+    this, for each $n > 0$, let $\phi_n$ be the map $m \mapsto n \mod n$. It's
+    not hard to check that $\phi_n$ is a ring homomorphism, and that $\ker
+    \phi_n$ is precisely $\gen n$. So all the ideals of $\bZ$ are of the form
+    $\gen n$.
+    
+    An alternative argument for this classification is possible by directly
+    using the definition of an ideal and the well-ordering principle; we leave
+    this to the reader.
+\end{example}
+
 
 
 
